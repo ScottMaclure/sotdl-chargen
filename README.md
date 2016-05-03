@@ -1,5 +1,11 @@
 # Shadow of the Demon Lord - Character Generator
 
+Hosted here:
+
+http://scott.maclure.com.au/sotdl-chargen/
+
+More about SotDL here:
+
 http://schwalbentertainment.com/shadow-of-the-demon-lord/
 
 ## Local Dev
