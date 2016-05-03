@@ -5,36 +5,54 @@ import { connect } from 'react-redux'
 
 import '../../css/CharacterGenerator.css'
 
+import ActionBar from './ActionBar.js'
 import Select from './Select.js'
 
-const CharacterGenerator = ({ appData, ancestryData, charData, onChangeAncestry, onChangeValue }) => (
-	<div className="characterGenerator">
+const getStyles = (charData) => ({
+	display: charData.mode !== 'edit' ? 'none' : ''
+})
 
-		<div className="row">
-			<label for="ancestry">Ancestry</label>
-			<Select id="ancestry"
-				options={appData.ancestries} value={charData.ancestry}
-				onChange={(event) => onChangeAncestry(event.target.value)}
-			/>
-		</div>
+const AppComponent = ({
+	appData, ancestryData, charData,
+	changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter
+}) => (
 
-		<div className="row">
-			<label for="name">Name</label>
-			<Select id="name"
-				options={ancestryData.commonNames} value={charData.name}
-				onChange={(event) => onChangeValue('name', event.target.value)}
-			/>
-		</div>
+	<div className="app">
 
-		<div className="row">
-			<label for="background">Background</label>
-			<Select id="background"
-				options={ancestryData.background} value={charData.background}
-				onChange={(event) => onChangeValue('background', event.target.value)}
-			/>
+		<ActionBar mode={charData.mode} onEdit={setEditMode} onView={setViewMode} onCreate={createRandomCharacter}/>
+
+		<div className="characterGenerator" style={getStyles(charData)}>
+
+			<h2>Character Creation (Orc or Human)</h2>
+
+			<div className="row">
+				<label for="ancestry">Ancestry</label>
+				<Select id="ancestry"
+					options={appData.ancestries} value={charData.ancestry}
+					onChange={(event) => changeAncestry(event.target.value)}
+				/>
+			</div>
+
+			<div className="row">
+				<label for="name">Name</label>
+				<Select id="name"
+					options={ancestryData.commonNames} value={charData.name}
+					onChange={(event) => changeValue('name', event.target.value)}
+				/>
+			</div>
+
+			<div className="row">
+				<label for="background">Background</label>
+				<Select id="background"
+					options={ancestryData.background} value={charData.background}
+					onChange={(event) => changeValue('background', event.target.value)}
+				/>
+			</div>
+
 		</div>
 
 	</div>
+
 )
 
 // Inbound data
@@ -47,17 +65,26 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	onChangeAncestry: (value) => {
+	changeAncestry: (value) => {
 		dispatch({ type: 'CHANGE_ANCESTRY', value: value })
 	},
-	onChangeValue: (name, value) => {
+	changeValue: (name, value) => {
 		dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value })
+	},
+	setEditMode: () => {
+		dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'edit' })
+	},
+	setViewMode: () => {
+		dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'view' })
+	},
+	createRandomCharacter: () => {
+		dispatch({ type: 'CREATE_RANDOM' })
 	}
 })
 
 const App = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(CharacterGenerator)
+)(AppComponent)
 
 export default App

@@ -1,6 +1,10 @@
 .characterSheet {
 	display: flex;
 	flex-direction: column;
+}
+
+.characterSheet fieldset {
+	margin-bottom: 0.5em;
 	font-family: monospace;
 }
 

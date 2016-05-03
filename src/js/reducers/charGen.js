@@ -40,6 +40,8 @@ const setAncestryData = (state) => {
 
 	state.char.name = getRandomItem(ancestryData.commonNames)
 	state.char.background = getRandomItem(ancestryData.background)
+
+	state.char.attributes = Object.assign({}, ancestryData.attributes)
 }
 
 const initRandomCharacter = (state) => {
@@ -56,7 +58,10 @@ initRandomCharacter(initialState)
 // TODO split this up into smaller parts as I develop the app.
 export default function charGen(state = initialState, action) {
 
-	var newState = Object.assign({}, state);
+	let newState = {
+		app: Object.assign({}, state.app),
+		char: Object.assign({}, state.char)
+	}
 
 	switch (action.type) {
 		case 'CREATE_RANDOM':

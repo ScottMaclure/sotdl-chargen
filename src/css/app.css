@@ -13,4 +13,7 @@ body {
 	#main {
 		display: none !important;
 	}
+	.actionBar {
+		display: none !important;
+	}
 }

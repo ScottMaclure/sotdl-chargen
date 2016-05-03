@@ -1,0 +1,12 @@
+.actionBar {
+	display: flex;
+	flex-direction: row;
+}
+
+.actionBar > * {
+	flex-grow: 1;
+}
+
+.actionBar > .createButton {
+	background-color: lightgreen;
+}
