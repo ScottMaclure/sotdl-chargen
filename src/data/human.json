@@ -1,0 +1,113 @@
+{
+	"commonNames": [
+		"Aengus", "Agnes", "Aine", "Alice", "Anselm", "Beatrice", "Breandan", "Caitlin", "Cormac", "Ella", "Fiona", "Geoffrey", "Giselle", "Henry", "Joan", "John", "Kane", "Kiera", "Margery", "Richard", "Roisin", "Rordan", "Saraid", "Seamus", "Walter", "Yvonne"
+	],
+	"attributes": {
+		"strength": 10,
+		"agility": 10,
+		"intellect": 10,
+		"will": 10,
+		"increaseOne": true,
+		"notes": [
+			"Choose one attribute and increase by 1."
+		]
+	},
+	"characteristics": {
+		"perception": "intellect",
+		"defense": "agility",
+		"health": "strength",
+		"healingRate": "quarterHealth",
+		"size": ["1/2", "1"],
+		"speed": 10,
+		"power": 0,
+		"damage": 0,
+		"insanity": 0,
+		"corruption": 0
+	},
+	"languages": [
+		"Common Tongue",
+		"(1 extra language or profession)"
+	],
+	"background": [
+		{
+			"min": 1, "max": 1,
+			"value": "You died and returned to life. You start the game with 1d6 Insanity."
+		},
+		{
+			"min": 2, "max": 2,
+			"value": "You were briefly possessed by a demon. You start the game with 1 Corruption."
+		},
+		{
+			"min": 3, "max": 3,
+			"value": "You spent 1d6 years as a prisoner in a dungeon."
+		},
+		{
+			"min": 4, "max": 4,
+			"value": "You murdered someone in cold blood. You start the game with 1 Corruption."
+		},
+		{
+			"min": 5, "max": 5,
+			"value": "You caught and recovered from a terrible disease."
+		},
+		{
+			"min": 6, "max": 6,
+			"value": "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity."
+		},
+		{
+			"min": 7, "max": 7,
+			"value": "The faerie held you prisoner for 1d20 years."
+		},
+		{
+			"min": 8, "max": 8,
+			"value": "You lost a loved one and their loss haunts you still."
+		},
+		{
+			"min": 9, "max": 9,
+			"value": "You lost a finger, a few teeth, or an ear, or you gained a scar."
+		},
+		{
+			"min": 10, "max": 10,
+			"value": "You earned a living working in your profession."
+		},
+		{
+			"min": 11, "max": 11,
+			"value": "You fell in love and the relationship ended well or is ongoing."
+		},
+		{
+			"min": 12, "max": 12,
+			"value": "You have a spouse and 1d6 -2 children (minimum 0)."
+		},
+		{
+			"min": 13, "max": 13,
+			"value": "You traveled extensively. You speak one additional language."
+		},
+		{
+			"min": 14, "max": 14,
+			"value": "You received an education. You know how to read the Common Tongue."
+		},
+		{
+			"min": 15, "max": 15,
+			"value": "You saved your town from terrible monsters."
+		},
+		{
+			"min": 16, "max": 16,
+			"value": "You foiled a plot to kill someone important or you brought a killer to justice."
+		},
+		{
+			"min": 17, "max": 17,
+			"value": "You performed a great deed and are a hero to the people in your hometown."
+		},
+		{
+			"min": 18, "max": 18,
+			"value": "You found an old treasure map."
+		},
+		{
+			"min": 19, "max": 19,
+			"value": "Someone important and powerful owes you a favor."
+		},
+		{
+			"min": 20, "max": 20,
+			"value": "You came into money and start the game with 2d6 cp."
+		}
+	]
+}

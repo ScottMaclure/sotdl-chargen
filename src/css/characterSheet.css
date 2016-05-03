@@ -1,0 +1,24 @@
+.characterSheet {
+	border: 1px solid #666;
+	border-radius: 0.5em;
+	padding: 0.5em;
+}
+
+.characterSheet {
+	display: flex;
+	flex-direction: column;
+}
+
+.characterSheet .row {
+	display: flex;
+	flex-direction: row;
+}
+
+.characterSheet .label {
+	font-weight: bold;
+	flex-grow: 0.2;
+}
+
+.characterSheet .value {
+	flex-grow: 0.8;
+}
