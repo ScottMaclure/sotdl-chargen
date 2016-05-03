@@ -24,13 +24,26 @@ const initialState = {
 	char: charData
 }
 
+/**
+ * Work with arrays of strings or arrays of options.
+ * TODO Handle non-singular results (i.e. 20 options for a 1d20 roll).
+ */
 const getRandomItem = (array) => {
-	return array[Math.floor(Math.random() * array.length)]
+	let val = array[Math.floor(Math.random() * array.length)]
+	return val.value || val
 }
 
 const initRandomCharacter = (state) => {
-	console.log('ancestries:', state.app.ancestries)
-	state.char.ancestry = getRandomItem(state.app.ancestries)
+
+	console.error('FIXME forcing ancestry to human during dev.');
+	state.char.ancestry = 'human'
+	// state.char.ancestry = getRandomItem(state.app.ancestries)
+
+	// Now we know the ancestry, we can work everything else out.
+	let ancestryData = state.app[state.char.ancestry]
+
+	state.char.background = getRandomItem(ancestryData.background)
+
 }
 
 // Init new characters with random values.

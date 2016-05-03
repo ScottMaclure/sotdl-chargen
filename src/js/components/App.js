@@ -3,9 +3,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import '../../css/CharacterGenerator.css'
+
+import Select from './Select.js'
+
 const CharacterGenerator = ({ appData, charData }) => (
-	<div class="character-generator">
-		<pre><code>{JSON.stringify(appData)}</code></pre>
+	<div className="characterGenerator">
+
+		<div className="row">
+			<label for="ancestry">Ancestry</label>
+			<Select key="ancestry" options={appData.ancestries} value={charData.ancestry}/>
+		</div>
+
+		<div className="row">
+			<label for="background">Background</label>
+			<Select key="background" options={appData[charData.ancestry].background} value={charData.background}/>
+		</div>
+
 	</div>
 )
 

@@ -1,10 +1,4 @@
 .characterSheet {
-	border: 1px solid #666;
-	border-radius: 0.5em;
-	padding: 0.5em;
-}
-
-.characterSheet {
 	display: flex;
 	flex-direction: column;
 	font-family: monospace;
@@ -20,6 +14,6 @@
 	flex-basis: 10em;
 }
 
-.characterSheet .value {
-
+.characterSheet .value:first-letter {
+	text-transform: uppercase;
 }

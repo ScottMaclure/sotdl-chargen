@@ -1,0 +1,15 @@
+.characterGenerator {
+	display: flex;
+	flex-direction: column;
+}
+
+.characterGenerator .row {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 0.5em;
+}
+
+.characterGenerator label {
+	font-weight: bold;
+	flex-basis: 10em;
+}
