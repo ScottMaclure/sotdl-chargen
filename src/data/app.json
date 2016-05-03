@@ -1,12 +1,12 @@
 {
 	"title": "Shadow of the Demon Lord - Character Generator",
 	"ancestries": [
-		"Human",
-		"Changeling",
-		"Clockwork",
-		"Dwarf",
-		"Goblin",
-		"Orc"
+		"changeling",
+		"clockwork",
+		"dwarf",
+		"goblin",
+		"orc",
+		"human"
 	],
 	"languages": [
 		"Common Tongue",
