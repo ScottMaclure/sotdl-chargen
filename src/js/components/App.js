@@ -1,3 +1,5 @@
+// TODO container and component in one. Split later.
+
 import React from 'react'
 import { connect } from 'react-redux'
 
