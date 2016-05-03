@@ -14,4 +14,8 @@ http://schwalbentertainment.com/shadow-of-the-demon-lord/
 npm start
 ```
 
-http://localhost:8080/webpack-dev-server/public/
+http://localhost:8080/webpack-dev-server/
+
+Read more about webpack-dev-server here:
+
+https://webpack.github.io/docs/webpack-dev-server.html
