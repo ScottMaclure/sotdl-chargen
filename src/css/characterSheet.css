@@ -7,6 +7,7 @@
 .characterSheet {
 	display: flex;
 	flex-direction: column;
+	font-family: monospace;
 }
 
 .characterSheet .row {
@@ -16,9 +17,9 @@
 
 .characterSheet .label {
 	font-weight: bold;
-	flex-grow: 0.2;
+	flex-basis: 10em;
 }
 
 .characterSheet .value {
-	flex-grow: 0.8;
+
 }

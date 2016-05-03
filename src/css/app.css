@@ -5,3 +5,12 @@
 body {
 	background-color: #eee;
 }
+
+@media print {
+	h2 {
+		display: none !important;
+	}
+	#main {
+		display: none !important;
+	}
+}
