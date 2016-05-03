@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm prune && npm install && npm run server",
-    "build": "./node_modules/.bin/webpack --progress --colors",
+    "bundle": "./node_modules/.bin/webpack --progress --colors",
     "server": "./node_modules/.bin/webpack-dev-server --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
