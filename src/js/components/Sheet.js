@@ -10,7 +10,7 @@ const CharacterSheet = ({ charData }) => (
 	<div className="characterSheet">
 
 		<fieldset>
-			<legend>Characteristics</legend>
+			<legend>Info</legend>
 			<div className="row">
 				<div className="label">Name:</div>
 				<div className="value">{charData.name || '???'}</div>

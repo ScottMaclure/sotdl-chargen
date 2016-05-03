@@ -25,25 +25,30 @@
 		"corruption": 0
 	},
 	"languages": [
-		"Common Tongue",
+		"Common Tongue"
+	],
+	"talents": [
 		"(1 extra language or profession)"
 	],
 	"background": [
 		{
 			"min": 1, "max": 1,
-			"value": "You died and returned to life. You start the game with 1d6 Insanity."
+			"value": "You died and returned to life. You start the game with [1d6] Insanity.",
+			"effect": "insanity+1"
 		},
 		{
 			"min": 2, "max": 2,
-			"value": "You were briefly possessed by a demon. You start the game with 1 Corruption."
+			"value": "You were briefly possessed by a demon. You start the game with 1 Corruption.",
+			"effect": "corruption+1"
 		},
 		{
 			"min": 3, "max": 3,
-			"value": "You spent 1d6 years as a prisoner in a dungeon."
+			"value": "You spent [1d6] years as a prisoner in a dungeon."
 		},
 		{
 			"min": 4, "max": 4,
-			"value": "You murdered someone in cold blood. You start the game with 1 Corruption."
+			"value": "You murdered someone in cold blood. You start the game with 1 Corruption.",
+			"effect": "corruption+1"
 		},
 		{
 			"min": 5, "max": 5,
@@ -51,11 +56,12 @@
 		},
 		{
 			"min": 6, "max": 6,
-			"value": "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity."
+			"value": "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity.",
+			"effect": "insanity+1"
 		},
 		{
 			"min": 7, "max": 7,
-			"value": "The faerie held you prisoner for 1d20 years."
+			"value": "The faerie held you prisoner for [1d20] years."
 		},
 		{
 			"min": 8, "max": 8,
@@ -75,15 +81,17 @@
 		},
 		{
 			"min": 12, "max": 12,
-			"value": "You have a spouse and 1d6 -2 children (minimum 0)."
+			"value": "You have a spouse and [1d6-2] children (minimum 0)."
 		},
 		{
 			"min": 13, "max": 13,
-			"value": "You traveled extensively. You speak one additional language."
+			"value": "You traveled extensively. You speak one additional language.",
+			"effect": "languages+1"
 		},
 		{
 			"min": 14, "max": 14,
-			"value": "You received an education. You know how to read the Common Tongue."
+			"value": "You received an education. You know how to read the Common Tongue.",
+			"effect": "languages+Common Tongue"
 		},
 		{
 			"min": 15, "max": 15,
@@ -107,7 +115,8 @@
 		},
 		{
 			"min": 20, "max": 20,
-			"value": "You came into money and start the game with 2d6 cp."
+			"value": "You came into money and start the game with [2d6] cp.",
+			"effect": "wealth/cp+2d6"
 		}
 	]
 }

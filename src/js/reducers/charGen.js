@@ -33,16 +33,22 @@ const getRandomItem = (array) => {
 	return val.value || val
 }
 
-const initRandomCharacter = (state) => {
-
-	console.error('FIXME forcing ancestry to human during dev.');
-	state.char.ancestry = 'human'
-	// state.char.ancestry = getRandomItem(state.app.ancestries)
+const setAncestryData = (state) => {
 
 	// Now we know the ancestry, we can work everything else out.
-	let ancestryData = state.app[state.char.ancestry]
+	let ancestryData = state.app[state.char.ancestry.toLowerCase()]
 
+	state.char.name = getRandomItem(ancestryData.commonNames)
 	state.char.background = getRandomItem(ancestryData.background)
+}
+
+const initRandomCharacter = (state) => {
+
+	console.error('FIXME forcing ancestry to Human/Orc during dev.');
+	state.char.ancestry = getRandomItem(['Human', 'Orc'])
+	// state.char.ancestry = getRandomItem(state.app.ancestries)
+
+	setAncestryData(state)
 
 }
 
@@ -58,8 +64,14 @@ export default function charGen(state = initialState, action) {
 	switch (action.type) {
 		case 'CREATE_RANDOM':
 			initRandomCharacter(newState)
-		case 'CHANGE_NAME':
-			newState.char.name = action.name
+			break;
+		case 'CHANGE_ANCESTRY':
+			newState.char.ancestry = action.value
+			setAncestryData(newState)
+			break;
+		case 'CHANGE_SIMPLE_VALUE':
+			newState.char[action.name] = action.value
+			break;
 	}
 
 	console.log('newState:', newState)

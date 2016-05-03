@@ -12,4 +12,9 @@
 .characterGenerator label {
 	font-weight: bold;
 	flex-basis: 10em;
+	flex-shrink: 0;
+}
+
+.characterGenerator option:first-letter {
+	text-transform: uppercase;
 }

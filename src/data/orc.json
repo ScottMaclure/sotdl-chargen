@@ -1,0 +1,116 @@
+{
+	"commonNames": [
+		"Bastard", "Bunion", "Dredface", "Grubthumb", "Hate", "Killer", "Mung", "Pliers", "Pung", "Stenchfist", "Wossname"
+	],
+	"attributes": {
+		"strength": 11,
+		"agility": 10,
+		"intellect": 9,
+		"will": 9
+	},
+	"characteristics": {
+		"perception": "intellect+1",
+		"defense": "agility",
+		"health": "strength",
+		"healingRate": "quarterHealth",
+		"size": ["1"],
+		"speed": 12,
+		"power": 0,
+		"damage": 0,
+		"insanity": 0,
+		"corruption": 1
+	},
+	"languages": [
+		"Common Tongue",
+		"Dark Speech"
+	],
+	"talents": [
+		"Shadowsight"
+	],
+	"background": [
+		{
+			"min": 1, "max": 1,
+			"value": "You butchered helpless people. Gain 2 Corruption.",
+			"effect": "corruption+2"
+		},
+		{
+			"min": 2, "max": 2,
+			"value": "You were briefly possessed by a demon. Gain 1 Corruption",
+			"effect": "corruption+1"
+		},
+		{
+			"min": 3, "max": 3,
+			"value": "You spent [1d6] years in the fighting pit, testing your skills against other orcs for the amusement of the crowds."
+		},
+		{
+			"min": 4, "max": 4,
+			"value": "You stayed loyal to the Empire and fought against other orcs. You were branded as a traitor and cast out."
+		},
+		{
+			"min": 5, "max": 5,
+			"value": "You caught the rot and lost your nose and ears."
+		},
+		{
+			"min": 6, "max": 6,
+			"value": "You were chained to the oars in a slave ship for [1d6] years."
+		},
+		{
+			"min": 7, "max": 7,
+			"value": "You were made a eunuch and stood guard over the emperor’s concubines."
+		},
+		{
+			"min": 8, "max": 8,
+			"value": "You have scar tissue over half your body from when you were caught in the blast of a spell."
+		},
+		{
+			"min": 9, "max": 9,
+			"value": "You escaped your slavery and have lived in the wilderness ever since."
+		},
+		{
+			"min": 10, "max": 10,
+			"value": "You earned a living working in your profession."
+		},
+		{
+			"min": 11, "max": 11,
+			"value": "You fell in love with a human and were spurned for your affections."
+		},
+		{
+			"min": 12, "max": 12,
+			"value": "You sired or gave birth to [3d6] children. Roll [3d6] again and subtract that total from your total number of children to find out how many are still alive (minimum 0)."
+		},
+		{
+			"min": 13, "max": 13,
+			"value": "You traveled extensively. You speak one additional language."
+		},
+		{
+			"min": 14, "max": 14,
+			"value": "You received an education. You know how to read the Common Tongue."
+		},
+		{
+			"min": 15, "max": 15,
+			"value": "You fought bravely for the Emperor and were awarded a medal for your courage."
+		},
+		{
+			"min": 16, "max": 16,
+			"value": "You saved an important noble from an assassination attempt."
+		},
+		{
+			"min": 17, "max": 17,
+			"value": "A human broke your chains and freed you to find your fortunes in the world."
+		},
+		{
+			"min": 18, "max": 18,
+			"value": "You took a sword from the corpse of a warrior you killed."
+		},
+		{
+			"min": 19, "max": 19,
+			"value": "The Gods of Blood and Iron visit you in your dreams. You start the game with 1 Insanity.",
+			"effect": "insanity+1"
+		},
+		{
+			"min": 20, "max": 20,
+			"value": "You came into money and start the game with [2d6] cp.",
+			"effect": "wealth/cp+2d6"
+		}
+	]
+}

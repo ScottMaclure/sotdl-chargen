@@ -7,32 +7,57 @@ import '../../css/CharacterGenerator.css'
 
 import Select from './Select.js'
 
-const CharacterGenerator = ({ appData, charData }) => (
-	<div className="characterGenerator">
+const CharacterGenerator = ({ appData, ancestryData, charData, onChangeAncestry, onChangeValue }) => {
+	return <div className="characterGenerator">
 
 		<div className="row">
 			<label for="ancestry">Ancestry</label>
-			<Select key="ancestry" options={appData.ancestries} value={charData.ancestry}/>
+			<Select id="ancestry"
+				options={appData.ancestries} value={charData.ancestry}
+				onChange={(event) => onChangeAncestry(event.target.value)}
+			/>
+		</div>
+
+		<div className="row">
+			<label for="name">Name</label>
+			<Select id="name"
+				options={ancestryData.commonNames} value={charData.name}
+				onChange={(event) => onChangeValue('name', event.target.value)}
+			/>
 		</div>
 
 		<div className="row">
 			<label for="background">Background</label>
-			<Select key="background" options={appData[charData.ancestry].background} value={charData.background}/>
+			<Select id="background"
+				options={ancestryData.background} value={charData.background}
+				onChange={(event) => onChangeValue('background', event.target.value)}
+			/>
 		</div>
 
 	</div>
-)
+}
 
 // Inbound data
 const mapStateToProps = (state) => {
 	return {
 		appData: state.app,
+		ancestryData: state.app[state.char.ancestry.toLowerCase()],
 		charData: state.char
 	}
 }
 
+const mapDispatchToProps = (dispatch) => ({
+	onChangeAncestry: (value) => {
+		dispatch({ type: 'CHANGE_ANCESTRY', value: value })
+	},
+	onChangeValue: (name, value) => {
+		dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value })
+	}
+})
+
 const App = connect(
-	mapStateToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(CharacterGenerator)
 
 export default App

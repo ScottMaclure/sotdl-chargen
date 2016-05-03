@@ -12,6 +12,7 @@
 .characterSheet .label {
 	font-weight: bold;
 	flex-basis: 10em;
+	flex-shrink: 0;
 }
 
 .characterSheet .value:first-letter {
