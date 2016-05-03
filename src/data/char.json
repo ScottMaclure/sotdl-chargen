@@ -1,6 +1,7 @@
 {
 	"name": null,
 	"ancestry": null,
+	"background": null,
 	"attributes": {
 		"strength": 0,
 		"agility": 0,
@@ -22,7 +23,7 @@
 	"languages": [],
 	"professions": [],
 	"talents": [],
-	"money": {
+	"wealth": {
 		"bi": 0,
 		"cp": 0,
 		"ss": 0,
