@@ -5,26 +5,19 @@ import { connect } from 'react-redux'
 
 import '../../css/characterSheet.css'
 
+import Fieldset from './Fieldset.js'
+import DisplayRow from './DisplayRow.js'
+
 // Component
 const CharacterSheet = ({ charData }) => (
 	<div className="characterSheet">
-
-		<fieldset>
-			<legend>Info</legend>
-			<div className="row">
-				<div className="label">Name:</div>
-				<div className="value">{charData.name || '???'}</div>
+		<Fieldset legend="Info" content={
+			<div className="content">
+				<DisplayRow label="Name" value={charData.name}/>
+				<DisplayRow label="Ancestry" value={charData.ancestry}/>
+				<DisplayRow label="Background" value={charData.background}/>
 			</div>
-			<div className="row">
-				<div className="label">Ancestry:</div>
-				<div className="value">{charData.ancestry}</div>
-			</div>
-			<div className="row">
-				<div className="label">Background:</div>
-				<div className="value">{charData.background || '???'}</div>
-			</div>
-		</fieldset>
-
+		}/>
 	</div>
 )
 

@@ -7,8 +7,8 @@ import '../../css/CharacterGenerator.css'
 
 import Select from './Select.js'
 
-const CharacterGenerator = ({ appData, ancestryData, charData, onChangeAncestry, onChangeValue }) => {
-	return <div className="characterGenerator">
+const CharacterGenerator = ({ appData, ancestryData, charData, onChangeAncestry, onChangeValue }) => (
+	<div className="characterGenerator">
 
 		<div className="row">
 			<label for="ancestry">Ancestry</label>
@@ -35,7 +35,7 @@ const CharacterGenerator = ({ appData, ancestryData, charData, onChangeAncestry,
 		</div>
 
 	</div>
-}
+)
 
 // Inbound data
 const mapStateToProps = (state) => {
