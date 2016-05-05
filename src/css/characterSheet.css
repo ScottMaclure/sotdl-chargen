@@ -22,3 +22,7 @@
 .characterSheet .label:first-letter, .characterSheet .value:first-letter {
 	text-transform: uppercase;
 }
+
+.characterSheet .notes {
+	font-style: italic;
+}
