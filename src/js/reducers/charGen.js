@@ -44,7 +44,7 @@ const setAncestryData = (state) => {
 }
 
 const initRandomCharacter = (state) => {
-  console.error('FIXME forcing ancestry to Human/Orc during dev.');
+  console.error('FIXME forcing ancestry to Human/Orc during dev.')
   state.char.ancestry = getRandomItem(['Human', 'Orc'])
   // state.char.ancestry = getRandomItem(state.app.ancestries)
   setAncestryData(state)
