@@ -80,7 +80,6 @@ const assignCharacteristics = (char, ancestryCharacteristics) => {
         break
       case 'object':
         if (value instanceof Array) {
-          console.log('TODO handle key:', key, 'value:', value)
           // Default to first item.
           obj[key] = value.join(' or ')
         } else {
