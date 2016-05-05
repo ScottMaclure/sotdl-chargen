@@ -60,6 +60,7 @@ const calcHealingRate = (health, healingRate) => {
 }
 
 // TODO Split this out ito a reducer.
+// Called when ancestry changes, so basically a "new" character.
 const assignCharacteristics = (char, ancestryCharacteristics) => {
   // Iterate through ancestryCharacteristics object, creating char characteristics.
   let newCharacteristics = Object.keys(ancestryCharacteristics).reduce((obj, key) => {
@@ -79,7 +80,7 @@ const assignCharacteristics = (char, ancestryCharacteristics) => {
         if (value instanceof Array) {
           console.log('TODO handle key:', key, 'value:', value)
           // Default to first item.
-          obj[key] = value[0]
+          obj[key] = value.join(' or ')
         } else {
           throw err
         }
