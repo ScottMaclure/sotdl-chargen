@@ -3,7 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import '../../css/CharacterGenerator.css'
+import '../../css/characterGenerator.css'
 
 import ActionBar from './ActionBar.js'
 import Select from './Select.js'
