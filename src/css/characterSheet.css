@@ -19,6 +19,10 @@
 	flex-shrink: 0;
 }
 
-.characterSheet .value:first-letter {
+.characterSheet .label:first-letter, .characterSheet .value:first-letter {
 	text-transform: uppercase;
+}
+
+.characterSheet .notes {
+	font-style: italic;
 }

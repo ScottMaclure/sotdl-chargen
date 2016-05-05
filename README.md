@@ -1,5 +1,8 @@
 # Shadow of the Demon Lord - Character Generator
 
+[![Build Status](https://travis-ci.org/ScottMaclure/sotdl-chargen.svg?branch=master)](https://travis-ci.org/ScottMaclure/sotdl-chargen)
+
+
 Hosted here:
 
 http://scott.maclure.com.au/sotdl-chargen/

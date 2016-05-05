@@ -8,6 +8,8 @@ import '../../css/characterSheet.css'
 import Fieldset from './Fieldset.js'
 import DisplayRow from './DisplayRow.js'
 
+const skipAttributes = ['notes', 'increaseOne']
+
 const isNonEmptyArray = (obj) => (
   typeof obj === 'object' && obj.length > 0
 )
@@ -18,7 +20,7 @@ const renderNotes = (notes) => {
     return
   }
 
-  return <div class='notes'>
+  return <div className='notes'>
     {notes.map((note) => (
       <small>{note}</small>
     ))}
@@ -46,11 +48,20 @@ const CharacterSheet = ({ charData }) => (
 
     <Fieldset legend='Attributes' content={
       <div className='content'>
-        <DisplayRow label='Strength' value={charData.attributes.strength} />
-        <DisplayRow label='Agility' value={charData.attributes.agility} />
-        <DisplayRow label='Intellect' value={charData.attributes.intellect} />
-        <DisplayRow label='Will' value={charData.attributes.will} />
+        {Object.keys(charData.attributes).map(key => {
+          if (skipAttributes.indexOf(key) === -1) {
+            return <DisplayRow label={key} value={charData.attributes[key]} />
+          }
+        })}
         {renderNotes(charData.attributes.notes)}
+      </div>
+    } />
+
+    <Fieldset legend='Characteristics' content={
+      <div className='content'>
+        {Object.keys(charData.characteristics).map(key => (
+          <DisplayRow label={key} value={charData.characteristics[key]} />
+        ))}
       </div>
     } />
 

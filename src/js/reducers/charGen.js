@@ -19,10 +19,14 @@ import appData from '../appData.js'
 // before random allocations.
 import charData from '../../data/char.json'
 
+import set from '../utils/set.js'
+
 const initialState = {
   app: appData,
   char: charData
 }
+
+const baseAttributeNames = ['strength', 'agility', 'intellect', 'will']
 
 /**
  * Work with arrays of strings or arrays of options.
@@ -33,14 +37,77 @@ const getRandomItem = (array) => {
   return val.value || val
 }
 
+const assignCharacteristic = (charAttributes, value) => {
+  // If the value is a straight up attribute name, return that.
+  if (baseAttributeNames.indexOf(value) !== -1) {
+    return charAttributes[value]
+  }
+
+  // Check for addition values, like intellect+1.
+  let arr = value.split('+')
+  if (arr.length === 2) {
+    return charAttributes[arr[0]] + parseInt(arr[1])
+  }
+
+  // Do nothing by default, quarterHealth we're leaving to later.
+  return value
+}
+
+const calcHealingRate = (health, healingRate) => {
+  if (healingRate === 'quarterHealth') {
+    return Math.floor(parseInt(health) / 4)
+  } else {
+    throw Error('Unknown healingRate value: ' + healingRate)
+  }
+}
+
+// TODO Split this out ito a reducer.
+// Called when ancestry changes, so basically a "new" character.
+const assignCharacteristics = (char, ancestryCharacteristics) => {
+  // Iterate through ancestryCharacteristics object, creating char characteristics.
+  let newCharacteristics = Object.keys(ancestryCharacteristics).reduce((obj, key) => {
+    let value = ancestryCharacteristics[key]
+    let err = Error('Unsupported value for key: ' + key)
+
+    switch (typeof value) {
+      case 'number':
+        // plain old number. e.g. speed, insanity, etc.
+        obj[key] = value
+        break
+      case 'string':
+        // more complex. defer to function.
+        obj[key] = assignCharacteristic(char.attributes, value)
+        break
+      case 'object':
+        if (value instanceof Array) {
+          console.log('TODO handle key:', key, 'value:', value)
+          // Default to first item.
+          obj[key] = value.join(' or ')
+        } else {
+          throw err
+        }
+        break
+      default:
+        throw err
+    }
+
+    return obj
+  }, {})
+
+  // Handle quarterHealth, after health has been assigned.
+  newCharacteristics.healingRate = calcHealingRate(newCharacteristics.health, ancestryCharacteristics.healingRate)
+
+  return newCharacteristics
+}
+
 const setAncestryData = (state) => {
   // Now we know the ancestry, we can work everything else out.
   let ancestryData = state.app[state.char.ancestry.toLowerCase()]
 
   state.char.name = getRandomItem(ancestryData.commonNames)
   state.char.background = getRandomItem(ancestryData.background)
-
   state.char.attributes = Object.assign({}, ancestryData.attributes)
+  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics)
 }
 
 const initRandomCharacter = (state) => {
@@ -70,7 +137,7 @@ export default function charGen (state = initialState, action) {
       setAncestryData(newState)
       break
     case 'CHANGE_SIMPLE_VALUE':
-      newState.char[action.name] = action.value
+      set(newState.char, action.name, action.value)
       break
   }
 
