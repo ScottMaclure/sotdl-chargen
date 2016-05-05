@@ -23,18 +23,18 @@ let store = createStore(charGen)
 // Render the React character builder app.
 // react-redux's Provider will live-update the components after state updates.
 render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById('main')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('main')
 )
 
 // Render character sheet itself.
 render(
-	<Provider store={store}>
-		<Sheet />
-	</Provider>,
-	document.getElementById('sheet')
+  <Provider store={store}>
+    <Sheet />
+  </Provider>,
+  document.getElementById('sheet')
 )
 
 // The only way to mutate the internal state is to dispatch an action.

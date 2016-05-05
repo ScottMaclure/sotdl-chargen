@@ -4,10 +4,12 @@
   "description": "Shadow of the Demon Lord - Character Generator",
   "main": "index.js",
   "scripts": {
-    "start": "npm prune && npm install && npm run server",
-    "bundle": "./node_modules/.bin/webpack --progress --colors",
+    "start": "npm prune && npm install && npm run lint && npm run server",
+    "bundle": "npm run lint && npm run webpack",
+    "webpack": "./node_modules/.bin/webpack --progress --colors",
     "server": "./node_modules/.bin/webpack-dev-server --progress --colors --inline --hot --content-base public/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run bundle",
+    "lint": "./node_modules/.bin/standard \"./src/**/*.js\""
   },
   "author": "Scott Maclure <scott@maclure.com.au>",
   "license": "MIT",
@@ -23,6 +25,7 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-devtools": "^3.2.0",
+    "standard": "^7.0.1",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
