@@ -91,16 +91,16 @@
 
 	// Load React apps for page.
 	(0, _reactDom.render)(_react2.default.createElement(
-		_reactRedux.Provider,
-		{ store: store },
-		_react2.default.createElement(_App2.default, null)
+	  _reactRedux.Provider,
+	  { store: store },
+	  _react2.default.createElement(_App2.default, null)
 	), document.getElementById('main'));
 
 	// Render character sheet itself.
 	(0, _reactDom.render)(_react2.default.createElement(
-		_reactRedux.Provider,
-		{ store: store },
-		_react2.default.createElement(_Sheet2.default, null)
+	  _reactRedux.Provider,
+	  { store: store },
+	  _react2.default.createElement(_Sheet2.default, null)
 	), document.getElementById('sheet'));
 
 	// The only way to mutate the internal state is to dispatch an action.
@@ -22053,7 +22053,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -22074,109 +22074,131 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var getStyles = function getStyles(charData) {
-		return {
-			display: charData.mode !== 'edit' ? 'none' : ''
-		};
+	var renderSizes = function renderSizes(sizes, charSize, changeValue) {
+	  if (!(sizes instanceof Array) || sizes.length < 2) {
+	    return;
+	  }
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'row' },
+	    _react2.default.createElement(
+	      'label',
+	      { 'for': 'Size' },
+	      'Size'
+	    ),
+	    _react2.default.createElement(_Select2.default, { id: 'size',
+	      options: sizes, value: charSize,
+	      onChange: function onChange(event) {
+	        return changeValue('characteristics.size', event.target.value);
+	      }
+	    })
+	  );
 	}; // TODO container and component in one. Split later.
 
+	var getStyles = function getStyles(charData) {
+	  return {
+	    display: charData.mode !== 'edit' ? 'none' : ''
+	  };
+	};
+
 	var AppComponent = function AppComponent(_ref) {
-		var appData = _ref.appData;
-		var ancestryData = _ref.ancestryData;
-		var charData = _ref.charData;
-		var changeAncestry = _ref.changeAncestry;
-		var changeValue = _ref.changeValue;
-		var setEditMode = _ref.setEditMode;
-		var setViewMode = _ref.setViewMode;
-		var createRandomCharacter = _ref.createRandomCharacter;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'app' },
-			_react2.default.createElement(_ActionBar2.default, { mode: charData.mode, onEdit: setEditMode, onView: setViewMode, onCreate: createRandomCharacter }),
-			_react2.default.createElement(
-				'div',
-				{ className: 'characterGenerator', style: getStyles(charData) },
-				_react2.default.createElement(
-					'h2',
-					null,
-					'Character Creation (Orc or Human)'
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'row' },
-					_react2.default.createElement(
-						'label',
-						{ 'for': 'ancestry' },
-						'Ancestry'
-					),
-					_react2.default.createElement(_Select2.default, { id: 'ancestry',
-						options: appData.ancestries, value: charData.ancestry,
-						onChange: function onChange(event) {
-							return changeAncestry(event.target.value);
-						}
-					})
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'row' },
-					_react2.default.createElement(
-						'label',
-						{ 'for': 'name' },
-						'Name'
-					),
-					_react2.default.createElement(_Select2.default, { id: 'name',
-						options: ancestryData.commonNames, value: charData.name,
-						onChange: function onChange(event) {
-							return changeValue('name', event.target.value);
-						}
-					})
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'row' },
-					_react2.default.createElement(
-						'label',
-						{ 'for': 'background' },
-						'Background'
-					),
-					_react2.default.createElement(_Select2.default, { id: 'background',
-						options: ancestryData.background, value: charData.background,
-						onChange: function onChange(event) {
-							return changeValue('background', event.target.value);
-						}
-					})
-				)
-			)
-		);
+	  var appData = _ref.appData;
+	  var ancestryData = _ref.ancestryData;
+	  var charData = _ref.charData;
+	  var changeAncestry = _ref.changeAncestry;
+	  var changeValue = _ref.changeValue;
+	  var setEditMode = _ref.setEditMode;
+	  var setViewMode = _ref.setViewMode;
+	  var createRandomCharacter = _ref.createRandomCharacter;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'app' },
+	    _react2.default.createElement(_ActionBar2.default, { mode: charData.mode, onEdit: setEditMode, onView: setViewMode, onCreate: createRandomCharacter }),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'characterGenerator', style: getStyles(charData) },
+	      _react2.default.createElement(
+	        'h2',
+	        null,
+	        'Character Creation (Orc or Human)'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'label',
+	          { 'for': 'ancestry' },
+	          'Ancestry'
+	        ),
+	        _react2.default.createElement(_Select2.default, { id: 'ancestry',
+	          options: appData.ancestries, value: charData.ancestry,
+	          onChange: function onChange(event) {
+	            return changeAncestry(event.target.value);
+	          }
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'label',
+	          { 'for': 'name' },
+	          'Name'
+	        ),
+	        _react2.default.createElement(_Select2.default, { id: 'name',
+	          options: ancestryData.commonNames, value: charData.name,
+	          onChange: function onChange(event) {
+	            return changeValue('name', event.target.value);
+	          }
+	        })
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'label',
+	          { 'for': 'background' },
+	          'Background'
+	        ),
+	        _react2.default.createElement(_Select2.default, { id: 'background',
+	          options: ancestryData.background, value: charData.background,
+	          onChange: function onChange(event) {
+	            return changeValue('background', event.target.value);
+	          }
+	        })
+	      ),
+	      renderSizes(ancestryData.characteristics.size, charData.characteristics.size, changeValue)
+	    )
+	  );
 	};
 
 	// Inbound data
 	var mapStateToProps = function mapStateToProps(state) {
-		return {
-			appData: state.app,
-			ancestryData: state.app[state.char.ancestry.toLowerCase()],
-			charData: state.char
-		};
+	  return {
+	    appData: state.app,
+	    ancestryData: state.app[state.char.ancestry.toLowerCase()],
+	    charData: state.char
+	  };
 	};
 
 	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-		return {
-			changeAncestry: function changeAncestry(value) {
-				dispatch({ type: 'CHANGE_ANCESTRY', value: value });
-			},
-			changeValue: function changeValue(name, value) {
-				dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value });
-			},
-			setEditMode: function setEditMode() {
-				dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'edit' });
-			},
-			setViewMode: function setViewMode() {
-				dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'view' });
-			},
-			createRandomCharacter: function createRandomCharacter() {
-				dispatch({ type: 'CREATE_RANDOM' });
-			}
-		};
+	  return {
+	    changeAncestry: function changeAncestry(value) {
+	      dispatch({ type: 'CHANGE_ANCESTRY', value: value });
+	    },
+	    changeValue: function changeValue(name, value) {
+	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value });
+	    },
+	    setEditMode: function setEditMode() {
+	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'edit' });
+	    },
+	    setViewMode: function setViewMode() {
+	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'view' });
+	    },
+	    createRandomCharacter: function createRandomCharacter() {
+	      dispatch({ type: 'CREATE_RANDOM' });
+	    }
+	  };
 	};
 
 	var App = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AppComponent);
@@ -22199,8 +22221,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./CharacterGenerator.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./CharacterGenerator.css");
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./characterGenerator.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./characterGenerator.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -22230,7 +22252,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -22242,42 +22264,42 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var getViewStyle = function getViewStyle(mode) {
-		return {
-			display: mode !== 'view' ? 'none' : ''
-		};
+	  return {
+	    display: mode !== 'view' ? 'none' : ''
+	  };
 	};
 
 	var getEditStyle = function getEditStyle(mode) {
-		return {
-			display: mode !== 'edit' ? 'none' : ''
-		};
+	  return {
+	    display: mode !== 'edit' ? 'none' : ''
+	  };
 	};
 
 	var ActionBar = function ActionBar(_ref) {
-		var mode = _ref.mode;
-		var onEdit = _ref.onEdit;
-		var onView = _ref.onView;
-		var onCreate = _ref.onCreate;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'actionBar' },
-			_react2.default.createElement(
-				'button',
-				{ className: 'modeButton', onClick: onEdit, style: getViewStyle(mode) },
-				'View/Edit'
-			),
-			_react2.default.createElement(
-				'button',
-				{ className: 'modeButton', onClick: onView, style: getEditStyle(mode) },
-				'Edit/View'
-			),
-			_react2.default.createElement('span', { className: 'spacer' }),
-			_react2.default.createElement(
-				'button',
-				{ className: 'createButton', onClick: onCreate },
-				'New Random'
-			)
-		);
+	  var mode = _ref.mode;
+	  var onEdit = _ref.onEdit;
+	  var onView = _ref.onView;
+	  var onCreate = _ref.onCreate;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'actionBar' },
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'modeButton', onClick: onEdit, style: getViewStyle(mode) },
+	      'View/Edit'
+	    ),
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'modeButton', onClick: onView, style: getEditStyle(mode) },
+	      'Edit/View'
+	    ),
+	    _react2.default.createElement('span', { className: 'spacer' }),
+	    _react2.default.createElement(
+	      'button',
+	      { className: 'createButton', onClick: onCreate },
+	      'New Random'
+	    )
+	  );
 	};
 
 	exports.default = ActionBar;
@@ -22326,10 +22348,10 @@
 /* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -22339,29 +22361,29 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Select = function Select(_ref) {
-		var id = _ref.id;
-		var options = _ref.options;
-		var value = _ref.value;
-		var onChange = _ref.onChange;
-		return _react2.default.createElement(
-			"select",
-			{ id: id, name: id, className: "field", onChange: onChange },
-			options.map(function (option, i) {
-				// Handle structured items or just arrays of strings.
-				var optionValue = option.value || option;
-				var isSelected = value === optionValue;
-				return _react2.default.createElement(
-					"option",
-					{ key: i, value: optionValue, selected: isSelected },
-					optionValue
-				);
-			})
-		);
+	  var id = _ref.id;
+	  var options = _ref.options;
+	  var value = _ref.value;
+	  var onChange = _ref.onChange;
+	  return _react2.default.createElement(
+	    'select',
+	    { id: id, name: id, className: 'field', onChange: onChange },
+	    options.map(function (option, i) {
+	      // Handle structured items or just arrays of strings.
+	      var optionValue = option.value || option;
+	      var isSelected = value === optionValue;
+	      return _react2.default.createElement(
+	        'option',
+	        { key: i, value: optionValue, selected: isSelected },
+	        optionValue
+	      );
+	    })
+	  );
 	};
 
 	Select.propTypes = {
-		options: _react.PropTypes.array.isRequired,
-		value: _react.PropTypes.string
+	  options: _react.PropTypes.array.isRequired,
+	  value: _react.PropTypes.string
 	};
 
 	exports.default = Select;
@@ -22373,7 +22395,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; // TODO container and component in one. Split later.
@@ -22396,72 +22418,81 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var skipAttributes = ['notes', 'increaseOne'];
+
 	var isNonEmptyArray = function isNonEmptyArray(obj) {
-		return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.length > 0;
+	  return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.length > 0;
 	};
 
 	var renderNotes = function renderNotes(notes) {
+	  // Apologies.
+	  if (!isNonEmptyArray(notes)) {
+	    return;
+	  }
 
-		// Apologies.
-		if (!isNonEmptyArray(notes)) {
-			return;
-		}
-
-		return _react2.default.createElement(
-			'div',
-			{ 'class': 'notes' },
-			notes.map(function (note) {
-				return _react2.default.createElement(
-					'small',
-					null,
-					note
-				);
-			})
-		);
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'notes' },
+	    notes.map(function (note) {
+	      return _react2.default.createElement(
+	        'small',
+	        null,
+	        note
+	      );
+	    })
+	  );
 	};
 
 	var getStyles = function getStyles(charData) {
-		return {
-			display: charData.mode !== 'view' ? 'none' : ''
-		};
+	  return {
+	    display: charData.mode !== 'view' ? 'none' : ''
+	  };
 	};
 
 	// Component
 	var CharacterSheet = function CharacterSheet(_ref) {
-		var charData = _ref.charData;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'characterSheet', style: getStyles(charData) },
-			_react2.default.createElement(
-				'h2',
-				null,
-				'Character Sheet'
-			),
-			_react2.default.createElement(_Fieldset2.default, { legend: 'Info', content: _react2.default.createElement(
-					'div',
-					{ className: 'content' },
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Name', value: charData.name }),
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Level', value: charData.level }),
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Ancestry', value: charData.ancestry }),
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Background', value: charData.background })
-				) }),
-			_react2.default.createElement(_Fieldset2.default, { legend: 'Attributes', content: _react2.default.createElement(
-					'div',
-					{ className: 'content' },
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Strength', value: charData.attributes.strength }),
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Agility', value: charData.attributes.agility }),
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Intellect', value: charData.attributes.intellect }),
-					_react2.default.createElement(_DisplayRow2.default, { label: 'Will', value: charData.attributes.will }),
-					renderNotes(charData.attributes.notes)
-				) })
-		);
+	  var charData = _ref.charData;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'characterSheet', style: getStyles(charData) },
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Character Sheet'
+	    ),
+	    _react2.default.createElement(_Fieldset2.default, { legend: 'Info', content: _react2.default.createElement(
+	        'div',
+	        { className: 'content' },
+	        _react2.default.createElement(_DisplayRow2.default, { label: 'Name', value: charData.name }),
+	        _react2.default.createElement(_DisplayRow2.default, { label: 'Level', value: charData.level }),
+	        _react2.default.createElement(_DisplayRow2.default, { label: 'Ancestry', value: charData.ancestry }),
+	        _react2.default.createElement(_DisplayRow2.default, { label: 'Background', value: charData.background })
+	      ) }),
+	    _react2.default.createElement(_Fieldset2.default, { legend: 'Attributes', content: _react2.default.createElement(
+	        'div',
+	        { className: 'content' },
+	        Object.keys(charData.attributes).map(function (key) {
+	          if (skipAttributes.indexOf(key) === -1) {
+	            return _react2.default.createElement(_DisplayRow2.default, { label: key, value: charData.attributes[key] });
+	          }
+	        }),
+	        renderNotes(charData.attributes.notes)
+	      ) }),
+	    _react2.default.createElement(_Fieldset2.default, { legend: 'Characteristics', content: _react2.default.createElement(
+	        'div',
+	        { className: 'content' },
+	        Object.keys(charData.characteristics).map(function (key) {
+	          return _react2.default.createElement(_DisplayRow2.default, { label: key, value: charData.characteristics[key] });
+	        })
+	      ) })
+	  );
 	};
 
 	// Inbound data
 	var mapStateToProps = function mapStateToProps(state) {
-		return {
-			charData: Object.assign({}, state.char)
-		};
+	  return {
+	    charData: Object.assign({}, state.char)
+	  };
 	};
 
 	// Bind redux store to react component.
@@ -22504,7 +22535,7 @@
 
 
 	// module
-	exports.push([module.id, ".characterSheet {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.characterSheet fieldset {\r\n\tmargin-bottom: 0.5em;\r\n\tfont-family: monospace;\r\n}\r\n\r\n.characterSheet .row {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n}\r\n\r\n.characterSheet .label {\r\n\tfont-weight: bold;\r\n\tflex-basis: 10em;\r\n\tflex-shrink: 0;\r\n}\r\n\r\n.characterSheet .value:first-letter {\r\n\ttext-transform: uppercase;\r\n}", ""]);
+	exports.push([module.id, ".characterSheet {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.characterSheet fieldset {\n\tmargin-bottom: 0.5em;\n\tfont-family: monospace;\n}\n\n.characterSheet .row {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.characterSheet .label {\n\tfont-weight: bold;\n\tflex-basis: 10em;\n\tflex-shrink: 0;\n}\n\n.characterSheet .label:first-letter, .characterSheet .value:first-letter {\n\ttext-transform: uppercase;\n}\n\n.characterSheet .notes {\n\tfont-style: italic;\n}", ""]);
 
 	// exports
 
@@ -22516,7 +22547,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -22526,18 +22557,18 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var FieldSet = function FieldSet(_ref) {
-		var legend = _ref.legend;
-		var content = _ref.content;
-		return _react2.default.createElement(
-			'fieldset',
-			null,
-			_react2.default.createElement(
-				'legend',
-				null,
-				legend
-			),
-			content
-		);
+	  var legend = _ref.legend;
+	  var content = _ref.content;
+	  return _react2.default.createElement(
+	    'fieldset',
+	    null,
+	    _react2.default.createElement(
+	      'legend',
+	      null,
+	      legend
+	    ),
+	    content
+	  );
 	};
 
 	exports.default = FieldSet;
@@ -22549,7 +22580,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _react = __webpack_require__(1);
@@ -22559,25 +22590,25 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DisplayRow = function DisplayRow(_ref) {
-		var _ref$label = _ref.label;
-		var label = _ref$label === undefined ? '???' : _ref$label;
-		var _ref$value = _ref.value;
-		var value = _ref$value === undefined ? '???' : _ref$value;
-		return _react2.default.createElement(
-			'div',
-			{ className: 'row' },
-			_react2.default.createElement(
-				'div',
-				{ className: 'label' },
-				label,
-				':'
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'value' },
-				value
-			)
-		);
+	  var _ref$label = _ref.label;
+	  var label = _ref$label === undefined ? '???' : _ref$label;
+	  var _ref$value = _ref.value;
+	  var value = _ref$value === undefined ? '???' : _ref$value;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'row' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'label' },
+	      label,
+	      ':'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'value' },
+	      value
+	    )
+	  );
 	};
 
 	exports.default = DisplayRow;
@@ -22589,8 +22620,30 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /**
+	                                                                                                                                                                                                                                                   * This is a reducer, a pure function with (state, action) => state signature.
+	                                                                                                                                                                                                                                                   * It describes how an action transforms the state into the next state.
+	                                                                                                                                                                                                                                                   *
+	                                                                                                                                                                                                                                                   * The shape of the state is up to you: it can be a primitive, an array, an object,
+	                                                                                                                                                                                                                                                   * or even an Immutable.js data structure. The only important part is that you should
+	                                                                                                                                                                                                                                                   * not mutate the state object, but return a new object if the state changes.
+	                                                                                                                                                                                                                                                   *
+	                                                                                                                                                                                                                                                   * In this example, we use a `switch` statement and strings, but you can use a helper that
+	                                                                                                                                                                                                                                                   * follows a different convention (such as function maps) if it makes sense for your
+	                                                                                                                                                                                                                                                   * project.
+	                                                                                                                                                                                                                                                   */
+
+	// Load all generic data needed.
+
+
+	// TODO load from localStorage if exists? merge? clobber?
+	// This is default character data structure for a new character,
+	// before random allocations.
+
+
 	exports.default = charGen;
 
 	var _appData = __webpack_require__(207);
@@ -22601,59 +22654,105 @@
 
 	var _char2 = _interopRequireDefault(_char);
 
+	var _set = __webpack_require__(212);
+
+	var _set2 = _interopRequireDefault(_set);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/**
-	 * This is a reducer, a pure function with (state, action) => state signature.
-	 * It describes how an action transforms the state into the next state.
-	 *
-	 * The shape of the state is up to you: it can be a primitive, an array, an object,
-	 * or even an Immutable.js data structure. The only important part is that you should
-	 * not mutate the state object, but return a new object if the state changes.
-	 *
-	 * In this example, we use a `switch` statement and strings, but you can use a helper that
-	 * follows a different convention (such as function maps) if it makes sense for your
-	 * project.
-	 */
-
-	// Load all generic data needed.
-
-
 	var initialState = {
-		app: _appData2.default,
-		char: _char2.default
+	  app: _appData2.default,
+	  char: _char2.default
 	};
+
+	var baseAttributeNames = ['strength', 'agility', 'intellect', 'will'];
 
 	/**
 	 * Work with arrays of strings or arrays of options.
 	 * TODO Handle non-singular results (i.e. 20 options for a 1d20 roll).
 	 */
-
-
-	// TODO load from localStorage if exists? merge? clobber?
-	// This is default character data structure for a new character,
-	// before random allocations.
 	var getRandomItem = function getRandomItem(array) {
-		var val = array[Math.floor(Math.random() * array.length)];
-		return val.value || val;
+	  var val = array[Math.floor(Math.random() * array.length)];
+	  return val.value || val;
+	};
+
+	var assignCharacteristic = function assignCharacteristic(charAttributes, value) {
+	  // If the value is a straight up attribute name, return that.
+	  if (baseAttributeNames.indexOf(value) !== -1) {
+	    return charAttributes[value];
+	  }
+
+	  // Check for addition values, like intellect+1.
+	  var arr = value.split('+');
+	  if (arr.length === 2) {
+	    return charAttributes[arr[0]] + parseInt(arr[1]);
+	  }
+
+	  // Do nothing by default, quarterHealth we're leaving to later.
+	  return value;
+	};
+
+	var calcHealingRate = function calcHealingRate(health, healingRate) {
+	  if (healingRate === 'quarterHealth') {
+	    return Math.floor(parseInt(health) / 4);
+	  } else {
+	    throw Error('Unknown healingRate value: ' + healingRate);
+	  }
+	};
+
+	// TODO Split this out ito a reducer.
+	// Called when ancestry changes, so basically a "new" character.
+	var assignCharacteristics = function assignCharacteristics(char, ancestryCharacteristics) {
+	  // Iterate through ancestryCharacteristics object, creating char characteristics.
+	  var newCharacteristics = Object.keys(ancestryCharacteristics).reduce(function (obj, key) {
+	    var value = ancestryCharacteristics[key];
+	    var err = Error('Unsupported value for key: ' + key);
+
+	    switch (typeof value === 'undefined' ? 'undefined' : _typeof(value)) {
+	      case 'number':
+	        // plain old number. e.g. speed, insanity, etc.
+	        obj[key] = value;
+	        break;
+	      case 'string':
+	        // more complex. defer to function.
+	        obj[key] = assignCharacteristic(char.attributes, value);
+	        break;
+	      case 'object':
+	        if (value instanceof Array) {
+	          // Default to first item.
+	          obj[key] = value.join(' or ');
+	        } else {
+	          throw err;
+	        }
+	        break;
+	      default:
+	        throw err;
+	    }
+
+	    return obj;
+	  }, {});
+
+	  // Handle quarterHealth, after health has been assigned.
+	  newCharacteristics.healingRate = calcHealingRate(newCharacteristics.health, ancestryCharacteristics.healingRate);
+
+	  return newCharacteristics;
 	};
 
 	var setAncestryData = function setAncestryData(state) {
+	  // Now we know the ancestry, we can work everything else out.
+	  var ancestryData = state.app[state.char.ancestry.toLowerCase()];
 
-		// Now we know the ancestry, we can work everything else out.
-		var ancestryData = state.app[state.char.ancestry.toLowerCase()];
-
-		state.char.name = getRandomItem(ancestryData.commonNames);
-		state.char.background = getRandomItem(ancestryData.background);
-
-		state.char.attributes = Object.assign({}, ancestryData.attributes);
+	  state.char.name = getRandomItem(ancestryData.commonNames);
+	  state.char.background = getRandomItem(ancestryData.background);
+	  state.char.attributes = Object.assign({}, ancestryData.attributes);
+	  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics);
 	};
 
 	var initRandomCharacter = function initRandomCharacter(state) {
-		console.error('FIXME forcing ancestry to Human/Orc during dev.');
-		state.char.ancestry = getRandomItem(['Human', 'Orc']);
-		// state.char.ancestry = getRandomItem(state.app.ancestries)
-		setAncestryData(state);
+	  console.error('FIXME forcing ancestry to Human/Orc during dev.');
+	  state.char.ancestry = getRandomItem(['Human', 'Orc']);
+	  // state.char.ancestry = getRandomItem(state.app.ancestries)
+	  setAncestryData(state);
 	};
 
 	// Init new characters with random values.
@@ -22662,31 +22761,30 @@
 	// root reducer
 	// TODO split this up into smaller parts as I develop the app.
 	function charGen() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-		var action = arguments[1];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
 
+	  var newState = {
+	    app: Object.assign({}, state.app),
+	    char: Object.assign({}, state.char)
+	  };
 
-		var newState = {
-			app: Object.assign({}, state.app),
-			char: Object.assign({}, state.char)
-		};
+	  switch (action.type) {
+	    case 'CREATE_RANDOM':
+	      initRandomCharacter(newState);
+	      break;
+	    case 'CHANGE_ANCESTRY':
+	      newState.char.ancestry = action.value;
+	      setAncestryData(newState);
+	      break;
+	    case 'CHANGE_SIMPLE_VALUE':
+	      (0, _set2.default)(newState.char, action.name, action.value);
+	      break;
+	  }
 
-		switch (action.type) {
-			case 'CREATE_RANDOM':
-				initRandomCharacter(newState);
-				break;
-			case 'CHANGE_ANCESTRY':
-				newState.char.ancestry = action.value;
-				setAncestryData(newState);
-				break;
-			case 'CHANGE_SIMPLE_VALUE':
-				newState.char[action.name] = action.value;
-				break;
-		}
+	  console.log('newState:', newState);
 
-		console.log('newState:', newState);
-
-		return newState;
+	  return newState;
 	}
 
 /***/ },
@@ -23112,6 +23210,33 @@
 			"gc": 0
 		}
 	};
+
+/***/ },
+/* 212 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	/**
+	 * Dynamically set a nested property in an array.
+	 */
+	var set = function set(obj, path, value) {
+	  // a moving reference to internal objects within obj
+	  var schema = obj;
+	  var pList = path.split('.');
+	  var len = pList.length;
+	  for (var i = 0; i < len - 1; i++) {
+	    var elem = pList[i];
+	    if (!schema[elem]) schema[elem] = {};
+	    schema = schema[elem];
+	  }
+	  schema[pList[len - 1]] = value;
+	};
+
+	exports.default = set;
 
 /***/ }
 /******/ ]);
