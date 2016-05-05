@@ -8,6 +8,19 @@ import '../../css/characterGenerator.css'
 import ActionBar from './ActionBar.js'
 import Select from './Select.js'
 
+const renderSizes = (sizes, charSize, changeValue) => {
+  if (!(sizes instanceof Array) || sizes.length < 2) {
+    return
+  }
+  return <div className='row'>
+    <label for='Size'>Size</label>
+    <Select id='size'
+      options={sizes} value={charSize}
+      onChange={(event) => changeValue('characteristics.size', event.target.value)}
+    />
+  </div>
+}
+
 const getStyles = (charData) => ({
   display: charData.mode !== 'edit' ? 'none' : ''
 })
@@ -48,6 +61,8 @@ const AppComponent = ({
           onChange={(event) => changeValue('background', event.target.value)}
         />
       </div>
+
+      {renderSizes(ancestryData.characteristics.size, charData.characteristics.size, changeValue)}
 
     </div>
 

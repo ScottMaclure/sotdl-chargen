@@ -19,6 +19,8 @@ import appData from '../appData.js'
 // before random allocations.
 import charData from '../../data/char.json'
 
+import set from '../utils/set.js'
+
 const initialState = {
   app: appData,
   char: charData
@@ -135,7 +137,7 @@ export default function charGen (state = initialState, action) {
       setAncestryData(newState)
       break
     case 'CHANGE_SIMPLE_VALUE':
-      newState.char[action.name] = action.value
+      set(newState.char, action.name, action.value)
       break
   }
 
