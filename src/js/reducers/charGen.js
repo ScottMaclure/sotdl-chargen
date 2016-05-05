@@ -33,14 +33,24 @@ const getRandomItem = (array) => {
   return val.value || val
 }
 
+const assignCharacteristics = (char, ancestryCharacteristics) => {
+  console.log('char.attributes:', char.attributes)
+  console.log('char.characteristics:', char.characteristics)
+  return Object.keys(ancestryCharacteristics).reduce((obj, key) => {
+    obj[key] = ancestryCharacteristics[key]
+    return obj
+  }, {})
+}
+
 const setAncestryData = (state) => {
   // Now we know the ancestry, we can work everything else out.
   let ancestryData = state.app[state.char.ancestry.toLowerCase()]
 
   state.char.name = getRandomItem(ancestryData.commonNames)
   state.char.background = getRandomItem(ancestryData.background)
-
   state.char.attributes = Object.assign({}, ancestryData.attributes)
+  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics)
+  console.log('state.char.characteristics:', state.char.characteristics)
 }
 
 const initRandomCharacter = (state) => {
