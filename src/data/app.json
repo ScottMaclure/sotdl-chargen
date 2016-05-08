@@ -17,5 +17,7 @@
 		"Trollish",
 		"Secret Language",
 		"Dead Language"
-	]
+	],
+	"attributes": ["strength", "agility", "intellect", "will"],
+	"pleaseSelect": "--- please select ---"
 }

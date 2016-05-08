@@ -26,8 +26,6 @@ const initialState = {
   char: charData
 }
 
-const baseAttributeNames = ['strength', 'agility', 'intellect', 'will']
-
 /**
  * Work with arrays of strings or arrays of options.
  * TODO Handle non-singular results (i.e. 20 options for a 1d20 roll).
@@ -37,7 +35,7 @@ const getRandomItem = (array) => {
   return val.value || val
 }
 
-const assignCharacteristic = (charAttributes, value) => {
+const assignCharacteristic = (charAttributes, value, baseAttributeNames) => {
   // If the value is a straight up attribute name, return that.
   if (baseAttributeNames.indexOf(value) !== -1) {
     return charAttributes[value]
@@ -63,7 +61,7 @@ const calcHealingRate = (health, healingRate) => {
 
 // TODO Split this out ito a reducer.
 // Called when ancestry changes, so basically a "new" character.
-const assignCharacteristics = (char, ancestryCharacteristics) => {
+const assignCharacteristics = (char, ancestryCharacteristics, baseAttributeNames) => {
   // Iterate through ancestryCharacteristics object, creating char characteristics.
   let newCharacteristics = Object.keys(ancestryCharacteristics).reduce((obj, key) => {
     let value = ancestryCharacteristics[key]
@@ -76,7 +74,7 @@ const assignCharacteristics = (char, ancestryCharacteristics) => {
         break
       case 'string':
         // more complex. defer to function.
-        obj[key] = assignCharacteristic(char.attributes, value)
+        obj[key] = assignCharacteristic(char.attributes, value, baseAttributeNames)
         break
       case 'object':
         if (value instanceof Array) {
@@ -99,21 +97,29 @@ const assignCharacteristics = (char, ancestryCharacteristics) => {
   return newCharacteristics
 }
 
-const setAncestryData = (state) => {
-  // Now we know the ancestry, we can work everything else out.
-  let ancestryData = state.app[state.char.ancestry.toLowerCase()]
-
+const assignAncestryToCharacter = (state, ancestryData) => {
   state.char.name = getRandomItem(ancestryData.commonNames)
   state.char.background = getRandomItem(ancestryData.background)
   state.char.attributes = Object.assign({}, ancestryData.attributes)
-  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics)
+  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics, state.app.attributes)
 }
 
 const initRandomCharacter = (state) => {
   console.error('FIXME forcing ancestry to Human/Orc during dev.')
   state.char.ancestry = getRandomItem(['Human', 'Orc'])
   // state.char.ancestry = getRandomItem(state.app.ancestries)
-  setAncestryData(state)
+  assignAncestryToCharacter(state, getAncestryDefaultData(state))
+}
+
+const increaseOneAttribute = (attributes, attribute) => {
+  let newAttributes = Object.assign({}, attributes)
+  newAttributes[attribute] += 1
+  newAttributes.oneIncreased = attribute
+  return newAttributes
+}
+
+const getAncestryDefaultData = state => {
+  return state.app[state.char.ancestry.toLowerCase()]
 }
 
 // Init new characters with random values.
@@ -122,6 +128,7 @@ initRandomCharacter(initialState)
 // root reducer
 // TODO split this up into smaller parts as I develop the app.
 export default function charGen (state = initialState, action) {
+  // Create copy of current state, to ensure UI updates.
   let newState = {
     app: Object.assign({}, state.app),
     char: Object.assign({}, state.char)
@@ -133,10 +140,15 @@ export default function charGen (state = initialState, action) {
       break
     case 'CHANGE_ANCESTRY':
       newState.char.ancestry = action.value
-      setAncestryData(newState)
+      assignAncestryToCharacter(newState, getAncestryDefaultData(newState))
       break
     case 'CHANGE_SIMPLE_VALUE':
       set(newState.char, action.name, action.value)
+      break
+    case 'INCREASE_ONE':
+      // Every time we increase, we reset to ancestry defaults.
+      let ancestryData = getAncestryDefaultData(newState)
+      newState.char.attributes = increaseOneAttribute(ancestryData.attributes, action.value)
       break
   }
 

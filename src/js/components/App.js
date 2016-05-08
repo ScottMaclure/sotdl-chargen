@@ -21,13 +21,23 @@ const renderSizes = (sizes, charSize, changeValue) => {
   </div>
 }
 
+const renderIncreaseOne = (appData, charAttr, setIncreaseOne) => (
+  <div className='row'>
+    <label for='increaseOne'>Increase One</label>
+    <Select id='increaseOne'
+      options={[].concat(appData.pleaseSelect, appData.attributes)} value={charAttr.oneIncreased}
+      onChange={(event) => setIncreaseOne(event.target.value)}
+    />
+  </div>
+)
+
 const getStyles = (charData) => ({
   display: charData.mode !== 'edit' ? 'none' : ''
 })
 
 const AppComponent = ({
   appData, ancestryData, charData,
-  changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter
+  changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter, setIncreaseOne
 }) => (
 
   <div className='app'>
@@ -45,6 +55,8 @@ const AppComponent = ({
           onChange={(event) => changeAncestry(event.target.value)}
         />
       </div>
+
+      {ancestryData.attributes.increaseOne ? renderIncreaseOne(appData, charData.attributes, setIncreaseOne) : null}
 
       <div className='row'>
         <label for='name'>Name</label>
@@ -94,6 +106,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   createRandomCharacter: () => {
     dispatch({ type: 'CREATE_RANDOM' })
+  },
+  setIncreaseOne: (value) => {
+    dispatch({ type: 'INCREASE_ONE', value: value })
   }
 })
 
