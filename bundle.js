@@ -56,17 +56,17 @@
 
 	var _redux = __webpack_require__(175);
 
-	__webpack_require__(190);
+	__webpack_require__(194);
 
-	var _App = __webpack_require__(194);
+	var _App = __webpack_require__(198);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Sheet = __webpack_require__(201);
+	var _Sheet = __webpack_require__(205);
 
 	var _Sheet2 = _interopRequireDefault(_Sheet);
 
-	var _charGen = __webpack_require__(206);
+	var _charGen = __webpack_require__(211);
 
 	var _charGen2 = _interopRequireDefault(_charGen);
 
@@ -315,8 +315,8 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	/* eslint-disable no-unused-vars */
 	'use strict';
+	/* eslint-disable no-unused-vars */
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -328,7 +328,51 @@
 		return Object(val);
 	}
 
-	module.exports = Object.assign || function (target, source) {
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+
+			// Detect buggy property enumeration order in older V8 versions.
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+
+			return true;
+		} catch (e) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 		var from;
 		var to = toObject(target);
 		var symbols;
@@ -20336,15 +20380,15 @@
 
 	var _warning2 = _interopRequireDefault(_warning);
 
-	var _isPlainObject = __webpack_require__(177);
+	var _isPlainObject = __webpack_require__(188);
 
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 
-	var _hoistNonReactStatics = __webpack_require__(188);
+	var _hoistNonReactStatics = __webpack_require__(192);
 
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 
-	var _invariant = __webpack_require__(189);
+	var _invariant = __webpack_require__(193);
 
 	var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -21596,6 +21640,164 @@
 
 /***/ },
 /* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var getPrototype = __webpack_require__(189),
+	    isHostObject = __webpack_require__(190),
+	    isObjectLike = __webpack_require__(191);
+
+	/** `Object#toString` result references. */
+	var objectTag = '[object Object]';
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/** Used to resolve the decompiled source of functions. */
+	var funcToString = Function.prototype.toString;
+
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+
+	/** Used to infer the `Object` constructor. */
+	var objectCtorString = funcToString.call(Object);
+
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+
+	/**
+	 * Checks if `value` is a plain object, that is, an object created by the
+	 * `Object` constructor or one with a `[[Prototype]]` of `null`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.8.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a plain object,
+	 *  else `false`.
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1;
+	 * }
+	 *
+	 * _.isPlainObject(new Foo);
+	 * // => false
+	 *
+	 * _.isPlainObject([1, 2, 3]);
+	 * // => false
+	 *
+	 * _.isPlainObject({ 'x': 0, 'y': 0 });
+	 * // => true
+	 *
+	 * _.isPlainObject(Object.create(null));
+	 * // => true
+	 */
+	function isPlainObject(value) {
+	  if (!isObjectLike(value) ||
+	      objectToString.call(value) != objectTag || isHostObject(value)) {
+	    return false;
+	  }
+	  var proto = getPrototype(value);
+	  if (proto === null) {
+	    return true;
+	  }
+	  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+	  return (typeof Ctor == 'function' &&
+	    Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString);
+	}
+
+	module.exports = isPlainObject;
+
+
+/***/ },
+/* 189 */
+/***/ function(module, exports) {
+
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeGetPrototype = Object.getPrototypeOf;
+
+	/**
+	 * Gets the `[[Prototype]]` of `value`.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @returns {null|Object} Returns the `[[Prototype]]`.
+	 */
+	function getPrototype(value) {
+	  return nativeGetPrototype(Object(value));
+	}
+
+	module.exports = getPrototype;
+
+
+/***/ },
+/* 190 */
+/***/ function(module, exports) {
+
+	/**
+	 * Checks if `value` is a host object in IE < 9.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a host object, else `false`.
+	 */
+	function isHostObject(value) {
+	  // Many host objects are `Object` objects that can coerce to strings
+	  // despite having improperly defined `toString` methods.
+	  var result = false;
+	  if (value != null && typeof value.toString != 'function') {
+	    try {
+	      result = !!(value + '');
+	    } catch (e) {}
+	  }
+	  return result;
+	}
+
+	module.exports = isHostObject;
+
+
+/***/ },
+/* 191 */
+/***/ function(module, exports) {
+
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && typeof value == 'object';
+	}
+
+	module.exports = isObjectLike;
+
+
+/***/ },
+/* 192 */
 /***/ function(module, exports) {
 
 	/**
@@ -21641,7 +21843,7 @@
 
 
 /***/ },
-/* 189 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -21699,16 +21901,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 190 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(191);
+	var content = __webpack_require__(195);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(193)(content, {});
+	var update = __webpack_require__(197)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -21725,21 +21927,21 @@
 	}
 
 /***/ },
-/* 191 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(192)();
+	exports = module.exports = __webpack_require__(196)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "* {\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbody {\r\n\tbackground-color: #eee;\r\n}\r\n\r\n@media print {\r\n\th2 {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t#main {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t.actionBar {\r\n\t\tdisplay: none !important;\r\n\t}\r\n}", ""]);
+	exports.push([module.id, "* {\n\tbox-sizing: border-box;\n}\n\nbody {\n\tbackground-color: #eee;\n}\n\n@media print {\n\th2 {\n\t\tdisplay: none !important;\n\t}\n\t#main {\n\t\tdisplay: none !important;\n\t}\n\t.actionBar {\n\t\tdisplay: none !important;\n\t}\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 192 */
+/* 196 */
 /***/ function(module, exports) {
 
 	/*
@@ -21795,7 +21997,7 @@
 
 
 /***/ },
-/* 193 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22047,7 +22249,7 @@
 
 
 /***/ },
-/* 194 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22062,13 +22264,13 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	__webpack_require__(195);
+	__webpack_require__(199);
 
-	var _ActionBar = __webpack_require__(197);
+	var _ActionBar = __webpack_require__(201);
 
 	var _ActionBar2 = _interopRequireDefault(_ActionBar);
 
-	var _Select = __webpack_require__(200);
+	var _Select = __webpack_require__(204);
 
 	var _Select2 = _interopRequireDefault(_Select);
 
@@ -22095,6 +22297,24 @@
 	  );
 	}; // TODO container and component in one. Split later.
 
+	var renderIncreaseOne = function renderIncreaseOne(appData, charAttr, setIncreaseOne) {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'row' },
+	    _react2.default.createElement(
+	      'label',
+	      { 'for': 'increaseOne' },
+	      'Increase One'
+	    ),
+	    _react2.default.createElement(_Select2.default, { id: 'increaseOne',
+	      options: [].concat(appData.pleaseSelect, appData.attributes), value: charAttr.oneIncreased,
+	      onChange: function onChange(event) {
+	        return setIncreaseOne(event.target.value);
+	      }
+	    })
+	  );
+	};
+
 	var getStyles = function getStyles(charData) {
 	  return {
 	    display: charData.mode !== 'edit' ? 'none' : ''
@@ -22110,6 +22330,7 @@
 	  var setEditMode = _ref.setEditMode;
 	  var setViewMode = _ref.setViewMode;
 	  var createRandomCharacter = _ref.createRandomCharacter;
+	  var setIncreaseOne = _ref.setIncreaseOne;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'app' },
@@ -22137,6 +22358,7 @@
 	          }
 	        })
 	      ),
+	      ancestryData.attributes.increaseOne ? renderIncreaseOne(appData, charData.attributes, setIncreaseOne) : null,
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'row' },
@@ -22197,6 +22419,9 @@
 	    },
 	    createRandomCharacter: function createRandomCharacter() {
 	      dispatch({ type: 'CREATE_RANDOM' });
+	    },
+	    setIncreaseOne: function setIncreaseOne(value) {
+	      dispatch({ type: 'INCREASE_ONE', value: value });
 	    }
 	  };
 	};
@@ -22206,16 +22431,16 @@
 	exports.default = App;
 
 /***/ },
-/* 195 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(196);
+	var content = __webpack_require__(200);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(193)(content, {});
+	var update = __webpack_require__(197)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22232,21 +22457,21 @@
 	}
 
 /***/ },
-/* 196 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(192)();
+	exports = module.exports = __webpack_require__(196)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".characterGenerator {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.characterGenerator .row {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tmargin-bottom: 0.5em;\r\n}\r\n\r\n.characterGenerator label {\r\n\tfont-weight: bold;\r\n\tflex-basis: 10em;\r\n\tflex-shrink: 0;\r\n}\r\n\r\n.characterGenerator option:first-letter {\r\n\ttext-transform: uppercase;\r\n}", ""]);
+	exports.push([module.id, ".characterGenerator {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.characterGenerator .row {\n\tdisplay: flex;\n\tflex-direction: row;\n\tmargin-bottom: 0.5em;\n}\n\n.characterGenerator label {\n\tfont-weight: bold;\n\tflex-basis: 10em;\n\tflex-shrink: 0;\n}\n\n.characterGenerator option:first-letter {\n\ttext-transform: uppercase;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 197 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22259,7 +22484,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(198);
+	__webpack_require__(202);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22305,16 +22530,16 @@
 	exports.default = ActionBar;
 
 /***/ },
-/* 198 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(199);
+	var content = __webpack_require__(203);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(193)(content, {});
+	var update = __webpack_require__(197)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22331,21 +22556,21 @@
 	}
 
 /***/ },
-/* 199 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(192)();
+	exports = module.exports = __webpack_require__(196)();
 	// imports
 
 
 	// module
-	exports.push([module.id, ".actionBar {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n}\r\n\r\n.actionBar > * {\r\n\tflex-grow: 1;\r\n}\r\n\r\n.actionBar > .createButton {\r\n\tbackground-color: lightgreen;\r\n}", ""]);
+	exports.push([module.id, ".actionBar {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.actionBar > * {\n\tflex-grow: 1;\n}\n\n.actionBar > .createButton {\n\tbackground-color: lightgreen;\n}", ""]);
 
 	// exports
 
 
 /***/ },
-/* 200 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22389,7 +22614,7 @@
 	exports.default = Select;
 
 /***/ },
-/* 201 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22406,27 +22631,30 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	__webpack_require__(202);
+	__webpack_require__(206);
 
-	var _Fieldset = __webpack_require__(204);
+	var _capitalize = __webpack_require__(208);
+
+	var _capitalize2 = _interopRequireDefault(_capitalize);
+
+	var _Fieldset = __webpack_require__(209);
 
 	var _Fieldset2 = _interopRequireDefault(_Fieldset);
 
-	var _DisplayRow = __webpack_require__(205);
+	var _DisplayRow = __webpack_require__(210);
 
 	var _DisplayRow2 = _interopRequireDefault(_DisplayRow);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var skipAttributes = ['notes', 'increaseOne'];
-
-	var isNonEmptyArray = function isNonEmptyArray(obj) {
+	var isPopulatedArray = function isPopulatedArray(obj) {
 	  return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.length > 0;
 	};
 
+	// TODO Component.
 	var renderNotes = function renderNotes(notes) {
-	  // Apologies.
-	  if (!isNonEmptyArray(notes)) {
+	  // Only rnder if there ARE notes.
+	  if (!isPopulatedArray(notes)) {
 	    return;
 	  }
 
@@ -22443,6 +22671,24 @@
 	  );
 	};
 
+	var renderAttributeNotes = function renderAttributeNotes(attributes) {
+	  if (attributes.oneIncreased) {
+	    // TODO Where to keep this data?
+	    return renderNotes([(0, _capitalize2.default)(attributes.oneIncreased) + ' increased.']);
+	  }
+	  return renderNotes(attributes.notes);
+	};
+
+	var renderObject = function renderObject(obj) {
+	  var includeKeys = arguments.length <= 1 || arguments[1] === undefined ? [] : arguments[1];
+
+	  return Object.keys(obj).map(function (key) {
+	    if (includeKeys.indexOf(key) !== -1) {
+	      return _react2.default.createElement(_DisplayRow2.default, { label: key, value: obj[key] });
+	    }
+	  });
+	};
+
 	var getStyles = function getStyles(charData) {
 	  return {
 	    display: charData.mode !== 'view' ? 'none' : ''
@@ -22451,6 +22697,7 @@
 
 	// Component
 	var CharacterSheet = function CharacterSheet(_ref) {
+	  var appData = _ref.appData;
 	  var charData = _ref.charData;
 	  return _react2.default.createElement(
 	    'div',
@@ -22471,12 +22718,8 @@
 	    _react2.default.createElement(_Fieldset2.default, { legend: 'Attributes', content: _react2.default.createElement(
 	        'div',
 	        { className: 'content' },
-	        Object.keys(charData.attributes).map(function (key) {
-	          if (skipAttributes.indexOf(key) === -1) {
-	            return _react2.default.createElement(_DisplayRow2.default, { label: key, value: charData.attributes[key] });
-	          }
-	        }),
-	        renderNotes(charData.attributes.notes)
+	        renderObject(charData.attributes, appData.attributes),
+	        renderAttributeNotes(charData.attributes)
 	      ) }),
 	    _react2.default.createElement(_Fieldset2.default, { legend: 'Characteristics', content: _react2.default.createElement(
 	        'div',
@@ -22491,6 +22734,7 @@
 	// Inbound data
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
+	    appData: Object.assign({}, state.app),
 	    charData: Object.assign({}, state.char)
 	  };
 	};
@@ -22501,16 +22745,16 @@
 	exports.default = Sheet;
 
 /***/ },
-/* 202 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(203);
+	var content = __webpack_require__(207);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(193)(content, {});
+	var update = __webpack_require__(197)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22527,10 +22771,10 @@
 	}
 
 /***/ },
-/* 203 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(192)();
+	exports = module.exports = __webpack_require__(196)();
 	// imports
 
 
@@ -22541,7 +22785,22 @@
 
 
 /***/ },
-/* 204 */
+/* 208 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var capitalize = function capitalize() {
+	  var str = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+	  return str.charAt(0).toUpperCase() + str.substring(1);
+	};
+	exports.default = capitalize;
+
+/***/ },
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22574,7 +22833,7 @@
 	exports.default = FieldSet;
 
 /***/ },
-/* 205 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22614,7 +22873,7 @@
 	exports.default = DisplayRow;
 
 /***/ },
-/* 206 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22646,15 +22905,15 @@
 
 	exports.default = charGen;
 
-	var _appData = __webpack_require__(207);
+	var _appData = __webpack_require__(212);
 
 	var _appData2 = _interopRequireDefault(_appData);
 
-	var _char = __webpack_require__(211);
+	var _char = __webpack_require__(216);
 
 	var _char2 = _interopRequireDefault(_char);
 
-	var _set = __webpack_require__(212);
+	var _set = __webpack_require__(217);
 
 	var _set2 = _interopRequireDefault(_set);
 
@@ -22665,8 +22924,6 @@
 	  char: _char2.default
 	};
 
-	var baseAttributeNames = ['strength', 'agility', 'intellect', 'will'];
-
 	/**
 	 * Work with arrays of strings or arrays of options.
 	 * TODO Handle non-singular results (i.e. 20 options for a 1d20 roll).
@@ -22676,7 +22933,7 @@
 	  return val.value || val;
 	};
 
-	var assignCharacteristic = function assignCharacteristic(charAttributes, value) {
+	var assignCharacteristic = function assignCharacteristic(charAttributes, value, baseAttributeNames) {
 	  // If the value is a straight up attribute name, return that.
 	  if (baseAttributeNames.indexOf(value) !== -1) {
 	    return charAttributes[value];
@@ -22702,7 +22959,7 @@
 
 	// TODO Split this out ito a reducer.
 	// Called when ancestry changes, so basically a "new" character.
-	var assignCharacteristics = function assignCharacteristics(char, ancestryCharacteristics) {
+	var assignCharacteristics = function assignCharacteristics(char, ancestryCharacteristics, baseAttributeNames) {
 	  // Iterate through ancestryCharacteristics object, creating char characteristics.
 	  var newCharacteristics = Object.keys(ancestryCharacteristics).reduce(function (obj, key) {
 	    var value = ancestryCharacteristics[key];
@@ -22715,7 +22972,7 @@
 	        break;
 	      case 'string':
 	        // more complex. defer to function.
-	        obj[key] = assignCharacteristic(char.attributes, value);
+	        obj[key] = assignCharacteristic(char.attributes, value, baseAttributeNames);
 	        break;
 	      case 'object':
 	        if (value instanceof Array) {
@@ -22738,21 +22995,29 @@
 	  return newCharacteristics;
 	};
 
-	var setAncestryData = function setAncestryData(state) {
-	  // Now we know the ancestry, we can work everything else out.
-	  var ancestryData = state.app[state.char.ancestry.toLowerCase()];
-
+	var assignAncestryToCharacter = function assignAncestryToCharacter(state, ancestryData) {
 	  state.char.name = getRandomItem(ancestryData.commonNames);
 	  state.char.background = getRandomItem(ancestryData.background);
 	  state.char.attributes = Object.assign({}, ancestryData.attributes);
-	  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics);
+	  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics, state.app.attributes);
 	};
 
 	var initRandomCharacter = function initRandomCharacter(state) {
 	  console.error('FIXME forcing ancestry to Human/Orc during dev.');
 	  state.char.ancestry = getRandomItem(['Human', 'Orc']);
 	  // state.char.ancestry = getRandomItem(state.app.ancestries)
-	  setAncestryData(state);
+	  assignAncestryToCharacter(state, getAncestryDefaultData(state));
+	};
+
+	var increaseOneAttribute = function increaseOneAttribute(attributes, attribute) {
+	  var newAttributes = Object.assign({}, attributes);
+	  newAttributes[attribute] += 1;
+	  newAttributes.oneIncreased = attribute;
+	  return newAttributes;
+	};
+
+	var getAncestryDefaultData = function getAncestryDefaultData(state) {
+	  return state.app[state.char.ancestry.toLowerCase()];
 	};
 
 	// Init new characters with random values.
@@ -22764,6 +23029,7 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
 	  var action = arguments[1];
 
+	  // Create copy of current state, to ensure UI updates.
 	  var newState = {
 	    app: Object.assign({}, state.app),
 	    char: Object.assign({}, state.char)
@@ -22775,10 +23041,15 @@
 	      break;
 	    case 'CHANGE_ANCESTRY':
 	      newState.char.ancestry = action.value;
-	      setAncestryData(newState);
+	      assignAncestryToCharacter(newState, getAncestryDefaultData(newState));
 	      break;
 	    case 'CHANGE_SIMPLE_VALUE':
 	      (0, _set2.default)(newState.char, action.name, action.value);
+	      break;
+	    case 'INCREASE_ONE':
+	      // Every time we increase, we reset to ancestry defaults.
+	      var ancestryData = getAncestryDefaultData(newState);
+	      newState.char.attributes = increaseOneAttribute(ancestryData.attributes, action.value);
 	      break;
 	  }
 
@@ -22788,7 +23059,7 @@
 	}
 
 /***/ },
-/* 207 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22797,15 +23068,15 @@
 	  value: true
 	});
 
-	var _app = __webpack_require__(208);
+	var _app = __webpack_require__(213);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _human = __webpack_require__(209);
+	var _human = __webpack_require__(214);
 
 	var _human2 = _interopRequireDefault(_human);
 
-	var _orc = __webpack_require__(210);
+	var _orc = __webpack_require__(215);
 
 	var _orc2 = _interopRequireDefault(_orc);
 
@@ -22819,7 +23090,7 @@
 	exports.default = _app2.default;
 
 /***/ },
-/* 208 */
+/* 213 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -22841,11 +23112,18 @@
 			"Trollish",
 			"Secret Language",
 			"Dead Language"
-		]
+		],
+		"attributes": [
+			"strength",
+			"agility",
+			"intellect",
+			"will"
+		],
+		"pleaseSelect": "--- please select ---"
 	};
 
 /***/ },
-/* 209 */
+/* 214 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23020,7 +23298,7 @@
 	};
 
 /***/ },
-/* 210 */
+/* 215 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23173,7 +23451,7 @@
 	};
 
 /***/ },
-/* 211 */
+/* 216 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23212,7 +23490,7 @@
 	};
 
 /***/ },
-/* 212 */
+/* 217 */
 /***/ function(module, exports) {
 
 	'use strict';
