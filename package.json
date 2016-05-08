@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm prune && npm install && npm run lint && npm run server",
-    "bundle": "npm run lint && npm run webpack",
+    "build": "npm run lint && npm run webpack",
     "webpack": "./node_modules/.bin/webpack --progress --colors",
     "server": "./node_modules/.bin/webpack-dev-server --progress --colors --inline --hot --content-base public/",
     "test": "npm run bundle",
