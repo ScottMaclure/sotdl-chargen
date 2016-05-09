@@ -4,4 +4,9 @@ cache:
   directories:
     - node_modules
 node_js:
-- '6.0'
+  - '6.0'
+addons:
+  code_climate:
+    repo_token: 8cad849f648e0c95474af2e54ae716abc17761773cc6ac888b77e217683eb05d
+after_script:
+  - codeclimate-test-reporter < coverage/lcov.info
