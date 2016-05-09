@@ -4,11 +4,13 @@
   "description": "Shadow of the Demon Lord - Character Generator",
   "main": "index.js",
   "scripts": {
-    "start": "npm prune && npm install && npm run lint && npm run server",
+    "start": "npm run dev",
+    "dev": "npm prune && npm install && npm run lint && npm run test:coverage && npm run server",
     "build": "npm run lint && npm run webpack",
-    "webpack": "./node_modules/.bin/webpack --progress --colors",
+    "webpack": "./node_modules/.bin/webpack --colors",
     "server": "./node_modules/.bin/webpack-dev-server --progress --colors --inline --hot --content-base public/",
-    "test": "./node_modules/.bin/jest --coverage",
+    "test": "npm run lint && npm run test:coverage",
+    "test:coverage": "./node_modules/.bin/jest --coverage",
     "test:watch": "./node_modules/.bin/jest -o --watch",
     "lint": "./node_modules/.bin/standard \"./src/**/*.js\" \"./__tests__/**/*.js\""
   },
@@ -51,6 +53,8 @@
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
     ],
-    "moduleNameMapper": { "^.*[.](css|CSS)$": "src/js/EmptyModule.js" }
+    "moduleNameMapper": {
+      "^.*[.](css|CSS)$": "src/js/EmptyModule.js"
+    }
   }
 }
