@@ -2,6 +2,7 @@
   "name": "sotdl-chargen",
   "version": "0.3.0",
   "description": "Shadow of the Demon Lord - Character Generator",
+  "repository": "https://github.com/ScottMaclure/sotdl-chargen.git",
   "main": "index.js",
   "scripts": {
     "start": "npm run dev",
@@ -35,9 +36,6 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"
-  },
-  "dependencies": {
-    "babel-loader": "^6.2.4"
   },
   "standard": {
     "globals": [
