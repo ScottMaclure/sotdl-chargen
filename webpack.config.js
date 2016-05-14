@@ -1,8 +1,13 @@
 let path = require('path')
 
 module.exports = {
+  resolve: {
+    root: [
+      path.resolve('./src')
+    ]
+  },
   entry: {
-    app: './src/js/index.js'
+    app: 'js/index'
   },
   output: {
     path: path.join(__dirname, 'public'),
