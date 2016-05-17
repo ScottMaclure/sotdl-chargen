@@ -7,11 +7,11 @@ module.exports = {
     ]
   },
   entry: {
-    app: 'js/index'
+    bundle: 'js/index'
   },
   output: {
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
