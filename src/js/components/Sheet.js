@@ -3,12 +3,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import '../../css/characterSheet.css'
+import 'css/characterSheet.css'
 
-import capitalize from '../utils/capitalize.js'
+import capitalize from 'js/utils/capitalize'
 
-import Fieldset from './Fieldset.js'
-import DisplayRow from './DisplayRow.js'
+import Fieldset from 'js/components/Fieldset'
+import DisplayRow from 'js/components/DisplayRow'
 
 const isPopulatedArray = (obj) => (
   typeof obj === 'object' && obj.length > 0

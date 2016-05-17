@@ -1,12 +1,17 @@
 let path = require('path')
 
 module.exports = {
+  resolve: {
+    root: [
+      path.resolve('./src')
+    ]
+  },
   entry: {
-    app: './src/js/index.js'
+    bundle: 'js/index'
   },
   output: {
     path: path.join(__dirname, 'public'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [

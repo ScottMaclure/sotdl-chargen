@@ -3,10 +3,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import '../../css/characterGenerator.css'
+import 'css/characterGenerator.css'
 
-import ActionBar from './ActionBar.js'
-import Select from './Select.js'
+import ActionBar from 'js/components/ActionBar'
+import Select from 'js/components/Select'
 
 const renderSizes = (sizes, charSize, changeValue) => {
   if (!(sizes instanceof Array) || sizes.length < 2) {
