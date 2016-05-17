@@ -4,14 +4,14 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 // Binding loaders enable css loads.
-import '../css/app.css'
+import 'css/app.css'
 
 // Load React apps for page.
-import App from './components/App.js'
-import Sheet from './components/Sheet.js'
+import App from 'js/components/App'
+import Sheet from 'js/components/Sheet'
 
 // Load reducers for the store.
-import charGen from './reducers/charGen.js'
+import charGen from 'js/reducers/charGen'
 
 // Create a Redux store holding the state of your app.
 // Its API is { subscribe, dispatch, getState }.

@@ -12,14 +12,14 @@
  */
 
 // Load all generic data needed.
-import appData from '../appData.js'
+import appData from 'js/appData'
 
 // TODO load from localStorage if exists? merge? clobber?
 // This is default character data structure for a new character,
 // before random allocations.
-import charData from '../../data/char.json'
+import charData from 'data/char.json'
 
-import set from '../utils/set.js'
+import set from 'js/utils/set'
 
 const initialState = {
   app: appData,

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../../css/actionBar.css'
+import 'css/actionBar.css'
 
 const getViewStyle = mode => ({
   display: mode !== 'view' ? 'none' : ''
