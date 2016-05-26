@@ -7,14 +7,14 @@
   "scripts": {
     "start": "npm run dev",
     "test": "npm run lint && npm run test:jest",
-    "dev": "npm prune && npm install && npm run lint && npm test && npm run server",
+    "dev": "npm prune && npm install && npm test && npm run server",
     "build": "npm run lint && npm run webpack",
     "server": "./node_modules/.bin/webpack-dev-server --progress --colors --inline --hot --content-base public/",
     "webpack": "./node_modules/.bin/webpack --colors",
     "lint": "./node_modules/.bin/standard \"./src/**/*.js\" \"./__tests__/**/*.js\"",
-    "test:jest": "cross-env NODE_PATH=src ./node_modules/.bin/jest",
-    "test:coverage": "cross-env NODE_PATH=src ./node_modules/.bin/jest --coverage",
-    "test:watch": "cross-env NODE_PATH=src ./node_modules/.bin/jest -o --watch"
+    "test:jest": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest",
+    "test:coverage": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest --coverage",
+    "test:watch": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest -o --watch"
   },
   "author": "Scott Maclure <scott@maclure.com.au>",
   "license": "MIT",
@@ -53,7 +53,7 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "^.*[.](css|CSS)$": "src/js/EmptyModule.js"
+      "^.*[.](css|CSS)$": "js/EmptyModule.js"
     },
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
