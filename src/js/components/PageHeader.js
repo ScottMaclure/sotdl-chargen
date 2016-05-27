@@ -4,7 +4,9 @@ import { connect } from 'react-redux'
 const defaultNpmData = {}
 
 const MainHeader = ({npm = defaultNpmData}) => (
-  <h1>{npm.name} v{npm.version}</h1>
+  <div className='mainHeader'>
+    <h1>{npm.name} v{npm.version}</h1>
+  </div>
 )
 
 // Inbound data
