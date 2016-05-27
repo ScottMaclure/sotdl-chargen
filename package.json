@@ -7,9 +7,9 @@
   "scripts": {
     "start": "npm prune && npm install && npm run dev",
     "dev": "npm test && npm run server",
+    "build": "npm test && npm run webpack",
     "test": "npm run lint && npm run test:jest",
     "server": "./node_modules/.bin/webpack-dev-server --progress --colors --inline --hot --content-base public/",
-    "build": "npm run lint && npm run webpack",
     "webpack": "./node_modules/.bin/webpack --colors",
     "lint": "./node_modules/.bin/standard \"./src/**/*.js\" \"./__tests__/**/*.js\"",
     "test:jest": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest",
