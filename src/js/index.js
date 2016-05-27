@@ -7,6 +7,7 @@ import { createStore } from 'redux'
 import 'css/app.css'
 
 // Load React apps for page.
+import PageHeader from 'js/components/PageHeader'
 import App from 'js/components/App'
 import Sheet from 'js/components/Sheet'
 
@@ -19,6 +20,14 @@ let store = createStore(charGen)
 
 // Moved to reducer file for now.
 // store.dispatch({ type: 'CREATE_RANDOM' })
+
+// Render page header
+render(
+  <Provider store={store}>
+    <PageHeader />
+  </Provider>,
+  document.getElementById('header')
+)
 
 // Render the React character builder app.
 // react-redux's Provider will live-update the components after state updates.
