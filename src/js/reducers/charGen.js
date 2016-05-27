@@ -11,6 +11,11 @@
  * project.
  */
 
+import set from 'js/utils/set'
+
+// Load project data from package.json, and strip down to only necessary items.
+import npmData from '../../../package.json'
+
 // Load all generic data needed.
 import appData from 'js/appData'
 
@@ -19,9 +24,9 @@ import appData from 'js/appData'
 // before random allocations.
 import charData from 'data/char.json'
 
-import set from 'js/utils/set'
-
 const initialState = {
+  // 'package' is a reserved word.
+  npm: npmData,
   app: appData,
   char: charData
 }
@@ -130,6 +135,7 @@ initRandomCharacter(initialState)
 export default function charGen (state = initialState, action) {
   // Create copy of current state, to ensure UI updates.
   let newState = {
+    npm: Object.assign({}, state.npm),
     app: Object.assign({}, state.app),
     char: Object.assign({}, state.char)
   }
@@ -152,6 +158,7 @@ export default function charGen (state = initialState, action) {
       break
   }
 
+  // TODO Debug helper. Remove later.
   console.log('newState:', newState)
 
   return newState
