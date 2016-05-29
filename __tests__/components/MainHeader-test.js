@@ -1,8 +1,8 @@
-jest.unmock('../../src/js/components/MainHeader.js')
+jest.unmock('js/components/MainHeader')
 
 import React from 'react'
 import ReactTestUtils from 'react-addons-test-utils'
-import MainHeader from '../../src/js/components/MainHeader.js'
+import MainHeader from 'js/components/MainHeader'
 
 describe('MainHeader Component', () => {
   const shallowRenderer = ReactTestUtils.createRenderer()
