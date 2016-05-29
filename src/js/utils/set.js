@@ -1,5 +1,6 @@
 /**
  * Dynamically set a nested property in an array.
+ * TODO Remove this and use lodash's _.set.
  */
 const set = (obj, path, value) => {
   // a moving reference to internal objects within obj
