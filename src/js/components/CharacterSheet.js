@@ -33,7 +33,7 @@ const renderAttributeNotes = attributes => {
 const renderObject = (obj, includeKeys = []) => {
   return Object.keys(obj).map(key => {
     if (includeKeys.indexOf(key) !== -1) {
-      return <DisplayRow label={key} value={obj[key]} />
+      return <DisplayRow key={key} label={key} value={obj[key]} />
     }
   })
 }
@@ -67,7 +67,7 @@ const CharacterSheet = ({ appData, charData }) => (
     <Fieldset legend='Characteristics' content={
       <div className='content'>
         {Object.keys(charData.characteristics).map(key => (
-          <DisplayRow label={key} value={charData.characteristics[key]} />
+          <DisplayRow key={key} label={key} value={charData.characteristics[key]} />
         ))}
       </div>
     } />
