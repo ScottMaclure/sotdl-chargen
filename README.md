@@ -31,7 +31,7 @@ Assumes `sotdl-chargen-gh-pages` folder is sitting next to `sotdl-chargen`, with
     - `git fetch && git fetch --tags && git rebase`
     - `npm version minor` (or `major` or `patch`, depending)
     - `npm run build` (check to ensure test suite passed)
-    - `git push --tags`
+    - `git push && git push --tags`
 - From `sotdl-chargen-gh-pages`
     - `git pull -r`
     - `cp -pr ../sotdl-chargen/public/* .`
