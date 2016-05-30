@@ -29,6 +29,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setIncreaseOne: (value) => {
     dispatch({ type: 'INCREASE_ONE', value: value })
+  },
+  setAdjustOne: (value) => {
+    console.log('setAdjustOne, value:', value)
   }
 })
 

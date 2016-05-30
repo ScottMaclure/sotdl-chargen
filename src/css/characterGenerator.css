@@ -18,3 +18,11 @@
 .characterGenerator option:first-letter {
 	text-transform: uppercase;
 }
+
+.characterGenerator .adjustOne span {
+  margin-right: 0.5em;
+}
+
+.characterGenerator .adjustOne .adjustOneToLabel {
+  margin-left: 0.5em;
+}

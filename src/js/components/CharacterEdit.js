@@ -34,7 +34,7 @@ const getStyles = (charData) => ({
 
 const CharacterEdit = ({
   appData, ancestryData, charData,
-  changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter, setIncreaseOne
+  changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter, setIncreaseOne, setAdjustOne
 }) => (
 
   <div className='app'>
@@ -50,6 +50,20 @@ const CharacterEdit = ({
         <Select id='ancestry'
           options={appData.ancestries} value={charData.ancestry}
           onChange={(event) => changeAncestry(event.target.value)}
+        />
+      </div>
+
+      <div className='row adjustOne'>
+        <label for='ancestry'>Adjust One Attribute</label>
+        <span>From:</span>
+        <Select id='adjustOneFrom'
+          options={[].concat(appData.pleaseSelect, appData.attributes)} value={charData.attributes.oneAdjustFrom}
+          onChange={(event) => setAdjustOne(event.target.value)}
+        />
+        <span className='adjustOneToLabel'>To:</span>
+        <Select id='adjustOneTo'
+          options={[].concat(appData.pleaseSelect, appData.attributes)} value={charData.attributes.oneAdjustTo}
+          onChange={(event) => setAdjustOne(event.target.value)}
         />
       </div>
 
