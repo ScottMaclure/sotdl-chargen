@@ -1,6 +1,6 @@
 {
   "name": "sotdl-chargen",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Shadow of the Demon Lord - Character Generator.",
   "repository": "ScottMaclure/sotdl-chargen",
   "main": "index.js",
