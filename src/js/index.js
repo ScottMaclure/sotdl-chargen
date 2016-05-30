@@ -7,9 +7,9 @@ import { createStore } from 'redux'
 import 'css/app.css'
 
 // Load React apps for page.
-import PageHeader from 'js/components/PageHeader'
-import App from 'js/components/App'
-import Sheet from 'js/components/Sheet'
+import PageHeader from 'js/containers/PageHeader'
+import App from 'js/containers/App'
+import Sheet from 'js/containers/Sheet'
 
 // Load reducers for the store.
 import charGen from 'js/reducers/charGen'

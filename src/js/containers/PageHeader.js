@@ -1,13 +1,5 @@
-import React from 'react'
 import { connect } from 'react-redux'
-
-const defaultNpmData = {}
-
-const MainHeader = ({npm = defaultNpmData}) => (
-  <div className='mainHeader'>
-    <h1>{npm.name} v{npm.version}</h1>
-  </div>
-)
+import MainHeader from 'js/components/MainHeader'
 
 // Inbound data
 const mapStateToProps = (state) => {

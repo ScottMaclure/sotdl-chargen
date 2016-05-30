@@ -1,8 +1,8 @@
-jest.unmock('../../src/js/components/ActionBar.js')
+jest.unmock('js/components/ActionBar')
 
 import React from 'react'
 import ReactTestUtils from 'react-addons-test-utils'
-import ActionBar from '../../src/js/components/ActionBar.js'
+import ActionBar from 'js/components/ActionBar'
 
 describe('ActionBar Component', () => {
   const shallowRenderer = ReactTestUtils.createRenderer()

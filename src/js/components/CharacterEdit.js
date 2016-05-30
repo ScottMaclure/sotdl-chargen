@@ -1,12 +1,9 @@
-// TODO container and component in one. Split later.
-
 import React from 'react'
-import { connect } from 'react-redux'
-
-import 'css/characterGenerator.css'
 
 import ActionBar from 'js/components/ActionBar'
 import Select from 'js/components/Select'
+
+import 'css/characterGenerator.css'
 
 const renderSizes = (sizes, charSize, changeValue) => {
   if (!(sizes instanceof Array) || sizes.length < 2) {
@@ -35,7 +32,7 @@ const getStyles = (charData) => ({
   display: charData.mode !== 'edit' ? 'none' : ''
 })
 
-const AppComponent = ({
+const CharacterEdit = ({
   appData, ancestryData, charData,
   changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter, setIncreaseOne
 }) => (
@@ -82,39 +79,4 @@ const AppComponent = ({
 
 )
 
-// Inbound data
-const mapStateToProps = (state) => {
-  return {
-    appData: state.app,
-    ancestryData: state.app[state.char.ancestry.toLowerCase()],
-    charData: state.char
-  }
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  changeAncestry: (value) => {
-    dispatch({ type: 'CHANGE_ANCESTRY', value: value })
-  },
-  changeValue: (name, value) => {
-    dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value })
-  },
-  setEditMode: () => {
-    dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'edit' })
-  },
-  setViewMode: () => {
-    dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'view' })
-  },
-  createRandomCharacter: () => {
-    dispatch({ type: 'CREATE_RANDOM' })
-  },
-  setIncreaseOne: (value) => {
-    dispatch({ type: 'INCREASE_ONE', value: value })
-  }
-})
-
-const App = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AppComponent)
-
-export default App
+export default CharacterEdit

@@ -1,6 +1,6 @@
-jest.unmock('../../src/js/utils/capitalize.js')
+jest.unmock('js/utils/capitalize')
 
-import capitalize from '../../src/js/utils/capitalize.js'
+import capitalize from 'js/utils/capitalize'
 
 describe('capitalize', () => {
   // Basic check

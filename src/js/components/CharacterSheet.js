@@ -1,18 +1,12 @@
-// TODO container and component in one. Split later.
-
 import React from 'react'
-import { connect } from 'react-redux'
-
-import 'css/characterSheet.css'
 
 import capitalize from 'js/utils/capitalize'
+import isPopulatedArray from 'js/utils/isPopulatedArray'
 
 import Fieldset from 'js/components/Fieldset'
 import DisplayRow from 'js/components/DisplayRow'
 
-const isPopulatedArray = (obj) => (
-  typeof obj === 'object' && obj.length > 0
-)
+import 'css/characterSheet.css'
 
 // TODO Component.
 const renderNotes = (notes) => {
@@ -39,7 +33,7 @@ const renderAttributeNotes = attributes => {
 const renderObject = (obj, includeKeys = []) => {
   return Object.keys(obj).map(key => {
     if (includeKeys.indexOf(key) !== -1) {
-      return <DisplayRow label={key} value={obj[key]} />
+      return <DisplayRow key={key} label={key} value={obj[key]} />
     }
   })
 }
@@ -73,7 +67,7 @@ const CharacterSheet = ({ appData, charData }) => (
     <Fieldset legend='Characteristics' content={
       <div className='content'>
         {Object.keys(charData.characteristics).map(key => (
-          <DisplayRow label={key} value={charData.characteristics[key]} />
+          <DisplayRow key={key} label={key} value={charData.characteristics[key]} />
         ))}
       </div>
     } />
@@ -81,17 +75,4 @@ const CharacterSheet = ({ appData, charData }) => (
   </div>
 )
 
-// Inbound data
-const mapStateToProps = (state) => {
-  return {
-    appData: Object.assign({}, state.app),
-    charData: Object.assign({}, state.char)
-  }
-}
-
-// Bind redux store to react component.
-const Sheet = connect(
-  mapStateToProps
-)(CharacterSheet)
-
-export default Sheet
+export default CharacterSheet
