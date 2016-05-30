@@ -62,15 +62,15 @@
 
 	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
-	var _App = __webpack_require__(199);
+	var _App = __webpack_require__(200);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Sheet = __webpack_require__(206);
+	var _Sheet = __webpack_require__(208);
 
 	var _Sheet2 = _interopRequireDefault(_Sheet);
 
-	var _charGen = __webpack_require__(212);
+	var _charGen = __webpack_require__(216);
 
 	var _charGen2 = _interopRequireDefault(_charGen);
 
@@ -22451,11 +22451,39 @@
 	  value: true
 	});
 
+	var _reactRedux = __webpack_require__(168);
+
+	var _MainHeader = __webpack_require__(199);
+
+	var _MainHeader2 = _interopRequireDefault(_MainHeader);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// Inbound data
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    npm: Object.assign({}, state.npm)
+	  };
+	};
+
+	// Bind redux store to react component.
+	var PageHeader = (0, _reactRedux.connect)(mapStateToProps)(_MainHeader2.default);
+
+	exports.default = PageHeader;
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(168);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22477,20 +22505,64 @@
 	  );
 	};
 
+	exports.default = MainHeader;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(168);
+
+	var _CharacterEdit = __webpack_require__(201);
+
+	var _CharacterEdit2 = _interopRequireDefault(_CharacterEdit);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	// Inbound data
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    npm: Object.assign({}, state.npm)
+	    appData: state.app,
+	    ancestryData: state.app[state.char.ancestry.toLowerCase()],
+	    charData: state.char
 	  };
 	};
 
-	// Bind redux store to react component.
-	var PageHeader = (0, _reactRedux.connect)(mapStateToProps)(MainHeader);
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    changeAncestry: function changeAncestry(value) {
+	      dispatch({ type: 'CHANGE_ANCESTRY', value: value });
+	    },
+	    changeValue: function changeValue(name, value) {
+	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value });
+	    },
+	    setEditMode: function setEditMode() {
+	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'edit' });
+	    },
+	    setViewMode: function setViewMode() {
+	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'view' });
+	    },
+	    createRandomCharacter: function createRandomCharacter() {
+	      dispatch({ type: 'CREATE_RANDOM' });
+	    },
+	    setIncreaseOne: function setIncreaseOne(value) {
+	      dispatch({ type: 'INCREASE_ONE', value: value });
+	    }
+	  };
+	};
 
-	exports.default = PageHeader;
+	var App = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_CharacterEdit2.default);
+
+	exports.default = App;
 
 /***/ },
-/* 199 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22503,10 +22575,6 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(168);
-
-	__webpack_require__(200);
-
 	var _ActionBar = __webpack_require__(202);
 
 	var _ActionBar2 = _interopRequireDefault(_ActionBar);
@@ -22514,6 +22582,8 @@
 	var _Select = __webpack_require__(205);
 
 	var _Select2 = _interopRequireDefault(_Select);
+
+	__webpack_require__(206);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22536,7 +22606,7 @@
 	      }
 	    })
 	  );
-	}; // TODO container and component in one. Split later.
+	};
 
 	var renderIncreaseOne = function renderIncreaseOne(appData, charAttr, setIncreaseOne) {
 	  return _react2.default.createElement(
@@ -22562,7 +22632,7 @@
 	  };
 	};
 
-	var AppComponent = function AppComponent(_ref) {
+	var CharacterEdit = function CharacterEdit(_ref) {
 	  var appData = _ref.appData;
 	  var ancestryData = _ref.ancestryData;
 	  var charData = _ref.charData;
@@ -22635,81 +22705,7 @@
 	  );
 	};
 
-	// Inbound data
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    appData: state.app,
-	    ancestryData: state.app[state.char.ancestry.toLowerCase()],
-	    charData: state.char
-	  };
-	};
-
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    changeAncestry: function changeAncestry(value) {
-	      dispatch({ type: 'CHANGE_ANCESTRY', value: value });
-	    },
-	    changeValue: function changeValue(name, value) {
-	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: name, value: value });
-	    },
-	    setEditMode: function setEditMode() {
-	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'edit' });
-	    },
-	    setViewMode: function setViewMode() {
-	      dispatch({ type: 'CHANGE_SIMPLE_VALUE', name: 'mode', value: 'view' });
-	    },
-	    createRandomCharacter: function createRandomCharacter() {
-	      dispatch({ type: 'CREATE_RANDOM' });
-	    },
-	    setIncreaseOne: function setIncreaseOne(value) {
-	      dispatch({ type: 'INCREASE_ONE', value: value });
-	    }
-	  };
-	};
-
-	var App = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(AppComponent);
-
-	exports.default = App;
-
-/***/ },
-/* 200 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(201);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./characterGenerator.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./characterGenerator.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 201 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(196)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".characterGenerator {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.characterGenerator .row {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tmargin-bottom: 0.5em;\r\n}\r\n\r\n.characterGenerator label {\r\n\tfont-weight: bold;\r\n\tflex-basis: 10em;\r\n\tflex-shrink: 0;\r\n}\r\n\r\n.characterGenerator option:first-letter {\r\n\ttext-transform: uppercase;\r\n}", ""]);
-
-	// exports
-
+	exports.default = CharacterEdit;
 
 /***/ },
 /* 202 */
@@ -22858,44 +22854,111 @@
 /* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(207);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(197)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./characterGenerator.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./characterGenerator.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(196)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".characterGenerator {\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n}\r\n\r\n.characterGenerator .row {\r\n\tdisplay: flex;\r\n\tflex-direction: row;\r\n\tmargin-bottom: 0.5em;\r\n}\r\n\r\n.characterGenerator label {\r\n\tfont-weight: bold;\r\n\tflex-basis: 10em;\r\n\tflex-shrink: 0;\r\n}\r\n\r\n.characterGenerator option:first-letter {\r\n\ttext-transform: uppercase;\r\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; // TODO container and component in one. Split later.
+	var _reactRedux = __webpack_require__(168);
+
+	var _CharacterSheet = __webpack_require__(209);
+
+	var _CharacterSheet2 = _interopRequireDefault(_CharacterSheet);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// Inbound data
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    appData: Object.assign({}, state.app),
+	    charData: Object.assign({}, state.char)
+	  };
+	};
+
+	// Bind redux store to react component.
+	var Sheet = (0, _reactRedux.connect)(mapStateToProps)(_CharacterSheet2.default);
+
+	exports.default = Sheet;
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRedux = __webpack_require__(168);
-
-	__webpack_require__(207);
-
-	var _capitalize = __webpack_require__(209);
+	var _capitalize = __webpack_require__(210);
 
 	var _capitalize2 = _interopRequireDefault(_capitalize);
 
-	var _Fieldset = __webpack_require__(210);
+	var _isPopulatedArray = __webpack_require__(211);
+
+	var _isPopulatedArray2 = _interopRequireDefault(_isPopulatedArray);
+
+	var _Fieldset = __webpack_require__(212);
 
 	var _Fieldset2 = _interopRequireDefault(_Fieldset);
 
-	var _DisplayRow = __webpack_require__(211);
+	var _DisplayRow = __webpack_require__(213);
 
 	var _DisplayRow2 = _interopRequireDefault(_DisplayRow);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	__webpack_require__(214);
 
-	var isPopulatedArray = function isPopulatedArray(obj) {
-	  return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.length > 0;
-	};
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// TODO Component.
 	var renderNotes = function renderNotes(notes) {
 	  // Only rnder if there ARE notes.
-	  if (!isPopulatedArray(notes)) {
+	  if (!(0, _isPopulatedArray2.default)(notes)) {
 	    return;
 	  }
 
@@ -22925,7 +22988,7 @@
 
 	  return Object.keys(obj).map(function (key) {
 	    if (includeKeys.indexOf(key) !== -1) {
-	      return _react2.default.createElement(_DisplayRow2.default, { label: key, value: obj[key] });
+	      return _react2.default.createElement(_DisplayRow2.default, { key: key, label: key, value: obj[key] });
 	    }
 	  });
 	};
@@ -22966,67 +23029,16 @@
 	        'div',
 	        { className: 'content' },
 	        Object.keys(charData.characteristics).map(function (key) {
-	          return _react2.default.createElement(_DisplayRow2.default, { label: key, value: charData.characteristics[key] });
+	          return _react2.default.createElement(_DisplayRow2.default, { key: key, label: key, value: charData.characteristics[key] });
 	        })
 	      ) })
 	  );
 	};
 
-	// Inbound data
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    appData: Object.assign({}, state.app),
-	    charData: Object.assign({}, state.char)
-	  };
-	};
-
-	// Bind redux store to react component.
-	var Sheet = (0, _reactRedux.connect)(mapStateToProps)(CharacterSheet);
-
-	exports.default = Sheet;
+	exports.default = CharacterSheet;
 
 /***/ },
-/* 207 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(208);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./characterSheet.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./characterSheet.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 208 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(196)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".characterSheet {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.characterSheet fieldset {\n\tmargin-bottom: 0.5em;\n\tfont-family: monospace;\n}\n\n.characterSheet .row {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.characterSheet .label {\n\tfont-weight: bold;\n\tflex-basis: 10em;\n\tflex-shrink: 0;\n}\n\n.characterSheet .label:first-letter, .characterSheet .value:first-letter {\n\ttext-transform: uppercase;\n}\n\n.characterSheet .notes {\n\tfont-style: italic;\n}", ""]);
-
-	// exports
-
-
-/***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23041,7 +23053,26 @@
 	exports.default = capitalize;
 
 /***/ },
-/* 210 */
+/* 211 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+	// TODO Replace with lodash equivalent.
+	var isPopulatedArray = function isPopulatedArray(obj) {
+	  return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && obj.length > 0;
+	};
+
+	exports.default = isPopulatedArray;
+
+/***/ },
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23074,7 +23105,7 @@
 	exports.default = FieldSet;
 
 /***/ },
-/* 211 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23114,7 +23145,47 @@
 	exports.default = DisplayRow;
 
 /***/ },
-/* 212 */
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(215);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(197)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./characterSheet.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./characterSheet.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(196)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".characterSheet {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.characterSheet fieldset {\n\tmargin-bottom: 0.5em;\n\tfont-family: monospace;\n}\n\n.characterSheet .row {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.characterSheet .label {\n\tfont-weight: bold;\n\tflex-basis: 10em;\n\tflex-shrink: 0;\n}\n\n.characterSheet .label:first-letter, .characterSheet .value:first-letter {\n\ttext-transform: uppercase;\n}\n\n.characterSheet .notes {\n\tfont-style: italic;\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23149,19 +23220,19 @@
 
 	exports.default = charGen;
 
-	var _set = __webpack_require__(213);
+	var _set = __webpack_require__(217);
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _package = __webpack_require__(214);
+	var _package = __webpack_require__(218);
 
 	var _package2 = _interopRequireDefault(_package);
 
-	var _appData = __webpack_require__(215);
+	var _appData = __webpack_require__(219);
 
 	var _appData2 = _interopRequireDefault(_appData);
 
-	var _char = __webpack_require__(219);
+	var _char = __webpack_require__(223);
 
 	var _char2 = _interopRequireDefault(_char);
 
@@ -23311,7 +23382,7 @@
 	}
 
 /***/ },
-/* 213 */
+/* 217 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23321,6 +23392,7 @@
 	});
 	/**
 	 * Dynamically set a nested property in an array.
+	 * TODO Remove this and use lodash's _.set.
 	 */
 	var set = function set(obj, path, value) {
 	  // a moving reference to internal objects within obj
@@ -23338,21 +23410,21 @@
 	exports.default = set;
 
 /***/ },
-/* 214 */
+/* 218 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.4.0",
+		"version": "0.5.1",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
 		"scripts": {
 			"start": "npm prune && npm install && npm run dev",
 			"dev": "npm test && npm run server",
+			"build": "npm test && npm run webpack",
 			"test": "npm run lint && npm run test:jest",
 			"server": "./node_modules/.bin/webpack-dev-server --progress --colors --inline --hot --content-base public/",
-			"build": "npm run lint && npm run webpack",
 			"webpack": "./node_modules/.bin/webpack --colors",
 			"lint": "./node_modules/.bin/standard \"./src/**/*.js\" \"./__tests__/**/*.js\"",
 			"test:jest": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest",
@@ -23373,6 +23445,7 @@
 			"css-loader": "^0.23.1",
 			"jest-cli": "^12.1.1",
 			"json-loader": "^0.5.4",
+			"lodash": "^4.13.1",
 			"react": "^15.1.0",
 			"react-addons-test-utils": "^15.1.0",
 			"react-dom": "^15.1.0",
@@ -23401,13 +23474,14 @@
 				"^.*[.](css|CSS)$": "js/EmptyModule.js"
 			},
 			"unmockedModulePathPatterns": [
-				"<rootDir>/node_modules/react"
+				"<rootDir>/node_modules/react",
+				"<rootDir>/node_modules/lodash"
 			]
 		}
 	};
 
 /***/ },
-/* 215 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23416,15 +23490,15 @@
 	  value: true
 	});
 
-	var _app = __webpack_require__(216);
+	var _app = __webpack_require__(220);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _human = __webpack_require__(217);
+	var _human = __webpack_require__(221);
 
 	var _human2 = _interopRequireDefault(_human);
 
-	var _orc = __webpack_require__(218);
+	var _orc = __webpack_require__(222);
 
 	var _orc2 = _interopRequireDefault(_orc);
 
@@ -23438,7 +23512,7 @@
 	exports.default = _app2.default;
 
 /***/ },
-/* 216 */
+/* 220 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23471,7 +23545,7 @@
 	};
 
 /***/ },
-/* 217 */
+/* 221 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23646,7 +23720,7 @@
 	};
 
 /***/ },
-/* 218 */
+/* 222 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23799,7 +23873,7 @@
 	};
 
 /***/ },
-/* 219 */
+/* 223 */
 /***/ function(module, exports) {
 
 	module.exports = {
