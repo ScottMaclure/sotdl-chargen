@@ -14,14 +14,14 @@ const getListWithoutSelected = (arr, value) => {
 // All ancestries can raise one attribute by lowering another.
 const AdjustOne = ({ appData, charData, adjustOneFrom, adjustOneTo }) => (
   <div className='row adjustOne'>
-    <label for='ancestry'>Adjust One Attribute</label>
+    <label for='adjustOneFrom'>Adjust One Attribute</label>
     <span>From:</span>
-    <Select id='adjustOneFrom'
+    <Select id='adjustOneFrom' className='adjustOneFrom'
       options={[].concat(appData.pleaseSelect, appData.attributes)} value={charData.attributes.oneAdjustFrom}
       onChange={(event) => adjustOneFrom(event.target.value === appData.pleaseSelect ? void 0 : event.target.value)}
     />
     <span className='adjustOneToLabel'>To:</span>
-    <Select id='adjustOneTo'
+    <Select id='adjustOneTo' className='adjustOneTo'
       options={[].concat(appData.pleaseSelect, getListWithoutSelected(appData.attributes, charData.attributes.oneAdjustFrom))} value={charData.attributes.oneAdjustTo}
       onChange={(event) => adjustOneTo(event.target.value === appData.pleaseSelect ? void 0 : event.target.value)}
     />
