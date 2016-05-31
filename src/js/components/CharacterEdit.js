@@ -32,6 +32,10 @@ const getStyles = (charData) => ({
   display: charData.mode !== 'edit' ? 'none' : ''
 })
 
+const getListWithoutSelected = (arr, value) => {
+  return arr.filter(elem => elem !== value)
+}
+
 const CharacterEdit = ({
   appData, ancestryData, charData,
   changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter,
@@ -64,7 +68,7 @@ const CharacterEdit = ({
         />
         <span className='adjustOneToLabel'>To:</span>
         <Select id='adjustOneTo'
-          options={[].concat(appData.pleaseSelect, appData.attributes)} value={charData.attributes.oneAdjustTo}
+          options={[].concat(appData.pleaseSelect, getListWithoutSelected(appData.attributes, charData.attributes.oneAdjustFrom))} value={charData.attributes.oneAdjustTo}
           onChange={(event) => adjustOneTo(event.target.value === appData.pleaseSelect ? void 0 : event.target.value)}
         />
       </div>
