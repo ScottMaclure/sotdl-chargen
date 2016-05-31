@@ -2,6 +2,7 @@ import React from 'react'
 
 import ActionBar from 'js/components/ActionBar'
 import Select from 'js/components/Select'
+import AdjustOne from 'js/components/AdjustOne'
 
 import 'css/characterGenerator.css'
 
@@ -32,13 +33,6 @@ const getStyles = (charData) => ({
   display: charData.mode !== 'edit' ? 'none' : ''
 })
 
-const getListWithoutSelected = (arr, value) => {
-  if (!arr || arr.length === 0) {
-    return arr
-  }
-  return arr.filter(elem => elem !== value)
-}
-
 const CharacterEdit = ({
   appData, ancestryData, charData,
   changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter,
@@ -61,20 +55,7 @@ const CharacterEdit = ({
         />
       </div>
 
-      {/* All ancestries can raise one attribute by lowering another. */}
-      <div className='row adjustOne'>
-        <label for='ancestry'>Adjust One Attribute</label>
-        <span>From:</span>
-        <Select id='adjustOneFrom'
-          options={[].concat(appData.pleaseSelect, appData.attributes)} value={charData.attributes.oneAdjustFrom}
-          onChange={(event) => adjustOneFrom(event.target.value === appData.pleaseSelect ? void 0 : event.target.value)}
-        />
-        <span className='adjustOneToLabel'>To:</span>
-        <Select id='adjustOneTo'
-          options={[].concat(appData.pleaseSelect, getListWithoutSelected(appData.attributes, charData.attributes.oneAdjustFrom))} value={charData.attributes.oneAdjustTo}
-          onChange={(event) => adjustOneTo(event.target.value === appData.pleaseSelect ? void 0 : event.target.value)}
-        />
-      </div>
+      <AdjustOne appData={appData} charData={charData} adjustOneFrom={adjustOneFrom} adjustOneTo={adjustOneTo} />
 
       {ancestryData.attributes.increaseOne ? renderIncreaseOne(appData, charData.attributes, setIncreaseOne) : null}
 
