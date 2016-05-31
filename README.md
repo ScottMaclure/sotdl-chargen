@@ -41,6 +41,6 @@ Assumes `sotdl-chargen-gh-pages` folder is sitting next to `sotdl-chargen`, with
 - From `sotdl-chargen-gh-pages`
     - `git pull -r`
     - `cp -pr ../sotdl-chargen/public/* .`
-    - `git commit -am "gh-pages publish."`
+    - `git add . && git commit -m "gh-pages publish."`
     - `git push`
     - View <http://scott.maclure.com.au/sotdl-chargen/>
