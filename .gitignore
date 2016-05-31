@@ -1,4 +1,6 @@
 node_modules
 public/bundle.js
+public/*.jpg
+public/*.png
 *.log
 coverage
