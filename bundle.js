@@ -58,19 +58,19 @@
 
 	__webpack_require__(194);
 
-	var _PageHeader = __webpack_require__(198);
+	var _PageHeader = __webpack_require__(199);
 
 	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
-	var _App = __webpack_require__(200);
+	var _App = __webpack_require__(201);
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Sheet = __webpack_require__(211);
+	var _Sheet = __webpack_require__(212);
 
 	var _Sheet2 = _interopRequireDefault(_Sheet);
 
-	var _charGen = __webpack_require__(219);
+	var _charGen = __webpack_require__(220);
 
 	var _charGen2 = _interopRequireDefault(_charGen);
 
@@ -22103,7 +22103,7 @@
 	var content = __webpack_require__(195);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
+	var update = __webpack_require__(198)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22128,7 +22128,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbody {\r\n\tbackground-color: #eee;\r\n}\r\n\r\n@media print {\r\n\th2 {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t#main {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t.actionBar {\r\n\t\tdisplay: none !important;\r\n\t}\r\n}", ""]);
+	exports.push([module.id, "* {\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbody {\r\n\tbackground-image: url(" + __webpack_require__(197) + ");\r\n\tbackground-size: cover;\r\n}\r\n\r\n@media print {\r\n\th2 {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t#main {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t.actionBar {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\theader {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\tfooter {\r\n\t\tdisplay: none !important;\r\n\t}\r\n}", ""]);
 
 	// exports
 
@@ -22191,6 +22191,12 @@
 
 /***/ },
 /* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "f1888c1c81b4a72397704576ab38a7da.jpg";
+
+/***/ },
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -22442,7 +22448,7 @@
 
 
 /***/ },
-/* 198 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22453,7 +22459,7 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	var _MainHeader = __webpack_require__(199);
+	var _MainHeader = __webpack_require__(200);
 
 	var _MainHeader2 = _interopRequireDefault(_MainHeader);
 
@@ -22472,7 +22478,7 @@
 	exports.default = PageHeader;
 
 /***/ },
-/* 199 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22508,7 +22514,7 @@
 	exports.default = MainHeader;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22519,7 +22525,7 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	var _CharacterEdit = __webpack_require__(201);
+	var _CharacterEdit = __webpack_require__(202);
 
 	var _CharacterEdit2 = _interopRequireDefault(_CharacterEdit);
 
@@ -22568,7 +22574,7 @@
 	exports.default = App;
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22581,19 +22587,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ActionBar = __webpack_require__(202);
+	var _ActionBar = __webpack_require__(203);
 
 	var _ActionBar2 = _interopRequireDefault(_ActionBar);
 
-	var _Select = __webpack_require__(205);
+	var _Select = __webpack_require__(206);
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	var _AdjustOne = __webpack_require__(206);
+	var _AdjustOne = __webpack_require__(207);
 
 	var _AdjustOne2 = _interopRequireDefault(_AdjustOne);
 
-	__webpack_require__(209);
+	__webpack_require__(210);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22721,7 +22727,7 @@
 	exports.default = CharacterEdit;
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22734,7 +22740,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	__webpack_require__(203);
+	__webpack_require__(204);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22780,16 +22786,16 @@
 	exports.default = ActionBar;
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(204);
+	var content = __webpack_require__(205);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
+	var update = __webpack_require__(198)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22806,7 +22812,7 @@
 	}
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(196)();
@@ -22820,7 +22826,7 @@
 
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22864,7 +22870,7 @@
 	exports.default = Select;
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22877,11 +22883,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Select = __webpack_require__(205);
+	var _Select = __webpack_require__(206);
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	__webpack_require__(207);
+	__webpack_require__(208);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22936,16 +22942,16 @@
 	exports.default = AdjustOne;
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(208);
+	var content = __webpack_require__(209);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
+	var update = __webpack_require__(198)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -22962,7 +22968,7 @@
 	}
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(196)();
@@ -22976,16 +22982,16 @@
 
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(210);
+	var content = __webpack_require__(211);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
+	var update = __webpack_require__(198)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23002,7 +23008,7 @@
 	}
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(196)();
@@ -23016,7 +23022,7 @@
 
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23027,7 +23033,7 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	var _CharacterSheet = __webpack_require__(212);
+	var _CharacterSheet = __webpack_require__(213);
 
 	var _CharacterSheet2 = _interopRequireDefault(_CharacterSheet);
 
@@ -23047,7 +23053,7 @@
 	exports.default = Sheet;
 
 /***/ },
-/* 212 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23060,23 +23066,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _capitalize = __webpack_require__(213);
+	var _capitalize = __webpack_require__(214);
 
 	var _capitalize2 = _interopRequireDefault(_capitalize);
 
-	var _isPopulatedArray = __webpack_require__(214);
+	var _isPopulatedArray = __webpack_require__(215);
 
 	var _isPopulatedArray2 = _interopRequireDefault(_isPopulatedArray);
 
-	var _Fieldset = __webpack_require__(215);
+	var _Fieldset = __webpack_require__(216);
 
 	var _Fieldset2 = _interopRequireDefault(_Fieldset);
 
-	var _DisplayRow = __webpack_require__(216);
+	var _DisplayRow = __webpack_require__(217);
 
 	var _DisplayRow2 = _interopRequireDefault(_DisplayRow);
 
-	__webpack_require__(217);
+	__webpack_require__(218);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23177,7 +23183,7 @@
 	exports.default = CharacterSheet;
 
 /***/ },
-/* 213 */
+/* 214 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23192,7 +23198,7 @@
 	exports.default = capitalize;
 
 /***/ },
-/* 214 */
+/* 215 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23211,7 +23217,7 @@
 	exports.default = isPopulatedArray;
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23244,7 +23250,7 @@
 	exports.default = FieldSet;
 
 /***/ },
-/* 216 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23284,16 +23290,16 @@
 	exports.default = DisplayRow;
 
 /***/ },
-/* 217 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(218);
+	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(197)(content, {});
+	var update = __webpack_require__(198)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -23310,7 +23316,7 @@
 	}
 
 /***/ },
-/* 218 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(196)();
@@ -23324,7 +23330,7 @@
 
 
 /***/ },
-/* 219 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23359,19 +23365,19 @@
 
 	exports.default = charGen;
 
-	var _set = __webpack_require__(220);
+	var _set = __webpack_require__(221);
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _package = __webpack_require__(221);
+	var _package = __webpack_require__(222);
 
 	var _package2 = _interopRequireDefault(_package);
 
-	var _appData = __webpack_require__(222);
+	var _appData = __webpack_require__(223);
 
 	var _appData2 = _interopRequireDefault(_appData);
 
-	var _char = __webpack_require__(226);
+	var _char = __webpack_require__(227);
 
 	var _char2 = _interopRequireDefault(_char);
 
@@ -23566,7 +23572,7 @@
 	}
 
 /***/ },
-/* 220 */
+/* 221 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23594,12 +23600,12 @@
 	exports.default = set;
 
 /***/ },
-/* 221 */
+/* 222 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.6.0",
+		"version": "0.7.0",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -23627,6 +23633,7 @@
 			"babel-preset-react": "^6.5.0",
 			"cross-env": "^1.0.8",
 			"css-loader": "^0.23.1",
+			"file-loader": "^0.8.5",
 			"jest-cli": "^12.1.1",
 			"json-loader": "^0.5.4",
 			"lodash": "^4.13.1",
@@ -23665,7 +23672,7 @@
 	};
 
 /***/ },
-/* 222 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23674,15 +23681,15 @@
 	  value: true
 	});
 
-	var _app = __webpack_require__(223);
+	var _app = __webpack_require__(224);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _human = __webpack_require__(224);
+	var _human = __webpack_require__(225);
 
 	var _human2 = _interopRequireDefault(_human);
 
-	var _orc = __webpack_require__(225);
+	var _orc = __webpack_require__(226);
 
 	var _orc2 = _interopRequireDefault(_orc);
 
@@ -23696,7 +23703,7 @@
 	exports.default = _app2.default;
 
 /***/ },
-/* 223 */
+/* 224 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23729,7 +23736,7 @@
 	};
 
 /***/ },
-/* 224 */
+/* 225 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23904,7 +23911,7 @@
 	};
 
 /***/ },
-/* 225 */
+/* 226 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -24057,7 +24064,7 @@
 	};
 
 /***/ },
-/* 226 */
+/* 227 */
 /***/ function(module, exports) {
 
 	module.exports = {
