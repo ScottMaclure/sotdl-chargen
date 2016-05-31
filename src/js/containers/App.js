@@ -30,8 +30,11 @@ const mapDispatchToProps = (dispatch) => ({
   setIncreaseOne: (value) => {
     dispatch({ type: 'INCREASE_ONE', value: value })
   },
-  setAdjustOne: (value) => {
-    console.log('setAdjustOne, value:', value)
+  adjustOneFrom: (value) => {
+    dispatch({ type: 'ADJUST_ONE_FROM', value: value })
+  },
+  adjustOneTo: (value) => {
+    dispatch({ type: 'ADJUST_ONE_TO', value: value })
   }
 })
 
