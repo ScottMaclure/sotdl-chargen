@@ -66,11 +66,11 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	var _Sheet = __webpack_require__(208);
+	var _Sheet = __webpack_require__(211);
 
 	var _Sheet2 = _interopRequireDefault(_Sheet);
 
-	var _charGen = __webpack_require__(216);
+	var _charGen = __webpack_require__(219);
 
 	var _charGen2 = _interopRequireDefault(_charGen);
 
@@ -22553,6 +22553,12 @@
 	    },
 	    setIncreaseOne: function setIncreaseOne(value) {
 	      dispatch({ type: 'INCREASE_ONE', value: value });
+	    },
+	    adjustOneFrom: function adjustOneFrom(value) {
+	      dispatch({ type: 'ADJUST_ONE_FROM', value: value });
+	    },
+	    adjustOneTo: function adjustOneTo(value) {
+	      dispatch({ type: 'ADJUST_ONE_TO', value: value });
 	    }
 	  };
 	};
@@ -22583,7 +22589,11 @@
 
 	var _Select2 = _interopRequireDefault(_Select);
 
-	__webpack_require__(206);
+	var _AdjustOne = __webpack_require__(206);
+
+	var _AdjustOne2 = _interopRequireDefault(_AdjustOne);
+
+	__webpack_require__(209);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22642,6 +22652,8 @@
 	  var setViewMode = _ref.setViewMode;
 	  var createRandomCharacter = _ref.createRandomCharacter;
 	  var setIncreaseOne = _ref.setIncreaseOne;
+	  var adjustOneFrom = _ref.adjustOneFrom;
+	  var adjustOneTo = _ref.adjustOneTo;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'app' },
@@ -22669,6 +22681,7 @@
 	          }
 	        })
 	      ),
+	      _react2.default.createElement(_AdjustOne2.default, { appData: appData, charData: charData, adjustOneFrom: adjustOneFrom, adjustOneTo: adjustOneTo }),
 	      ancestryData.attributes.increaseOne ? renderIncreaseOne(appData, charData.attributes, setIncreaseOne) : null,
 	      _react2.default.createElement(
 	        'div',
@@ -22854,10 +22867,122 @@
 /* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Select = __webpack_require__(205);
+
+	var _Select2 = _interopRequireDefault(_Select);
+
+	__webpack_require__(207);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var getListWithoutSelected = function getListWithoutSelected(arr, value) {
+	  if (!arr || arr.length === 0) {
+	    return arr;
+	  }
+	  return arr.filter(function (elem) {
+	    return elem !== value;
+	  });
+	};
+
+	// All ancestries can raise one attribute by lowering another.
+	var AdjustOne = function AdjustOne(_ref) {
+	  var appData = _ref.appData;
+	  var charData = _ref.charData;
+	  var adjustOneFrom = _ref.adjustOneFrom;
+	  var adjustOneTo = _ref.adjustOneTo;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'row adjustOne' },
+	    _react2.default.createElement(
+	      'label',
+	      { 'for': 'adjustOneFrom' },
+	      'Adjust One Attribute'
+	    ),
+	    _react2.default.createElement(
+	      'span',
+	      null,
+	      'From:'
+	    ),
+	    _react2.default.createElement(_Select2.default, { id: 'adjustOneFrom', className: 'adjustOneFrom',
+	      options: [].concat(appData.pleaseSelect, appData.attributes), value: charData.attributes.oneAdjustFrom,
+	      onChange: function onChange(event) {
+	        return adjustOneFrom(event.target.value === appData.pleaseSelect ? void 0 : event.target.value);
+	      }
+	    }),
+	    _react2.default.createElement(
+	      'span',
+	      { className: 'adjustOneToLabel' },
+	      'To:'
+	    ),
+	    _react2.default.createElement(_Select2.default, { id: 'adjustOneTo', className: 'adjustOneTo',
+	      options: [].concat(appData.pleaseSelect, getListWithoutSelected(appData.attributes, charData.attributes.oneAdjustFrom)), value: charData.attributes.oneAdjustTo,
+	      onChange: function onChange(event) {
+	        return adjustOneTo(event.target.value === appData.pleaseSelect ? void 0 : event.target.value);
+	      }
+	    })
+	  );
+	};
+
+	exports.default = AdjustOne;
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(207);
+	var content = __webpack_require__(208);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(197)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./adjustOne.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./adjustOne.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(196)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".adjustOne > span {\n  margin-right: 0.5em;\n}\n\n.adjustOneToLabel {\n  margin-left: 0.5em;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(210);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(197)(content, {});
@@ -22877,7 +23002,7 @@
 	}
 
 /***/ },
-/* 207 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(196)();
@@ -22891,7 +23016,7 @@
 
 
 /***/ },
-/* 208 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22902,7 +23027,7 @@
 
 	var _reactRedux = __webpack_require__(168);
 
-	var _CharacterSheet = __webpack_require__(209);
+	var _CharacterSheet = __webpack_require__(212);
 
 	var _CharacterSheet2 = _interopRequireDefault(_CharacterSheet);
 
@@ -22922,7 +23047,7 @@
 	exports.default = Sheet;
 
 /***/ },
-/* 209 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22935,23 +23060,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _capitalize = __webpack_require__(210);
+	var _capitalize = __webpack_require__(213);
 
 	var _capitalize2 = _interopRequireDefault(_capitalize);
 
-	var _isPopulatedArray = __webpack_require__(211);
+	var _isPopulatedArray = __webpack_require__(214);
 
 	var _isPopulatedArray2 = _interopRequireDefault(_isPopulatedArray);
 
-	var _Fieldset = __webpack_require__(212);
+	var _Fieldset = __webpack_require__(215);
 
 	var _Fieldset2 = _interopRequireDefault(_Fieldset);
 
-	var _DisplayRow = __webpack_require__(213);
+	var _DisplayRow = __webpack_require__(216);
 
 	var _DisplayRow2 = _interopRequireDefault(_DisplayRow);
 
-	__webpack_require__(214);
+	__webpack_require__(217);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22967,20 +23092,34 @@
 	    { className: 'notes' },
 	    notes.map(function (note) {
 	      return _react2.default.createElement(
-	        'small',
+	        'div',
 	        null,
-	        note
+	        _react2.default.createElement(
+	          'small',
+	          null,
+	          note
+	        )
 	      );
 	    })
 	  );
 	};
 
 	var renderAttributeNotes = function renderAttributeNotes(attributes) {
+	  var notes = [];
+
 	  if (attributes.oneIncreased) {
-	    // TODO Where to keep this data?
-	    return renderNotes([(0, _capitalize2.default)(attributes.oneIncreased) + ' increased.']);
+	    notes.push((0, _capitalize2.default)(attributes.oneIncreased) + ' increased.');
+	  } else {
+	    notes.push(attributes.notes);
 	  }
-	  return renderNotes(attributes.notes);
+
+	  var oneAdjustNote = 'You may adjust one attribute to another.';
+	  if (attributes.oneAdjustFrom && attributes.oneAdjustTo) {
+	    oneAdjustNote = 'You adjusted ' + (0, _capitalize2.default)(attributes.oneAdjustFrom) + ' to ' + (0, _capitalize2.default)(attributes.oneAdjustTo);
+	  }
+	  notes.push(oneAdjustNote);
+
+	  return renderNotes(notes);
 	};
 
 	var renderObject = function renderObject(obj) {
@@ -23038,7 +23177,7 @@
 	exports.default = CharacterSheet;
 
 /***/ },
-/* 210 */
+/* 213 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23053,7 +23192,7 @@
 	exports.default = capitalize;
 
 /***/ },
-/* 211 */
+/* 214 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23072,7 +23211,7 @@
 	exports.default = isPopulatedArray;
 
 /***/ },
-/* 212 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23105,7 +23244,7 @@
 	exports.default = FieldSet;
 
 /***/ },
-/* 213 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23145,13 +23284,13 @@
 	exports.default = DisplayRow;
 
 /***/ },
-/* 214 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(215);
+	var content = __webpack_require__(218);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(197)(content, {});
@@ -23171,7 +23310,7 @@
 	}
 
 /***/ },
-/* 215 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(196)();
@@ -23185,7 +23324,7 @@
 
 
 /***/ },
-/* 216 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23220,19 +23359,19 @@
 
 	exports.default = charGen;
 
-	var _set = __webpack_require__(217);
+	var _set = __webpack_require__(220);
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _package = __webpack_require__(218);
+	var _package = __webpack_require__(221);
 
 	var _package2 = _interopRequireDefault(_package);
 
-	var _appData = __webpack_require__(219);
+	var _appData = __webpack_require__(222);
 
 	var _appData2 = _interopRequireDefault(_appData);
 
-	var _char = __webpack_require__(223);
+	var _char = __webpack_require__(226);
 
 	var _char2 = _interopRequireDefault(_char);
 
@@ -23330,11 +23469,52 @@
 	  assignAncestryToCharacter(state, getAncestryDefaultData(state));
 	};
 
+	/**
+	 * Needs to adjust scores rather than reset them.
+	 */
 	var increaseOneAttribute = function increaseOneAttribute(attributes, attribute) {
-	  var newAttributes = Object.assign({}, attributes);
-	  newAttributes[attribute] += 1;
-	  newAttributes.oneIncreased = attribute;
-	  return newAttributes;
+	  var att = Object.assign({}, attributes);
+	  if (att.oneIncreased) {
+	    // Previously increased attribute - decrement first.
+	    att[attribute] -= 1;
+	  }
+	  // Increase attribute score by 1 and set flag to remember choice.
+	  att[attribute] += 1;
+	  att.oneIncreased = attribute;
+	  return att;
+	};
+
+	/**
+	 * TODO Don't adjust util both values are set?
+	 */
+	var adjustOneAttribute = function adjustOneAttribute(attributes, from, to) {
+	  var att = Object.assign({}, attributes);
+
+	  if (att.oneAdjustFrom && att.oneAdjustFrom !== from) {
+	    // Previous selection needs to be adjusted. Increase old value by 1.
+	    att[att.oneAdjustFrom] += 1;
+	    delete att.oneAdjustFrom;
+	  }
+
+	  if (from && from !== att.oneAdjustFrom) {
+	    // If from attribute selected, decrement it now.
+	    att[from] -= 1;
+	    att.oneAdjustFrom = from;
+	  }
+
+	  if (att.oneAdjustTo && att.oneAdjustTo !== to) {
+	    // Previous selection needs to be adjusted. Increase old value by 1.
+	    att[att.oneAdjustTo] -= 1;
+	    delete att.oneAdjustTo;
+	  }
+
+	  if (to && att.oneAdjustTo !== to) {
+	    // If to attribute selected, increment it now.
+	    att[to] += 1;
+	    att.oneAdjustTo = to;
+	  }
+
+	  return att;
 	};
 
 	var getAncestryDefaultData = function getAncestryDefaultData(state) {
@@ -23369,9 +23549,13 @@
 	      (0, _set2.default)(newState.char, action.name, action.value);
 	      break;
 	    case 'INCREASE_ONE':
-	      // Every time we increase, we reset to ancestry defaults.
-	      var ancestryData = getAncestryDefaultData(newState);
-	      newState.char.attributes = increaseOneAttribute(ancestryData.attributes, action.value);
+	      newState.char.attributes = increaseOneAttribute(newState.char.attributes, action.value);
+	      break;
+	    case 'ADJUST_ONE_FROM':
+	      newState.char.attributes = adjustOneAttribute(newState.char.attributes, action.value, newState.char.attributes.oneAdjustTo);
+	      break;
+	    case 'ADJUST_ONE_TO':
+	      newState.char.attributes = adjustOneAttribute(newState.char.attributes, newState.char.attributes.oneAdjustFrom, action.value);
 	      break;
 	  }
 
@@ -23382,7 +23566,7 @@
 	}
 
 /***/ },
-/* 217 */
+/* 220 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23410,12 +23594,12 @@
 	exports.default = set;
 
 /***/ },
-/* 218 */
+/* 221 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.5.1",
+		"version": "0.6.0",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -23481,7 +23665,7 @@
 	};
 
 /***/ },
-/* 219 */
+/* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23490,15 +23674,15 @@
 	  value: true
 	});
 
-	var _app = __webpack_require__(220);
+	var _app = __webpack_require__(223);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _human = __webpack_require__(221);
+	var _human = __webpack_require__(224);
 
 	var _human2 = _interopRequireDefault(_human);
 
-	var _orc = __webpack_require__(222);
+	var _orc = __webpack_require__(225);
 
 	var _orc2 = _interopRequireDefault(_orc);
 
@@ -23512,7 +23696,7 @@
 	exports.default = _app2.default;
 
 /***/ },
-/* 220 */
+/* 223 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23545,7 +23729,7 @@
 	};
 
 /***/ },
-/* 221 */
+/* 224 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23720,7 +23904,7 @@
 	};
 
 /***/ },
-/* 222 */
+/* 225 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -23873,7 +24057,7 @@
 	};
 
 /***/ },
-/* 223 */
+/* 226 */
 /***/ function(module, exports) {
 
 	module.exports = {
