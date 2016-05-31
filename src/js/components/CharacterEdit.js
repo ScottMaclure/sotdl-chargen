@@ -2,6 +2,7 @@ import React from 'react'
 
 import ActionBar from 'js/components/ActionBar'
 import Select from 'js/components/Select'
+import AdjustOne from 'js/components/AdjustOne'
 
 import 'css/characterGenerator.css'
 
@@ -34,7 +35,8 @@ const getStyles = (charData) => ({
 
 const CharacterEdit = ({
   appData, ancestryData, charData,
-  changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter, setIncreaseOne
+  changeAncestry, changeValue, setEditMode, setViewMode, createRandomCharacter,
+  setIncreaseOne, adjustOneFrom, adjustOneTo
 }) => (
 
   <div className='app'>
@@ -52,6 +54,8 @@ const CharacterEdit = ({
           onChange={(event) => changeAncestry(event.target.value)}
         />
       </div>
+
+      <AdjustOne appData={appData} charData={charData} adjustOneFrom={adjustOneFrom} adjustOneTo={adjustOneTo} />
 
       {ancestryData.attributes.increaseOne ? renderIncreaseOne(appData, charData.attributes, setIncreaseOne) : null}
 

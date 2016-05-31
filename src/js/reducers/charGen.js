@@ -116,11 +116,52 @@ const initRandomCharacter = (state) => {
   assignAncestryToCharacter(state, getAncestryDefaultData(state))
 }
 
+/**
+ * Needs to adjust scores rather than reset them.
+ */
 const increaseOneAttribute = (attributes, attribute) => {
-  let newAttributes = Object.assign({}, attributes)
-  newAttributes[attribute] += 1
-  newAttributes.oneIncreased = attribute
-  return newAttributes
+  let att = Object.assign({}, attributes)
+  if (att.oneIncreased) {
+    // Previously increased attribute - decrement first.
+    att[attribute] -= 1
+  }
+  // Increase attribute score by 1 and set flag to remember choice.
+  att[attribute] += 1
+  att.oneIncreased = attribute
+  return att
+}
+
+/**
+ * TODO Don't adjust util both values are set?
+ */
+const adjustOneAttribute = (attributes, from, to) => {
+  let att = Object.assign({}, attributes)
+
+  if (att.oneAdjustFrom && att.oneAdjustFrom !== from) {
+    // Previous selection needs to be adjusted. Increase old value by 1.
+    att[att.oneAdjustFrom] += 1
+    delete att.oneAdjustFrom
+  }
+
+  if (from && from !== att.oneAdjustFrom) {
+    // If from attribute selected, decrement it now.
+    att[from] -= 1
+    att.oneAdjustFrom = from
+  }
+
+  if (att.oneAdjustTo && att.oneAdjustTo !== to) {
+    // Previous selection needs to be adjusted. Increase old value by 1.
+    att[att.oneAdjustTo] -= 1
+    delete att.oneAdjustTo
+  }
+
+  if (to && att.oneAdjustTo !== to) {
+    // If to attribute selected, increment it now.
+    att[to] += 1
+    att.oneAdjustTo = to
+  }
+
+  return att
 }
 
 const getAncestryDefaultData = state => {
@@ -152,9 +193,13 @@ export default function charGen (state = initialState, action) {
       set(newState.char, action.name, action.value)
       break
     case 'INCREASE_ONE':
-      // Every time we increase, we reset to ancestry defaults.
-      let ancestryData = getAncestryDefaultData(newState)
-      newState.char.attributes = increaseOneAttribute(ancestryData.attributes, action.value)
+      newState.char.attributes = increaseOneAttribute(newState.char.attributes, action.value)
+      break
+    case 'ADJUST_ONE_FROM':
+      newState.char.attributes = adjustOneAttribute(newState.char.attributes, action.value, newState.char.attributes.oneAdjustTo)
+      break
+    case 'ADJUST_ONE_TO':
+      newState.char.attributes = adjustOneAttribute(newState.char.attributes, newState.char.attributes.oneAdjustFrom, action.value)
       break
   }
 

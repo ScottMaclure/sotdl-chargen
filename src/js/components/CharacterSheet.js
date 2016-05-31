@@ -17,17 +17,27 @@ const renderNotes = (notes) => {
 
   return <div className='notes'>
     {notes.map(note => (
-      <small>{note}</small>
+      <div><small>{note}</small></div>
     ))}
   </div>
 }
 
 const renderAttributeNotes = attributes => {
+  let notes = []
+
   if (attributes.oneIncreased) {
-    // TODO Where to keep this data?
-    return renderNotes([capitalize(attributes.oneIncreased) + ' increased.'])
+    notes.push(capitalize(attributes.oneIncreased) + ' increased.')
+  } else {
+    notes.push(attributes.notes)
   }
-  return renderNotes(attributes.notes)
+
+  let oneAdjustNote = 'You may adjust one attribute to another.'
+  if (attributes.oneAdjustFrom && attributes.oneAdjustTo) {
+    oneAdjustNote = 'You adjusted ' + capitalize(attributes.oneAdjustFrom) + ' to ' + capitalize(attributes.oneAdjustTo)
+  }
+  notes.push(oneAdjustNote)
+
+  return renderNotes(notes)
 }
 
 const renderObject = (obj, includeKeys = []) => {
