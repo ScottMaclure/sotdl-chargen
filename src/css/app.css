@@ -3,7 +3,8 @@
 }
 
 body {
-	background-color: #eee;
+	background-image: url('../images/background-paper.jpg');
+	background-size: cover;
 }
 
 @media print {
@@ -14,6 +15,12 @@ body {
 		display: none !important;
 	}
 	.actionBar {
+		display: none !important;
+	}
+	header {
+		display: none !important;
+	}
+	footer {
 		display: none !important;
 	}
 }
