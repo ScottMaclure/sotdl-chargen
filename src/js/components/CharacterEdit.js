@@ -33,6 +33,9 @@ const getStyles = (charData) => ({
 })
 
 const getListWithoutSelected = (arr, value) => {
+  if (!arr || arr.length === 0) {
+    return arr
+  }
   return arr.filter(elem => elem !== value)
 }
 
