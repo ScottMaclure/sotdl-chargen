@@ -7,9 +7,15 @@ Hosted here:
 
 http://scott.maclure.com.au/sotdl-chargen/
 
+Track issues via Waffle, here:
+
+https://waffle.io/ScottMaclure/sotdl-chargen
+
 More about SotDL here:
 
 http://schwalbentertainment.com/shadow-of-the-demon-lord/
+
+> Any text taken from the game is used with permission and remains (c) 2015 Schwalb Entertainment, LLC.
 
 ## Local Dev
 
