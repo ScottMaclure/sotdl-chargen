@@ -22128,7 +22128,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbody {\r\n\tbackground-image: url(" + __webpack_require__(197) + ");\r\n\tbackground-size: cover;\r\n}\r\n\r\n@media print {\r\n\th2 {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t#main {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\t.actionBar {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\theader {\r\n\t\tdisplay: none !important;\r\n\t}\r\n\tfooter {\r\n\t\tdisplay: none !important;\r\n\t}\r\n}", ""]);
+	exports.push([module.id, "* {\n\tbox-sizing: border-box;\n}\n\nbody {\n\tbackground-image: url(" + __webpack_require__(197) + ");\n\tbackground-size: cover;\n}\n\n@media print {\n\th2 {\n\t\tdisplay: none !important;\n\t}\n\t#main {\n\t\tdisplay: none !important;\n\t}\n\t.actionBar {\n\t\tdisplay: none !important;\n\t}\n\theader {\n\t\tdisplay: none !important;\n\t}\n\tfooter {\n\t\tdisplay: none !important;\n\t}\n}", ""]);
 
 	// exports
 
@@ -23605,7 +23605,7 @@
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.7.0",
+		"version": "0.8.1",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -23621,7 +23621,18 @@
 			"test:coverage": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest --coverage",
 			"test:watch": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest -o --watch",
 			"ncu": "ncu --loglevel verbose --packageFile package.json",
-			"ncu:a": "ncu --loglevel verbose --packageFile package.json -a"
+			"ncu:a": "ncu --loglevel verbose --packageFile package.json -a",
+			"deploy": "npm run deploy:minor",
+			"deploy:minor": "npm run deploy:before && npm version minor && npm run deploy:after",
+			"deploy:patch": "npm run deploy:before && npm version patch && npm run deploy:after",
+			"deploy:before": "npm run git:rebase",
+			"deploy:after": "npm run build && npm run git:push && npm run pages",
+			"git:rebase": "git fetch && git fetch --tags && git rebase",
+			"git:push": "git push && git push --tags",
+			"pages": "npm run pages:update && npm run pages:copy && npm run pages:publish",
+			"pages:update": "cd ../sotdl-chargen-gh-pages && git pull -r",
+			"pages:copy": "cp -pr ./public/* ../sotdl-chargen-gh-pages/",
+			"pages:publish": "cd ../sotdl-chargen-gh-pages && git add . && git commit -m 'gh-pages publish.' && git push"
 		},
 		"author": "Scott Maclure <scott@maclure.com.au>",
 		"license": "MIT",
