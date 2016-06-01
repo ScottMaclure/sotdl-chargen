@@ -23605,7 +23605,7 @@
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.8.1",
+		"version": "0.8.2",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -23632,7 +23632,7 @@
 			"pages": "npm run pages:update && npm run pages:copy && npm run pages:publish",
 			"pages:update": "cd ../sotdl-chargen-gh-pages && git pull -r",
 			"pages:copy": "cp -pr ./public/* ../sotdl-chargen-gh-pages/",
-			"pages:publish": "cd ../sotdl-chargen-gh-pages && git add . && git commit -m 'gh-pages publish.' && git push"
+			"pages:publish": "cd ../sotdl-chargen-gh-pages && git add . && git commit -m \"gh-pages publish.\" && git push"
 		},
 		"author": "Scott Maclure <scott@maclure.com.au>",
 		"license": "MIT",
