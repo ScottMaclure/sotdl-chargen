@@ -105,9 +105,12 @@ const assignCharacteristics = (char, ancestryCharacteristics, baseAttributeNames
 const assignAncestryToCharacter = (state, ancestryData) => {
   state.char.name = getRandomItem(ancestryData.commonNames)
 
-  // TODO Support per-ancestry "traits" - they're not the same for all ancestries!
-  state.char.background = getRandomItem(ancestryData.background)
-  state.char.personality = getRandomItem(ancestryData.personality.values)
+  // Aspects are per-ancestry. Chosen randomly.
+  state.char.aspects = {}
+  Object.keys(ancestryData.aspects).forEach(key => {
+    let aspect = ancestryData.aspects[key]
+    state.char.aspects[key] = getRandomItem(aspect.values)
+  })
 
   state.char.attributes = Object.assign({}, ancestryData.attributes)
   state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics, state.app.attributes)
