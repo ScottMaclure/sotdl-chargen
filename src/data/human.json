@@ -163,6 +163,35 @@
 					"value": "You are committed to good and noble causes, and you never stray from your beliefs even if your insisitence would cost you your life."
 				}
 			]
+		},
+		"religion": {
+			"dieRoll": "3d6",
+			"values": [
+				{
+					"min": 3, "max": 3,
+					"value": "You belong to a cult dedicated to a dark power."
+				},
+				{
+					"min": 4, "max": 4,
+					"value": "You belong to a heretical sect."
+				},
+				{
+					"min": 5, "max": 6,
+					"value": "You were raised in the teachings of witchcraft."
+				},
+				{
+					"min": 7, "max": 10,
+					"value": "You follow the tenets of the Old Faith"
+				},
+				{
+					"min": 11, "max": 15,
+					"value": "You belong to the Cult of the New God."
+				},
+				{
+					"min": 16, "max": 18,
+					"value": "You have no religion."
+				}
+			]
 		}
 	}
 }
