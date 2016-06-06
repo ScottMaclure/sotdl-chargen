@@ -30,6 +30,10 @@ describe('for CharacterSheet', () => {
           },
           characteristics: {
             'damage': 0
+          },
+          aspects: {
+            background: 'some background',
+            personality: 'some personality'
           }
         }
       }
@@ -71,7 +75,7 @@ describe('for CharacterSheet', () => {
 
       it('renders the personality element', () => {
         // inside the content component
-        const element = findChild(info.props.content, 'props.label', 'Personality')
+        const element = findChild(info.props.content, 'props.label', 'personality')
         expect(element).toBeDefined()
       })
     })

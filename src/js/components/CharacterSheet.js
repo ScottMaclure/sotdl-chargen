@@ -15,9 +15,9 @@ const renderNotes = (notes) => {
     return
   }
 
-  return <div className='notes'>
-    {notes.map(note => (
-      <div><small>{note}</small></div>
+  return <div key='notes' className='notes'>
+    {notes.map((note, index) => (
+      <div key={'note' + index}><small>{note}</small></div>
     ))}
   </div>
 }
@@ -48,6 +48,12 @@ const renderObject = (obj, includeKeys = []) => {
   })
 }
 
+const renderSimpleObject = obj => (
+  Object.keys(obj).map(key => (
+    <DisplayRow key={key} label={key} value={obj[key]} />
+  ))
+)
+
 const getStyles = charData => ({
   display: charData.mode !== 'view' ? 'none' : ''
 })
@@ -60,11 +66,10 @@ const CharacterSheet = ({ appData, charData }) => (
 
     <Fieldset legend='Info' content={
       <div className='content'>
-        <DisplayRow label='Name' value={charData.name} />
-        <DisplayRow label='Level' value={charData.level} />
-        <DisplayRow label='Ancestry' value={charData.ancestry} />
-        <DisplayRow label='Background' value={charData.background} />
-        <DisplayRow label='Personality' value={charData.personality} className='personality' />
+        <DisplayRow key='name' label='Name' value={charData.name} />
+        <DisplayRow key='level' label='Level' value={charData.level} />
+        <DisplayRow key='ancestry' label='Ancestry' value={charData.ancestry} />
+        {renderSimpleObject(charData.aspects)}
       </div>
     } />
 
