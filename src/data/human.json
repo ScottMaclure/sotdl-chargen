@@ -30,134 +30,139 @@
 	"talents": [
 		"(1 extra language or profession)"
 	],
-	"background": [
-		{
-			"min": 1, "max": 1,
-			"value": "You died and returned to life. You start the game with [1d6] Insanity.",
-			"effect": "insanity+1"
+	"aspects": {
+		"background": {
+			"dieRoll": "1d20",
+			"values": [
+				{
+					"min": 1, "max": 1,
+					"value": "You died and returned to life. You start the game with [1d6] Insanity.",
+					"effect": "insanity+1"
+				},
+				{
+					"min": 2, "max": 2,
+					"value": "You were briefly possessed by a demon. You start the game with 1 Corruption.",
+					"effect": "corruption+1"
+				},
+				{
+					"min": 3, "max": 3,
+					"value": "You spent [1d6] years as a prisoner in a dungeon."
+				},
+				{
+					"min": 4, "max": 4,
+					"value": "You murdered someone in cold blood. You start the game with 1 Corruption.",
+					"effect": "corruption+1"
+				},
+				{
+					"min": 5, "max": 5,
+					"value": "You caught and recovered from a terrible disease."
+				},
+				{
+					"min": 6, "max": 6,
+					"value": "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity.",
+					"effect": "insanity+1"
+				},
+				{
+					"min": 7, "max": 7,
+					"value": "The faerie held you prisoner for [1d20] years."
+				},
+				{
+					"min": 8, "max": 8,
+					"value": "You lost a loved one and their loss haunts you still."
+				},
+				{
+					"min": 9, "max": 9,
+					"value": "You lost a finger, a few teeth, or an ear, or you gained a scar."
+				},
+				{
+					"min": 10, "max": 10,
+					"value": "You earned a living working in your profession."
+				},
+				{
+					"min": 11, "max": 11,
+					"value": "You fell in love and the relationship ended well or is ongoing."
+				},
+				{
+					"min": 12, "max": 12,
+					"value": "You have a spouse and [1d6-2] children (minimum 0)."
+				},
+				{
+					"min": 13, "max": 13,
+					"value": "You traveled extensively. You speak one additional language.",
+					"effect": "languages+1"
+				},
+				{
+					"min": 14, "max": 14,
+					"value": "You received an education. You know how to read the Common Tongue.",
+					"effect": "languages+Common Tongue"
+				},
+				{
+					"min": 15, "max": 15,
+					"value": "You saved your town from terrible monsters."
+				},
+				{
+					"min": 16, "max": 16,
+					"value": "You foiled a plot to kill someone important or you brought a killer to justice."
+				},
+				{
+					"min": 17, "max": 17,
+					"value": "You performed a great deed and are a hero to the people in your hometown."
+				},
+				{
+					"min": 18, "max": 18,
+					"value": "You found an old treasure map."
+				},
+				{
+					"min": 19, "max": 19,
+					"value": "Someone important and powerful owes you a favor."
+				},
+				{
+					"min": 20, "max": 20,
+					"value": "You came into money and start the game with [2d6] cp.",
+					"effect": "wealth/cp+2d6"
+				}
+			]
 		},
-		{
-			"min": 2, "max": 2,
-			"value": "You were briefly possessed by a demon. You start the game with 1 Corruption.",
-			"effect": "corruption+1"
-		},
-		{
-			"min": 3, "max": 3,
-			"value": "You spent [1d6] years as a prisoner in a dungeon."
-		},
-		{
-			"min": 4, "max": 4,
-			"value": "You murdered someone in cold blood. You start the game with 1 Corruption.",
-			"effect": "corruption+1"
-		},
-		{
-			"min": 5, "max": 5,
-			"value": "You caught and recovered from a terrible disease."
-		},
-		{
-			"min": 6, "max": 6,
-			"value": "You belonged to a strange cult and saw many strange things. You start the game with 1 Insanity.",
-			"effect": "insanity+1"
-		},
-		{
-			"min": 7, "max": 7,
-			"value": "The faerie held you prisoner for [1d20] years."
-		},
-		{
-			"min": 8, "max": 8,
-			"value": "You lost a loved one and their loss haunts you still."
-		},
-		{
-			"min": 9, "max": 9,
-			"value": "You lost a finger, a few teeth, or an ear, or you gained a scar."
-		},
-		{
-			"min": 10, "max": 10,
-			"value": "You earned a living working in your profession."
-		},
-		{
-			"min": 11, "max": 11,
-			"value": "You fell in love and the relationship ended well or is ongoing."
-		},
-		{
-			"min": 12, "max": 12,
-			"value": "You have a spouse and [1d6-2] children (minimum 0)."
-		},
-		{
-			"min": 13, "max": 13,
-			"value": "You traveled extensively. You speak one additional language.",
-			"effect": "languages+1"
-		},
-		{
-			"min": 14, "max": 14,
-			"value": "You received an education. You know how to read the Common Tongue.",
-			"effect": "languages+Common Tongue"
-		},
-		{
-			"min": 15, "max": 15,
-			"value": "You saved your town from terrible monsters."
-		},
-		{
-			"min": 16, "max": 16,
-			"value": "You foiled a plot to kill someone important or you brought a killer to justice."
-		},
-		{
-			"min": 17, "max": 17,
-			"value": "You performed a great deed and are a hero to the people in your hometown."
-		},
-		{
-			"min": 18, "max": 18,
-			"value": "You found an old treasure map."
-		},
-		{
-			"min": 19, "max": 19,
-			"value": "Someone important and powerful owes you a favor."
-		},
-		{
-			"min": 20, "max": 20,
-			"value": "You came into money and start the game with [2d6] cp.",
-			"effect": "wealth/cp+2d6"
+		"personality": {
+			"dieRoll": "3d6",
+			"values": [
+				{
+					"min": 3, "max": 3,
+					"value": "You are cruel, wicked, and self-serving. You enjoy making others suffer."
+				},
+				{
+					"min": 4, "max": 4,
+					"value": "You are erratic and unpredictable. You have a hard time keeping your word and tend toward capricious behavior."
+				},
+				{
+					"min": 5, "max": 6,
+					"value": "Might makes right. Obedience to authority is the highest ideal."
+				},
+				{
+					"min": 7, "max": 8,
+					"value": "You look after yourself first and foremost. You’re not above double-crossing friends."
+				},
+				{
+					"min": 9, "max": 12,
+					"value": "You put your interests and those of your friends above all else."
+				},
+				{
+					"min": 13, "max": 14,
+					"value": "You help others because it’s the right thing to do."
+				},
+				{
+					"min": 15, "max": 16,
+					"value": "You try to do what you think is right, even if it breaks laws and social conventions."
+				},
+				{
+					"min": 17, "max": 17,
+					"value": "Your honor and duty guide everything you do."
+				},
+				{
+					"min": 18, "max": 18,
+					"value": "You are committed to good and noble causes, and you never stray from your beliefs even if your insisitence would cost you your life."
+				}
+			]
 		}
-	],
-	"personality": {
-		"dieRoll": "3d6",
-		"values": [
-			{
-				"min": 3, "max": 3,
-				"value": "You are cruel, wicked, and self-serving. You enjoy making others suffer."
-			},
-			{
-				"min": 4, "max": 4,
-				"value": "You are erratic and unpredictable. You have a hard time keeping your word and tend toward capricious behavior."
-			},
-			{
-				"min": 5, "max": 6,
-				"value": "Might makes right. Obedience to authority is the highest ideal."
-			},
-			{
-				"min": 7, "max": 8,
-				"value": "You look after yourself first and foremost. You’re not above double-crossing friends."
-			},
-			{
-				"min": 9, "max": 12,
-				"value": "You put your interests and those of your friends above all else."
-			},
-			{
-				"min": 13, "max": 14,
-				"value": "You help others because it’s the right thing to do."
-			},
-			{
-				"min": 15, "max": 16,
-				"value": "You try to do what you think is right, even if it breaks laws and social conventions."
-			},
-			{
-				"min": 17, "max": 17,
-				"value": "Your honor and duty guide everything you do."
-			},
-			{
-				"min": 18, "max": 18,
-				"value": "You are committed to good and noble causes, and you never stray from your beliefs even if your insisitence would cost you your life."
-			}
-		]
 	}
 }

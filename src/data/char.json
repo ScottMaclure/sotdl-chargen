@@ -3,8 +3,10 @@
 	"name": null,
 	"level": 0,
 	"ancestry": null,
-	"background": null,
-	"personality": null,
+	"aspects": {
+		"background": null,
+		"personality": null
+	},
 	"attributes": {
 		"strength": 0,
 		"agility": 0,
