@@ -27,6 +27,13 @@ describe('CharacterEdit', () => {
       },
       characteristics: {
         size: 1
+      },
+      personality: {
+        values: [
+          {
+            value: 'Test personality.'
+          }
+        ]
       }
     },
     charData: {

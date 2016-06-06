@@ -75,6 +75,14 @@ const CharacterEdit = ({
         />
       </div>
 
+      <div className='row'>
+        <label for='personality'>Personality</label>
+        <Select id='personality'
+          options={ancestryData.personality.values} value={charData.personality}
+          onChange={(event) => changeValue('personality', event.target.value)}
+        />
+      </div>
+
       {renderSizes(ancestryData.characteristics.size, charData.characteristics.size, changeValue)}
 
     </div>
