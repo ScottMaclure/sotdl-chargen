@@ -40,7 +40,7 @@ const renderAspects = (charAspects, ancestryAspects, changeValue) => {
       <label for={'editAspect' + capAspectKey}>{capAspectKey}</label>
       <Select id={'editAspect' + capAspectKey}
         options={aspect.values} value={aspectVal}
-        onChange={(event) => changeValue(aspectKey, event.target.value)}
+        onChange={(event) => changeValue('aspects.' + aspectKey, event.target.value)}
       />
     </div>
   })
