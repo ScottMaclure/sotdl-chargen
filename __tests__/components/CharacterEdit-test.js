@@ -85,6 +85,11 @@ describe('CharacterEdit', () => {
         expect(element).toBeDefined()
       })
 
+      it('renders a personality row', () => {
+        let element = findChild(editElement, 'props.className', 'row personality')
+        expect(element).toBeDefined()
+      })
+
       // TODO more checks here
     })
   })

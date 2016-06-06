@@ -75,7 +75,7 @@ const CharacterEdit = ({
         />
       </div>
 
-      <div className='row'>
+      <div className='row personality'>
         <label for='personality'>Personality</label>
         <Select id='personality'
           options={ancestryData.personality.values} value={charData.personality}
