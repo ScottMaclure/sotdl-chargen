@@ -1,4 +1,6 @@
 import React from 'react'
+import capitalize from 'lodash/capitalize'
+import map from 'lodash/map'
 
 import ActionBar from 'js/components/ActionBar'
 import Select from 'js/components/Select'
@@ -28,6 +30,21 @@ const renderIncreaseOne = (appData, charAttr, setIncreaseOne) => (
     />
   </div>
 )
+
+const renderAspects = (charAspects, ancestryAspects, changeValue) => {
+  return map(charAspects, (aspectVal, aspectKey) => {
+    let capAspectKey = capitalize(aspectKey)
+    let aspect = ancestryAspects[aspectKey]
+
+    return <div key={aspectKey} className={'row ' + aspectKey}>
+      <label for={'editAspect' + capAspectKey}>{capAspectKey}</label>
+      <Select id={'editAspect' + capAspectKey}
+        options={aspect.values} value={aspectVal}
+        onChange={(event) => changeValue(aspectKey, event.target.value)}
+      />
+    </div>
+  })
+}
 
 const getStyles = (charData) => ({
   display: charData.mode !== 'edit' ? 'none' : ''
@@ -67,21 +84,7 @@ const CharacterEdit = ({
         />
       </div>
 
-      <div className='row'>
-        <label for='background'>Background</label>
-        <Select id='background'
-          options={ancestryData.background} value={charData.background}
-          onChange={(event) => changeValue('background', event.target.value)}
-        />
-      </div>
-
-      <div className='row personality'>
-        <label for='personality'>Personality</label>
-        <Select id='personality'
-          options={ancestryData.personality.values} value={charData.personality}
-          onChange={(event) => changeValue('personality', event.target.value)}
-        />
-      </div>
+      {renderAspects(charData.aspects, ancestryData.aspects, changeValue)}
 
       {renderSizes(ancestryData.characteristics.size, charData.characteristics.size, changeValue)}
 
