@@ -112,5 +112,46 @@
 			"value": "You came into money and start the game with [2d6] cp.",
 			"effect": "wealth/cp+2d6"
 		}
-	]
+	],
+	"personality": {
+		"dieRoll": "3d6",
+		"values": [
+			{
+				"min": 3, "max": 3,
+				"value": "You fight to liberate your people from slavery."
+			},
+			{
+				"min": 4, "max": 4,
+				"value": "Orcs are more than the killers the emperor made them to be. They are people, with hearts and souls, dreams and ambitions. You believe you must rise above the savagery and find your place."
+			},
+			{
+				"min": 5, "max": 6,
+				"value": "The world is going to Hell. You say, let it."
+			},
+			{
+				"min": 7, "max": 8,
+				"value": "You take care of yourself, take what you want, and do what you want."
+			},
+			{
+				"min": 9, "max": 12,
+				"value": "Kill!"
+			},
+			{
+				"min": 13, "max": 14,
+				"value": "You never question orders. You always do as you’re commanded."
+			},
+			{
+				"min": 15, "max": 16,
+				"value": "You want revenge and you’ll kill anyone that gets in your way."
+			},
+			{
+				"min": 17, "max": 17,
+				"value": "You believe you were made for a reason. Without your chains, you have no purpose."
+			},
+			{
+				"min": 18, "max": 18,
+				"value": "You believe your people have committed great acts of evil in the Empire’s name. You strive to right the wrongs."
+			}
+		]
+	}
 }
