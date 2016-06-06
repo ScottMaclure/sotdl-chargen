@@ -22719,6 +22719,21 @@
 	          }
 	        })
 	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row personality' },
+	        _react2.default.createElement(
+	          'label',
+	          { 'for': 'personality' },
+	          'Personality'
+	        ),
+	        _react2.default.createElement(_Select2.default, { id: 'personality',
+	          options: ancestryData.personality.values, value: charData.personality,
+	          onChange: function onChange(event) {
+	            return changeValue('personality', event.target.value);
+	          }
+	        })
+	      ),
 	      renderSizes(ancestryData.characteristics.size, charData.characteristics.size, changeValue)
 	    )
 	  );
@@ -23162,7 +23177,8 @@
 	        _react2.default.createElement(_DisplayRow2.default, { label: 'Name', value: charData.name }),
 	        _react2.default.createElement(_DisplayRow2.default, { label: 'Level', value: charData.level }),
 	        _react2.default.createElement(_DisplayRow2.default, { label: 'Ancestry', value: charData.ancestry }),
-	        _react2.default.createElement(_DisplayRow2.default, { label: 'Background', value: charData.background })
+	        _react2.default.createElement(_DisplayRow2.default, { label: 'Background', value: charData.background }),
+	        _react2.default.createElement(_DisplayRow2.default, { label: 'Personality', value: charData.personality, className: 'personality' })
 	      ) }),
 	    _react2.default.createElement(_Fieldset2.default, { legend: 'Attributes', content: _react2.default.createElement(
 	        'div',
@@ -23324,7 +23340,7 @@
 
 
 	// module
-	exports.push([module.id, ".characterSheet {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.characterSheet fieldset {\n\tmargin-bottom: 0.5em;\n\tfont-family: monospace;\n}\n\n.characterSheet .row {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.characterSheet .label {\n\tfont-weight: bold;\n\tflex-basis: 10em;\n\tflex-shrink: 0;\n}\n\n.characterSheet .label:first-letter, .characterSheet .value:first-letter {\n\ttext-transform: uppercase;\n}\n\n.characterSheet .notes {\n\tfont-style: italic;\n}", ""]);
+	exports.push([module.id, ".characterSheet {\n\tdisplay: flex;\n\tflex-direction: column;\n}\n\n.characterSheet fieldset {\n\tmargin-bottom: 0.5em;\n\tfont-family: monospace;\n}\n\n.characterSheet .row {\n\tdisplay: flex;\n\tflex-direction: row;\n}\n\n.characterSheet legend {\n\tfont-weight: bold;\n}\n\n.characterSheet .label {\n\tfont-weight: bold;\n\tflex-basis: 10em;\n\tflex-shrink: 0;\n}\n\n.characterSheet .label:first-letter, .characterSheet .value:first-letter {\n\ttext-transform: uppercase;\n}\n\n.characterSheet .notes {\n\tfont-style: italic;\n}", ""]);
 
 	// exports
 
@@ -23463,7 +23479,11 @@
 
 	var assignAncestryToCharacter = function assignAncestryToCharacter(state, ancestryData) {
 	  state.char.name = getRandomItem(ancestryData.commonNames);
+
+	  // TODO Support per-ancestry "traits" - they're not the same for all ancestries!
 	  state.char.background = getRandomItem(ancestryData.background);
+	  state.char.personality = getRandomItem(ancestryData.personality.values);
+
 	  state.char.attributes = Object.assign({}, ancestryData.attributes);
 	  state.char.characteristics = assignCharacteristics(state.char, ancestryData.characteristics, state.app.attributes);
 	};
@@ -23605,7 +23625,7 @@
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.8.2",
+		"version": "0.9.0",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -23918,7 +23938,57 @@
 				"value": "You came into money and start the game with [2d6] cp.",
 				"effect": "wealth/cp+2d6"
 			}
-		]
+		],
+		"personality": {
+			"dieRoll": "3d6",
+			"values": [
+				{
+					"min": 3,
+					"max": 3,
+					"value": "You are cruel, wicked, and self-serving. You enjoy making others suffer."
+				},
+				{
+					"min": 4,
+					"max": 4,
+					"value": "You are erratic and unpredictable. You have a hard time keeping your word and tend toward capricious behavior."
+				},
+				{
+					"min": 5,
+					"max": 6,
+					"value": "Might makes right. Obedience to authority is the highest ideal."
+				},
+				{
+					"min": 7,
+					"max": 8,
+					"value": "You look after yourself first and foremost. You’re not above double-crossing friends."
+				},
+				{
+					"min": 9,
+					"max": 12,
+					"value": "You put your interests and those of your friends above all else."
+				},
+				{
+					"min": 13,
+					"max": 14,
+					"value": "You help others because it’s the right thing to do."
+				},
+				{
+					"min": 15,
+					"max": 16,
+					"value": "You try to do what you think is right, even if it breaks laws and social conventions."
+				},
+				{
+					"min": 17,
+					"max": 17,
+					"value": "Your honor and duty guide everything you do."
+				},
+				{
+					"min": 18,
+					"max": 18,
+					"value": "You are committed to good and noble causes, and you never stray from your beliefs even if your insisitence would cost you your life."
+				}
+			]
+		}
 	};
 
 /***/ },
@@ -24071,7 +24141,57 @@
 				"value": "You came into money and start the game with [2d6] cp.",
 				"effect": "wealth/cp+2d6"
 			}
-		]
+		],
+		"personality": {
+			"dieRoll": "3d6",
+			"values": [
+				{
+					"min": 3,
+					"max": 3,
+					"value": "You fight to liberate your people from slavery."
+				},
+				{
+					"min": 4,
+					"max": 4,
+					"value": "Orcs are more than the killers the emperor made them to be. They are people, with hearts and souls, dreams and ambitions. You believe you must rise above the savagery and find your place."
+				},
+				{
+					"min": 5,
+					"max": 6,
+					"value": "The world is going to Hell. You say, let it."
+				},
+				{
+					"min": 7,
+					"max": 8,
+					"value": "You take care of yourself, take what you want, and do what you want."
+				},
+				{
+					"min": 9,
+					"max": 12,
+					"value": "Kill!"
+				},
+				{
+					"min": 13,
+					"max": 14,
+					"value": "You never question orders. You always do as you’re commanded."
+				},
+				{
+					"min": 15,
+					"max": 16,
+					"value": "You want revenge and you’ll kill anyone that gets in your way."
+				},
+				{
+					"min": 17,
+					"max": 17,
+					"value": "You believe you were made for a reason. Without your chains, you have no purpose."
+				},
+				{
+					"min": 18,
+					"max": 18,
+					"value": "You believe your people have committed great acts of evil in the Empire’s name. You strive to right the wrongs."
+				}
+			]
+		}
 	};
 
 /***/ },
@@ -24084,6 +24204,7 @@
 		"level": 0,
 		"ancestry": null,
 		"background": null,
+		"personality": null,
 		"attributes": {
 			"strength": 0,
 			"agility": 0,
