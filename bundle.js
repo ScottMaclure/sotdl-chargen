@@ -27410,7 +27410,7 @@
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.10.0",
+		"version": "0.11.0",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -27812,6 +27812,141 @@
 						"value": "You have no religion."
 					}
 				]
+			},
+			"age": {
+				"dieRoll": "3d6",
+				"values": [
+					{
+						"min": 3,
+						"max": 3,
+						"value": "You are a child, 11 years old or younger."
+					},
+					{
+						"min": 4,
+						"max": 7,
+						"value": "You are an adolescent, 12 to 17 years old."
+					},
+					{
+						"min": 8,
+						"max": 12,
+						"value": "You are a young adult, 18 to 35 years old."
+					},
+					{
+						"min": 13,
+						"max": 15,
+						"value": "You are a middle-aged adult, 36 to 55 years old."
+					},
+					{
+						"min": 16,
+						"max": 17,
+						"value": "You are an older adult, 56 to 75 years old."
+					},
+					{
+						"min": 18,
+						"max": 18,
+						"value": "You are a venerable adult, 76 years old or older."
+					}
+				]
+			},
+			"build": {
+				"dieRoll": "3d6",
+				"values": [
+					{
+						"min": 3,
+						"max": 3,
+						"value": "You are short and thin."
+					},
+					{
+						"min": 4,
+						"max": 4,
+						"value": "You are short and heavy."
+					},
+					{
+						"min": 5,
+						"max": 6,
+						"value": "You are short."
+					},
+					{
+						"min": 7,
+						"max": 8,
+						"value": "You are slender."
+					},
+					{
+						"min": 9,
+						"max": 12,
+						"value": "You are average in height and weight."
+					},
+					{
+						"min": 13,
+						"max": 14,
+						"value": "You are a bit overweight."
+					},
+					{
+						"min": 15,
+						"max": 16,
+						"value": "You are tall."
+					},
+					{
+						"min": 17,
+						"max": 17,
+						"value": "You are tall and thin."
+					},
+					{
+						"min": 18,
+						"max": 18,
+						"value": "You are very tall and heavy."
+					}
+				]
+			},
+			"appearance": {
+				"dieRoll": "3d6",
+				"values": [
+					{
+						"min": 3,
+						"max": 3,
+						"value": "You are hideous. You look like a monster. Children cry when they encounter you, the weak of heart faint when they see you, and one person vomited after getting a good look at your face."
+					},
+					{
+						"min": 4,
+						"max": 4,
+						"value": "You are ugly, and people find your visage unpleasant thanks to a scar, wen, beetling brows, boils, piles, a wandering or weeping eye, or something else of a similar magnitude."
+					},
+					{
+						"min": 5,
+						"max": 6,
+						"value": "Most consider you homely: not quite ugly, but a bit worse than plain."
+					},
+					{
+						"min": 7,
+						"max": 8,
+						"value": "You are plain and uninteresting to look upon. People notice you, but your appearance fails to make an impression."
+					},
+					{
+						"min": 9,
+						"max": 12,
+						"value": "You are perfectly average in appearance. You look like everyone else."
+					},
+					{
+						"min": 13,
+						"max": 14,
+						"value": "You have a physical quality that makes you attractive to others. You might have pretty eyes, lips, hair, shape, or something else."
+					},
+					{
+						"min": 15,
+						"max": 16,
+						"value": "You have several attractive physical qualities that make you quite comely."
+					},
+					{
+						"min": 17,
+						"max": 17,
+						"value": "You are one of the great beauties in the land, an individual of almost unsurpassed form and appearance. People notice you."
+					},
+					{
+						"min": 18,
+						"max": 18,
+						"value": "You put beautiful people to shame. You are so striking, heads turn to follow you wherever you go. People become infatuated with you, stumbling over their words and feeling flustered when you show them attention. There’s a fine line between love and hate. Should you spurn the attentions of people you enamor, their affection might sour to resentment and even hatred."
+					}
+				]
 			}
 		}
 	};
@@ -28035,7 +28170,8 @@
 		"ancestry": null,
 		"aspects": {
 			"background": null,
-			"personality": null
+			"personality": null,
+			"age": null
 		},
 		"attributes": {
 			"strength": 0,
