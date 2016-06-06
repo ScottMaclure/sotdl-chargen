@@ -1,4 +1,5 @@
 import lodashGet from 'lodash/get'
+import isArray from 'lodash/isArray'
 
 import isPopulatedArray from 'js/utils/isPopulatedArray'
 
@@ -15,6 +16,15 @@ const findChild = (component, keypath, val) => {
     return undefined
   }
   return component.props.children.find(elem => {
+    // When rendering, we can nest arrays of components.
+    if (isArray(elem)) {
+      return findChild({
+        props: {
+          children: elem
+        }
+      }, keypath, val)
+    }
+    // Normal element child.
     return lodashGet(elem, keypath) === val
   })
 }

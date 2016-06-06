@@ -28,12 +28,14 @@ describe('CharacterEdit', () => {
       characteristics: {
         size: 1
       },
-      personality: {
-        values: [
-          {
-            value: 'Test personality.'
-          }
-        ]
+      aspects: {
+        personality: {
+          values: [
+            {
+              value: 'p1'
+            }
+          ]
+        }
       }
     },
     charData: {
@@ -42,6 +44,9 @@ describe('CharacterEdit', () => {
       },
       characteristics: {
         size: 1
+      },
+      aspects: {
+        personality: 'p1'
       },
       mode: null
     }
@@ -86,7 +91,7 @@ describe('CharacterEdit', () => {
       })
 
       it('renders a personality row', () => {
-        let element = findChild(editElement, 'props.className', 'row personality')
+        let element = findChild(editElement, 'key', 'personality')
         expect(element).toBeDefined()
       })
 
