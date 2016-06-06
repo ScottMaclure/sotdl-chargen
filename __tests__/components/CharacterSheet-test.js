@@ -53,14 +53,27 @@ describe('for CharacterSheet', () => {
       expect(component.props.children).toEqual('Character Sheet')
     })
 
-    it('renders the info component', () => {
-      const component = findChild(instance, 'props.legend', 'Info')
-      expect(component).toBeDefined()
-    })
-
     it('renders the attributes component', () => {
       const component = findChild(instance, 'props.legend', 'Attributes')
       expect(component).toBeDefined()
+    })
+
+    describe('for the info component', () => {
+      let info = null
+
+      beforeEach(() => {
+        info = findChild(instance, 'props.legend', 'Info')
+      })
+
+      it('renders the info component', () => {
+        expect(info).toBeDefined()
+      })
+
+      it('renders the personality element', () => {
+        // inside the content component
+        const element = findChild(info.props.content, 'props.label', 'Personality')
+        expect(element).toBeDefined()
+      })
     })
   })
 })

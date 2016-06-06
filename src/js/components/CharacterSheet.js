@@ -64,6 +64,7 @@ const CharacterSheet = ({ appData, charData }) => (
         <DisplayRow label='Level' value={charData.level} />
         <DisplayRow label='Ancestry' value={charData.ancestry} />
         <DisplayRow label='Background' value={charData.background} />
+        <DisplayRow label='Personality' value={charData.personality} className='personality' />
       </div>
     } />
 

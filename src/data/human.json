@@ -118,5 +118,46 @@
 			"value": "You came into money and start the game with [2d6] cp.",
 			"effect": "wealth/cp+2d6"
 		}
-	]
+	],
+	"personality": {
+		"dieRoll": "3d6",
+		"values": [
+			{
+				"min": 3, "max": 3,
+				"value": "You are cruel, wicked, and self-serving. You enjoy making others suffer."
+			},
+			{
+				"min": 4, "max": 4,
+				"value": "You are erratic and unpredictable. You have a hard time keeping your word and tend toward capricious behavior."
+			},
+			{
+				"min": 5, "max": 6,
+				"value": "Might makes right. Obedience to authority is the highest ideal."
+			},
+			{
+				"min": 7, "max": 8,
+				"value": "You look after yourself first and foremost. You’re not above double-crossing friends."
+			},
+			{
+				"min": 9, "max": 12,
+				"value": "You put your interests and those of your friends above all else."
+			},
+			{
+				"min": 13, "max": 14,
+				"value": "You help others because it’s the right thing to do."
+			},
+			{
+				"min": 15, "max": 16,
+				"value": "You try to do what you think is right, even if it breaks laws and social conventions."
+			},
+			{
+				"min": 17, "max": 17,
+				"value": "Your honor and duty guide everything you do."
+			},
+			{
+				"min": 18, "max": 18,
+				"value": "You are committed to good and noble causes, and you never stray from your beliefs even if your insisitence would cost you your life."
+			}
+		]
+	}
 }

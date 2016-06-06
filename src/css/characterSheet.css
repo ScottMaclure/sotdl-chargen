@@ -13,6 +13,10 @@
 	flex-direction: row;
 }
 
+.characterSheet legend {
+	font-weight: bold;
+}
+
 .characterSheet .label {
 	font-weight: bold;
 	flex-basis: 10em;

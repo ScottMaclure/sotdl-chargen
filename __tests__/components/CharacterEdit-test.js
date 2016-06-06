@@ -27,6 +27,13 @@ describe('CharacterEdit', () => {
       },
       characteristics: {
         size: 1
+      },
+      personality: {
+        values: [
+          {
+            value: 'Test personality.'
+          }
+        ]
       }
     },
     charData: {
@@ -75,6 +82,11 @@ describe('CharacterEdit', () => {
 
       it('renders a heading', () => {
         let element = findChild(editElement, 'type', 'h2')
+        expect(element).toBeDefined()
+      })
+
+      it('renders a personality row', () => {
+        let element = findChild(editElement, 'props.className', 'row personality')
         expect(element).toBeDefined()
       })
 

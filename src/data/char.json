@@ -4,6 +4,7 @@
 	"level": 0,
 	"ancestry": null,
 	"background": null,
+	"personality": null,
 	"attributes": {
 		"strength": 0,
 		"agility": 0,
