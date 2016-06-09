@@ -2,7 +2,7 @@ jest.unmock('js/utils/getRandomAspect')
 
 import getRandomAspect from 'js/utils/getRandomAspect'
 
-describe('getRandomAspect reducer', () => {
+describe('getRandomAspect reducer with mocked droll total=10', () => {
   describe('for a valid aspect data structure', () => {
     const aspect = {
       dieRoll: '3d6',
@@ -36,7 +36,8 @@ describe('getRandomAspect reducer', () => {
 
     it('will return an aspect value from the list', () => {
       const aspectValue = getRandomAspect(aspect)
-      expect(aspect.values.includes(aspectValue)).toBe(true)
+      expect(aspectValue).toBe(aspect.values[2])
+      expect(aspectValue.value).toEqual('You are a young adult, 18 to 35 years old.')
     })
   })
 })
