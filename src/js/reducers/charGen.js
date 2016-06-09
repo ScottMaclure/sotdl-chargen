@@ -12,6 +12,7 @@
  */
 
 import set from 'js/utils/set'
+import getRandomAspect from 'js/utils/getRandomAspect'
 
 // Load project data from package.json, and strip down to only necessary items.
 import npmData from '../../../package.json'
@@ -108,8 +109,9 @@ const assignAncestryToCharacter = (state, ancestryData) => {
   // Aspects are per-ancestry. Chosen randomly.
   state.char.aspects = {}
   Object.keys(ancestryData.aspects).forEach(key => {
-    let aspect = ancestryData.aspects[key]
-    state.char.aspects[key] = getRandomItem(aspect.values)
+    let aspectValue = getRandomAspect(ancestryData.aspects[key])
+    // TODO effects? Perhaps store aspects as objects, for later use?
+    state.char.aspects[key] = aspectValue.value
   })
 
   state.char.attributes = Object.assign({}, ancestryData.attributes)
