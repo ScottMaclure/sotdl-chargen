@@ -27167,15 +27167,19 @@
 
 	var _set2 = _interopRequireDefault(_set);
 
-	var _package = __webpack_require__(337);
+	var _getRandomAspect = __webpack_require__(337);
+
+	var _getRandomAspect2 = _interopRequireDefault(_getRandomAspect);
+
+	var _package = __webpack_require__(339);
 
 	var _package2 = _interopRequireDefault(_package);
 
-	var _appData = __webpack_require__(338);
+	var _appData = __webpack_require__(340);
 
 	var _appData2 = _interopRequireDefault(_appData);
 
-	var _char = __webpack_require__(342);
+	var _char = __webpack_require__(344);
 
 	var _char2 = _interopRequireDefault(_char);
 
@@ -27265,8 +27269,9 @@
 	  // Aspects are per-ancestry. Chosen randomly.
 	  state.char.aspects = {};
 	  Object.keys(ancestryData.aspects).forEach(function (key) {
-	    var aspect = ancestryData.aspects[key];
-	    state.char.aspects[key] = getRandomItem(aspect.values);
+	    var aspectValue = (0, _getRandomAspect2.default)(ancestryData.aspects[key]);
+	    // TODO effects? Perhaps store aspects as objects, for later use?
+	    state.char.aspects[key] = aspectValue.value;
 	  });
 
 	  state.char.attributes = Object.assign({}, ancestryData.attributes);
@@ -27406,11 +27411,170 @@
 
 /***/ },
 /* 337 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _droll = __webpack_require__(338);
+
+	var _droll2 = _interopRequireDefault(_droll);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * Given an "aspect" data structure:
+	 *
+	 * {
+	 *   "dieRoll": "3d6",
+	 *   "values": [
+	 *     {
+	 *       "min": 1, "max": 3,
+	 *       "value": "You are a child, 8 years old or younger.",
+	 *       "effect": "corruption+2"
+	 *     }
+	 *   ]
+	 * }
+	 *
+	 * Use the "dieRoll" property to randomly generate a number, then find the
+	 * correct aspect object and return.
+	 * Return the object so that other code can reference BOTH value AND effect.
+	 */
+	var getRandomAspect = function getRandomAspect(aspect) {
+	  var total = _droll2.default.roll(aspect.dieRoll).total;
+	  return aspect.values.find(function (value) {
+	    return(
+	      // Min and max can be equal.
+	      total >= value.min && total <= value.max
+	    );
+	  });
+	};
+
+	exports.default = getRandomAspect;
+
+/***/ },
+/* 338 */
+/***/ function(module, exports) {
+
+	(function(root) {
+
+	   "use strict";
+
+	  var droll = {};
+
+	  // Define a "class" to represent a formula
+	  function DrollFormula() {
+	    this.numDice  = 0;
+	    this.numSides = 0;
+	    this.modifier = 0;
+	  }
+
+	  // Define a "class" to represent the results of the roll
+	  function DrollResult() {
+	    this.rolls    = [];
+	    this.modifier = 0;
+	    this.total    = 0;
+	  }
+
+	  /**
+	   * Returns a string representation of the roll result
+	   */
+	  DrollResult.prototype.toString = function() {
+	    if (this.rolls.length === 1 && this.modifier === 0) {
+	      return this.rolls[0] + '';
+	    }
+
+	    if (this.rolls.length > 1 && this.modifier === 0) {
+	      return this.rolls.join(' + ') + ' = ' + this.total;
+	    }
+
+	    if (this.rolls.length === 1 && this.modifier > 0) {
+	      return this.rolls[0] + ' + ' + this.modifier + ' = ' + this.total;
+	    }
+
+	    if (this.rolls.length > 1 && this.modifier > 0) {
+	      return this.rolls.join(' + ') + ' + ' + this.modifier + ' = ' + this.total;
+	    }
+
+	    if (this.rolls.length === 1 && this.modifier < 0) {
+	      return this.rolls[0] + ' - ' + Math.abs(this.modifier) + ' = ' + this.total;
+	    }
+
+	    if (this.rolls.length > 1 && this.modifier < 0) {
+	      return this.rolls.join(' + ') + ' - ' + Math.abs(this.modifier) + ' = ' + this.total;
+	    }
+	  };
+
+	  /**
+	   * Parse the formula into its component pieces.
+	   * Returns a DrollFormula object on success or false on failure.
+	   */
+	  droll.parse = function(formula) {
+	    var pieces = null;
+	    var result = new DrollFormula();
+
+	    pieces = formula.match(/^([1-9]\d*)?d([1-9]\d*)([+-]\d+)?$/i);
+	    if (!pieces) { return false; }
+
+	    result.numDice  = (pieces[1] - 0) || 1;
+	    result.numSides = (pieces[2] - 0);
+	    result.modifier = (pieces[3] - 0) || 0;
+
+	    return result;
+	  };
+
+	  /**
+	   * Test the validity of the formula.
+	   * Returns true on success or false on failure.
+	   */
+	  droll.validate = function(formula) {
+	    return (droll.parse(formula)) ? true : false ;
+	  };
+
+	  /**
+	   * Roll the dice defined by the formula.
+	   * Returns a DrollResult object on success or false on failure.
+	   */
+	  droll.roll = function(formula) {
+	    var pieces = null;
+	    var result = new DrollResult();
+
+	    pieces = droll.parse(formula);
+	    if (!pieces) { return false; }
+
+	    for (var a=0; a<pieces.numDice; a++) {
+	      result.rolls[a] = (1 + Math.floor(Math.random() * pieces.numSides));
+	    }
+
+	    result.modifier = pieces.modifier;
+
+	    for (var b=0; b<result.rolls.length; b++) {
+	      result.total += result.rolls[b];
+	    }
+	    result.total += result.modifier;
+
+	    return result;
+	  };
+
+	  // Export library for use in node.js or browser
+	  if (typeof module !== 'undefined' && module.exports) {
+	    module.exports = droll;
+	  } else {
+	    root.droll = droll;
+	  }
+
+	}(this));
+
+/***/ },
+/* 339 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "sotdl-chargen",
-		"version": "0.12.0",
+		"version": "0.13.0",
 		"description": "Shadow of the Demon Lord - Character Generator.",
 		"repository": "ScottMaclure/sotdl-chargen",
 		"main": "index.js",
@@ -27449,6 +27613,7 @@
 			"babel-preset-react": "^6.5.0",
 			"cross-env": "^1.0.8",
 			"css-loader": "^0.23.1",
+			"droll": "^0.1.2",
 			"file-loader": "^0.8.5",
 			"jest-cli": "^12.1.1",
 			"json-loader": "^0.5.4",
@@ -27488,7 +27653,7 @@
 	};
 
 /***/ },
-/* 338 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27497,15 +27662,15 @@
 	  value: true
 	});
 
-	var _app = __webpack_require__(339);
+	var _app = __webpack_require__(341);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _human = __webpack_require__(340);
+	var _human = __webpack_require__(342);
 
 	var _human2 = _interopRequireDefault(_human);
 
-	var _orc = __webpack_require__(341);
+	var _orc = __webpack_require__(343);
 
 	var _orc2 = _interopRequireDefault(_orc);
 
@@ -27519,7 +27684,7 @@
 	exports.default = _app2.default;
 
 /***/ },
-/* 339 */
+/* 341 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -27552,7 +27717,7 @@
 	};
 
 /***/ },
-/* 340 */
+/* 342 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -27952,7 +28117,7 @@
 	};
 
 /***/ },
-/* 341 */
+/* 343 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -28282,7 +28447,7 @@
 	};
 
 /***/ },
-/* 342 */
+/* 344 */
 /***/ function(module, exports) {
 
 	module.exports = {
