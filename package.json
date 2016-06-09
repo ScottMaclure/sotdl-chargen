@@ -39,6 +39,7 @@
     "babel-preset-react": "^6.5.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
+    "droll": "^0.1.2",
     "file-loader": "^0.8.5",
     "jest-cli": "^12.1.1",
     "json-loader": "^0.5.4",
