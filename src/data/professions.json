@@ -1,0 +1,123 @@
+[
+  {
+    "type": "Academic",
+    "description": "You are a scholar. You can read and write one language you know how to speak. Roll a d20 and consult the “Academic Professions” table to determine your area of scholarship. You can recall information related to your area of scholarship.",
+    "effects": [
+      "readAndWriteSpokenLanguage"
+    ],
+    "professions": [
+      { "min": 1, "max": 1, "value": "Architecture" },
+      { "min": 2, "max": 2, "value": "Astrology" },
+      { "min": 3, "max": 3, "value": "Engineering" },
+      { "min": 4, "max": 4, "value": "Etiquette & customs" },
+      { "min": 5, "max": 5, "value": "Folklore" },
+      { "min": 6, "max": 6, "value": "Geography" },
+      { "min": 7, "max": 7, "value": "Heraldry" },
+      { "min": 8, "max": 8, "value": "History" },
+      { "min": 9, "max": 9, "value": "Law" },
+      { "min": 10, "max": 10, "value": "Literature" },
+      { "min": 11, "max": 11, "value": "Magic" },
+      { "min": 12, "max": 12, "value": "Medicine" },
+      { "min": 13, "max": 13, "value": "Navigation" },
+      { "min": 14, "max": 14, "value": "Occult" },
+      { "min": 16, "max": 16, "value": "Philosophy" },
+      { "min": 15, "max": 15, "value": "Politics" },
+      { "min": 17, "max": 17, "value": "Nature" },
+      { "min": 18, "max": 18, "value": "Religion" },
+      { "min": 19, "max": 19, "value": "Science" },
+      { "min": 20, "max": 20, "value": "War" }
+    ]
+  },
+  {
+    "type": "Common",
+    "description": "You work in a trade. Roll a d20 and consult the “Common Professions” table to determine your trade. You can recall information related to your trade and, if your trade involves manufacturing, you know how to produce goods related to your trade from raw materials.",
+    "effects": [],
+    "professions": [
+      { "min": 1, "max": 1, "value": "Animal trainer" },
+      { "min": 2, "max": 2, "value": "Apothecary or healer" },
+      { "min": 3, "max": 3, "value": "Artisan", "fields": [
+        {
+          "value": "Baker"
+        },
+        {
+          "value": "Blacksmith"
+        },
+        {
+          "value": "Bookbinder"
+        },
+        {
+          "value": "Brewer"
+        },
+        {
+          "value": "Carpenter"
+        },
+        {
+          "value": "Chandler"
+        },
+        {
+          "value": "Cobbler"
+        },
+        {
+          "value": "Dyer"
+        },
+        {
+          "value": "Glassblower"
+        },
+        {
+          "value": "Jeweler"
+        },
+        {
+          "value": "Leatherworker"
+        },
+        {
+          "value": "Mason"
+        },
+        {
+          "value": "Potter"
+        },
+        {
+          "value": "Printer"
+        },
+        {
+          "value": "Tailor"
+        }
+      ]},
+      { "min": 4, "max": 4, "value": "Artist", "fields": [
+        {
+          "value": "Painter"
+        },
+        {
+          "value": "Poet",
+          "effects": [
+            "readAndWriteSpokenLanguage"
+          ]
+        },
+        {
+          "value": "Sculptor"
+        },
+        {
+          "value": "Writer",
+          "effects": [
+            "readAndWriteSpokenLanguage"
+          ]
+        }
+      ]},
+      { "min": 5, "max": 5, "value": "Boatman or Ferryman" },
+      { "min": 6, "max": 6, "value": "Butcher" },
+      { "min": 7, "max": 7, "value": "Cook" },
+      { "min": 8, "max": 8, "value": "Drover or herder" },
+      { "min": 9, "max": 9, "value": "Entertainer. Choose a style. Examples include actor, athlete, comedian, courtesan, dancer, orator, puppeteer, singer, and storyteller." },
+      { "min": 10, "max": 10, "value": "Farmer" },
+      { "min": 11, "max": 11, "value": "Fisher or whaler" },
+      { "min": 12, "max": 12, "value": "Groom" },
+      { "min": 13, "max": 13, "value": "Laborer. Choose a labor. Examples include chimneysweep, gravedigger, porter, stevedore, and street-sweeper." },
+      { "min": 14, "max": 14, "value": "Merchant. Choose a good. Options include arms, grains, livestock, slaves, spices, and textiles." },
+      { "min": 16, "max": 16, "value": "Miner" },
+      { "min": 15, "max": 15, "value": "Musician. Choose an instrument. Examples include percussion, string, and wind" },
+      { "min": 17, "max": 17, "value": "Sailor" },
+      { "min": 18, "max": 18, "value": "Servant or valet" },
+      { "min": 19, "max": 19, "value": "Shopkeeper" },
+      { "min": 20, "max": 20, "value": "Teamster" }
+    ]
+  }
+]
