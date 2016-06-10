@@ -16,7 +16,7 @@
     "test:coverage": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest --coverage",
     "test:watch": "./node_modules/.bin/cross-env NODE_PATH=src ./node_modules/.bin/jest -o --watch",
     "ncu": "ncu --loglevel verbose --packageFile package.json",
-    "ncu:a": "ncu --loglevel verbose --packageFile package.json -a",
+    "ncu:a": "ncu --loglevel verbose --packageFile package.json -a && npm upgrade",
     "deploy": "npm run deploy:minor",
     "deploy:minor": "npm run deploy:before && npm version minor && npm run deploy:after",
     "deploy:patch": "npm run deploy:before && npm version patch && npm run deploy:after",
