@@ -5,7 +5,7 @@
 
 Hosted here:
 
-http://scott.maclure.com.au/sotdl-chargen/
+http://scott.maclure.info/sotdl-chargen/
 
 Track issues via Waffle, here:
 
